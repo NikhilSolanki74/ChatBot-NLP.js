@@ -1,0 +1,4718 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ]
+  },
+  "nluManager": {
+    "settings": {},
+    "languages": [
+      "en"
+    ],
+    "intentDomains": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "language": "en",
+          "useNoneFeature": true,
+          "config": {
+            "activation": "leaky-relu",
+            "hiddenLayers": [],
+            "iterations": 20000,
+            "learningRate": 0.7,
+            "errorThresh": 0.00005,
+            "momentum": 0.5,
+            "deltaErrorThresh": 0.000001,
+            "maxDecimals": 9,
+            "leakyReluAlpha": 0.08,
+            "timeout": 120000
+          }
+        },
+        "language": "en",
+        "nluClassName": "BrainNLU",
+        "useMasterDomain": true,
+        "trainByDomain": false,
+        "keepStopwords": true,
+        "stemDict": {
+          "hi,there": {
+            "domain": "default",
+            "intent": "greetings.hello"
+          },
+          "hello": {
+            "domain": "default",
+            "intent": "greetings.hello"
+          },
+          "good,morn": {
+            "domain": "default",
+            "intent": "greetings.hello"
+          },
+          "afternoon,good": {
+            "domain": "default",
+            "intent": "greetings.hello"
+          },
+          "even,good": {
+            "domain": "default",
+            "intent": "greetings.hello"
+          },
+          "is,like,the,today,weather,what": {
+            "domain": "default",
+            "intent": "information.weather"
+          },
+          "how,is,the,weather": {
+            "domain": "default",
+            "intent": "information.weather"
+          },
+          "go,is,it,rain,to,today": {
+            "domain": "default",
+            "intent": "information.weather"
+          },
+          "an,do,i,need,umbrella": {
+            "domain": "default",
+            "intent": "information.weather"
+          },
+          "for,forecast,is,the,tomorrow,what": {
+            "domain": "default",
+            "intent": "information.weather"
+          },
+          "is,the,time,what": {
+            "domain": "default",
+            "intent": "information.time"
+          },
+          "is,it,time,what": {
+            "domain": "default",
+            "intent": "information.time"
+          },
+          "can,me,tell,the,time,you": {
+            "domain": "default",
+            "intent": "information.time"
+          },
+          "current,is,the,time,what": {
+            "domain": "default",
+            "intent": "information.time"
+          },
+          "date,is,the,today,what": {
+            "domain": "default",
+            "intent": "information.date"
+          },
+          "date,is,is,today,what": {
+            "domain": "default",
+            "intent": "information.date"
+          },
+          "can,date,me,tell,the,you": {
+            "domain": "default",
+            "intent": "information.date"
+          },
+          "current,date,is,the,what": {
+            "domain": "default",
+            "intent": "information.date"
+          },
+          "is,news,the,today,what": {
+            "domain": "default",
+            "intent": "information.news"
+          },
+          "latest,me,news,tell,the": {
+            "domain": "default",
+            "intent": "information.news"
+          },
+          "happen,in,is,the,what,world": {
+            "domain": "default",
+            "intent": "information.news"
+          },
+          "ani,news,updat": {
+            "domain": "default",
+            "intent": "information.news"
+          },
+          "account,help,i,my,need,with": {
+            "domain": "default",
+            "intent": "assistance.account"
+          },
+          "do,how,i,my,password,reset": {
+            "domain": "default",
+            "intent": "assistance.account"
+          },
+          "account,can,help,issu,me,my,with,you": {
+            "domain": "default",
+            "intent": "assistance.account"
+          },
+          "account,assist,i,my,need,with": {
+            "domain": "default",
+            "intent": "assistance.account"
+          },
+          "i,need,support,technic": {
+            "domain": "default",
+            "intent": "assistance.technical"
+          },
+          "a,can,help,issu,me,technic,with,you": {
+            "domain": "default",
+            "intent": "assistance.technical"
+          },
+          "am,devic,have,i,my,troubl,with": {
+            "domain": "default",
+            "intent": "assistance.technical"
+          },
+          "a,help,i,need,problem,technic,with": {
+            "domain": "default",
+            "intent": "assistance.technical"
+          },
+          "about,me,product,tell,your": {
+            "domain": "default",
+            "intent": "product.inquiry"
+          },
+          "ani,discount,do,have,you": {
+            "domain": "default",
+            "intent": "product.inquiry"
+          },
+          "are,best,item,sell,what,your": {
+            "domain": "default",
+            "intent": "product.inquiry"
+          },
+          "do,offer,product,what,you": {
+            "domain": "default",
+            "intent": "product.inquiry"
+          },
+          "me,product,show,your": {
+            "domain": "default",
+            "intent": "product.inquiry"
+          },
+          "do,how,i,my,order,track": {
+            "domain": "default",
+            "intent": "order.transaction"
+          },
+          "cancel,i,my,order,to,want": {
+            "domain": "default",
+            "intent": "order.transaction"
+          },
+          "a,can,how,i,product,return": {
+            "domain": "default",
+            "intent": "order.transaction"
+          },
+          "a,can,get,i,refund": {
+            "domain": "default",
+            "intent": "order.transaction"
+          },
+          "is,my,order,where": {
+            "domain": "default",
+            "intent": "order.transaction"
+          },
+          "for,help,thank,your": {
+            "domain": "default",
+            "intent": "farewell.goodbye"
+          },
+          "goodby": {
+            "domain": "default",
+            "intent": "farewell.goodbye"
+          },
+          "later,see,you": {
+            "domain": "default",
+            "intent": "farewell.goodbye"
+          },
+          "thank,you": {
+            "domain": "default",
+            "intent": "farewell.goodbye"
+          },
+          "bye": {
+            "domain": "default",
+            "intent": "farewell.goodbye"
+          },
+          "are,how,you": {
+            "domain": "default",
+            "intent": "smalltalk.howareyou"
+          },
+          "is,name,what,your": {
+            "domain": "default",
+            "intent": "smalltalk.howareyou"
+          },
+          "do,like,music,you": {
+            "domain": "default",
+            "intent": "smalltalk.howareyou"
+          },
+          "day,how,is,your": {
+            "domain": "default",
+            "intent": "smalltalk.howareyou"
+          },
+          "do,do,what,you": {
+            "domain": "default",
+            "intent": "smalltalk.howareyou"
+          },
+          "a,fact,fun,me,tell": {
+            "domain": "default",
+            "intent": "custom.fact"
+          },
+          "ai,is,what": {
+            "domain": "default",
+            "intent": "custom.fact"
+          },
+          "a,book,can,recommend,you": {
+            "domain": "default",
+            "intent": "custom.fact"
+          },
+          "interest,me,someth,tell": {
+            "domain": "default",
+            "intent": "custom.fact"
+          },
+          "ani,do,know,trivia,you": {
+            "domain": "default",
+            "intent": "custom.fact"
+          },
+          "is,my,name,what": {
+            "domain": "default",
+            "intent": "personalization.reminder"
+          },
+          "call,john,me,remind,to,tomorrow": {
+            "domain": "default",
+            "intent": "personalization.reminder"
+          },
+          "for,is,my,schedul,today,what": {
+            "domain": "default",
+            "intent": "personalization.reminder"
+          },
+          "a,can,for,me,remind,set,you": {
+            "domain": "default",
+            "intent": "personalization.reminder"
+          },
+          "ani,appoint,do,have,i": {
+            "domain": "default",
+            "intent": "personalization.reminder"
+          },
+          "contact,do,how,i,support": {
+            "domain": "default",
+            "intent": "info.help"
+          },
+          "can,find,i,inform,more,where": {
+            "domain": "default",
+            "intent": "info.help"
+          },
+          "an,do,have,i,i,if,issu,should,what": {
+            "domain": "default",
+            "intent": "info.help"
+          },
+          "help,i,need": {
+            "domain": "default",
+            "intent": "info.help"
+          },
+          "assist,can,me,you": {
+            "domain": "default",
+            "intent": "info.help"
+          },
+          "feedback,give,i,to,want": {
+            "domain": "default",
+            "intent": "info.feedback"
+          },
+          "a,can,how,i,leav,review": {
+            "domain": "default",
+            "intent": "info.feedback"
+          },
+          "can,feedback,i,provid,where": {
+            "domain": "default",
+            "intent": "info.feedback"
+          },
+          "can,feedback,give,i,you": {
+            "domain": "default",
+            "intent": "info.feedback"
+          },
+          "feedback,have,i,some": {
+            "domain": "default",
+            "intent": "info.feedback"
+          },
+          "do,gas,get,how,i,nearest,station,the,to": {
+            "domain": "default",
+            "intent": "directions.location"
+          },
+          "closest,is,restaur,the,where": {
+            "domain": "default",
+            "intent": "directions.location"
+          },
+          "can,direct,give,mall,me,the,to,you": {
+            "domain": "default",
+            "intent": "directions.location"
+          },
+          "airport,direct,i,need,the,to": {
+            "domain": "default",
+            "intent": "directions.location"
+          },
+          "hospit,is,nearest,the,where": {
+            "domain": "default",
+            "intent": "directions.location"
+          },
+          "are,event,happen,today,what": {
+            "domain": "default",
+            "intent": "local.info"
+          },
+          "a,attract,can,local,recommend,you": {
+            "domain": "default",
+            "intent": "local.info"
+          },
+          "best,citi,in,is,place,the,this,to,visit,what": {
+            "domain": "default",
+            "intent": "local.info"
+          },
+          "ani,are,event,there,today": {
+            "domain": "default",
+            "intent": "local.info"
+          },
+          "a,around,eat,good,here,is,place,to,what": {
+            "domain": "default",
+            "intent": "local.info"
+          },
+          "around,best,citi,get,is,the,the,to,way,what": {
+            "domain": "default",
+            "intent": "transport.info"
+          },
+          "do,get,how,i,station,the,to,train": {
+            "domain": "default",
+            "intent": "transport.info"
+          },
+          "a,bus,is,nearbi,stop,there": {
+            "domain": "default",
+            "intent": "transport.info"
+          },
+          "a,call,can,me,taxi,you": {
+            "domain": "default",
+            "intent": "transport.info"
+          },
+          "closest,is,station,subway,the,what": {
+            "domain": "default",
+            "intent": "transport.info"
+          },
+          "emerg,help,i,need": {
+            "domain": "default",
+            "intent": "emergency.info"
+          },
+          "911,call": {
+            "domain": "default",
+            "intent": "emergency.info"
+          },
+          "is,nearest,polic,station,the,where": {
+            "domain": "default",
+            "intent": "emergency.info"
+          },
+          "an,emerg,have,i": {
+            "domain": "default",
+            "intent": "emergency.info"
+          },
+          "an,can,emerg,help,in,you": {
+            "domain": "default",
+            "intent": "emergency.info"
+          },
+          "did,i,not,sorri,that,understand": {
+            "domain": "default",
+            "intent": "fallback"
+          },
+          "am,i,mean,not,sure,what,you": {
+            "domain": "default",
+            "intent": "fallback"
+          },
+          "could,pleas,rephras,that,you": {
+            "domain": "default",
+            "intent": "fallback"
+          },
+          "catch,did,i,not,that": {
+            "domain": "default",
+            "intent": "fallback"
+          },
+          "detail,more,pleas,provid": {
+            "domain": "default",
+            "intent": "fallback"
+          }
+        },
+        "intentDict": {
+          "greetings.hello": "default",
+          "information.weather": "default",
+          "information.time": "default",
+          "information.date": "default",
+          "information.news": "default",
+          "assistance.account": "default",
+          "assistance.technical": "default",
+          "product.inquiry": "default",
+          "order.transaction": "default",
+          "farewell.goodbye": "default",
+          "smalltalk.howareyou": "default",
+          "custom.fact": "default",
+          "personalization.reminder": "default",
+          "info.help": "default",
+          "info.feedback": "default",
+          "directions.location": "default",
+          "local.info": "default",
+          "transport.info": "default",
+          "emergency.info": "default",
+          "fallback": "default"
+        },
+        "useStemDict": true,
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "language": "en",
+              "useNoneFeature": true,
+              "config": {
+                "activation": "leaky-relu",
+                "hiddenLayers": [],
+                "iterations": 20000,
+                "learningRate": 0.7,
+                "errorThresh": 0.00005,
+                "momentum": 0.5,
+                "deltaErrorThresh": 0.000001,
+                "maxDecimals": 9,
+                "leakyReluAlpha": 0.08,
+                "timeout": 120000
+              }
+            },
+            "language": "en",
+            "keepStopwords": true,
+            "docs": [
+              {
+                "intent": "greetings.hello",
+                "tokens": [
+                  "hi",
+                  "there"
+                ]
+              },
+              {
+                "intent": "greetings.hello",
+                "tokens": [
+                  "hello"
+                ]
+              },
+              {
+                "intent": "greetings.hello",
+                "tokens": [
+                  "good",
+                  "morn"
+                ]
+              },
+              {
+                "intent": "greetings.hello",
+                "tokens": [
+                  "good",
+                  "afternoon"
+                ]
+              },
+              {
+                "intent": "greetings.hello",
+                "tokens": [
+                  "good",
+                  "even"
+                ]
+              },
+              {
+                "intent": "information.weather",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "weather",
+                  "like",
+                  "today"
+                ]
+              },
+              {
+                "intent": "information.weather",
+                "tokens": [
+                  "how",
+                  "is",
+                  "the",
+                  "weather"
+                ]
+              },
+              {
+                "intent": "information.weather",
+                "tokens": [
+                  "is",
+                  "it",
+                  "go",
+                  "to",
+                  "rain",
+                  "today"
+                ]
+              },
+              {
+                "intent": "information.weather",
+                "tokens": [
+                  "do",
+                  "i",
+                  "need",
+                  "an",
+                  "umbrella"
+                ]
+              },
+              {
+                "intent": "information.weather",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "forecast",
+                  "for",
+                  "tomorrow"
+                ]
+              },
+              {
+                "intent": "information.time",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "time"
+                ]
+              },
+              {
+                "intent": "information.time",
+                "tokens": [
+                  "what",
+                  "time",
+                  "is",
+                  "it"
+                ]
+              },
+              {
+                "intent": "information.time",
+                "tokens": [
+                  "can",
+                  "you",
+                  "tell",
+                  "me",
+                  "the",
+                  "time"
+                ]
+              },
+              {
+                "intent": "information.time",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "current",
+                  "time"
+                ]
+              },
+              {
+                "intent": "information.date",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "date",
+                  "today"
+                ]
+              },
+              {
+                "intent": "information.date",
+                "tokens": [
+                  "what",
+                  "is",
+                  "today",
+                  "is",
+                  "date"
+                ]
+              },
+              {
+                "intent": "information.date",
+                "tokens": [
+                  "can",
+                  "you",
+                  "tell",
+                  "me",
+                  "the",
+                  "date"
+                ]
+              },
+              {
+                "intent": "information.date",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "current",
+                  "date"
+                ]
+              },
+              {
+                "intent": "information.news",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "news",
+                  "today"
+                ]
+              },
+              {
+                "intent": "information.news",
+                "tokens": [
+                  "tell",
+                  "me",
+                  "the",
+                  "latest",
+                  "news"
+                ]
+              },
+              {
+                "intent": "information.news",
+                "tokens": [
+                  "what",
+                  "is",
+                  "happen",
+                  "in",
+                  "the",
+                  "world"
+                ]
+              },
+              {
+                "intent": "information.news",
+                "tokens": [
+                  "ani",
+                  "news",
+                  "updat"
+                ]
+              },
+              {
+                "intent": "assistance.account",
+                "tokens": [
+                  "i",
+                  "need",
+                  "help",
+                  "with",
+                  "my",
+                  "account"
+                ]
+              },
+              {
+                "intent": "assistance.account",
+                "tokens": [
+                  "how",
+                  "do",
+                  "i",
+                  "reset",
+                  "my",
+                  "password"
+                ]
+              },
+              {
+                "intent": "assistance.account",
+                "tokens": [
+                  "can",
+                  "you",
+                  "help",
+                  "me",
+                  "with",
+                  "my",
+                  "account",
+                  "issu"
+                ]
+              },
+              {
+                "intent": "assistance.account",
+                "tokens": [
+                  "i",
+                  "need",
+                  "assist",
+                  "with",
+                  "my",
+                  "account"
+                ]
+              },
+              {
+                "intent": "assistance.technical",
+                "tokens": [
+                  "i",
+                  "need",
+                  "technic",
+                  "support"
+                ]
+              },
+              {
+                "intent": "assistance.technical",
+                "tokens": [
+                  "can",
+                  "you",
+                  "help",
+                  "me",
+                  "with",
+                  "a",
+                  "technic",
+                  "issu"
+                ]
+              },
+              {
+                "intent": "assistance.technical",
+                "tokens": [
+                  "i",
+                  "am",
+                  "have",
+                  "troubl",
+                  "with",
+                  "my",
+                  "devic"
+                ]
+              },
+              {
+                "intent": "assistance.technical",
+                "tokens": [
+                  "i",
+                  "need",
+                  "help",
+                  "with",
+                  "a",
+                  "technic",
+                  "problem"
+                ]
+              },
+              {
+                "intent": "product.inquiry",
+                "tokens": [
+                  "tell",
+                  "me",
+                  "about",
+                  "your",
+                  "product"
+                ]
+              },
+              {
+                "intent": "product.inquiry",
+                "tokens": [
+                  "do",
+                  "you",
+                  "have",
+                  "ani",
+                  "discount"
+                ]
+              },
+              {
+                "intent": "product.inquiry",
+                "tokens": [
+                  "what",
+                  "are",
+                  "your",
+                  "best",
+                  "sell",
+                  "item"
+                ]
+              },
+              {
+                "intent": "product.inquiry",
+                "tokens": [
+                  "what",
+                  "product",
+                  "do",
+                  "you",
+                  "offer"
+                ]
+              },
+              {
+                "intent": "product.inquiry",
+                "tokens": [
+                  "show",
+                  "me",
+                  "your",
+                  "product"
+                ]
+              },
+              {
+                "intent": "order.transaction",
+                "tokens": [
+                  "how",
+                  "do",
+                  "i",
+                  "track",
+                  "my",
+                  "order"
+                ]
+              },
+              {
+                "intent": "order.transaction",
+                "tokens": [
+                  "i",
+                  "want",
+                  "to",
+                  "cancel",
+                  "my",
+                  "order"
+                ]
+              },
+              {
+                "intent": "order.transaction",
+                "tokens": [
+                  "how",
+                  "can",
+                  "i",
+                  "return",
+                  "a",
+                  "product"
+                ]
+              },
+              {
+                "intent": "order.transaction",
+                "tokens": [
+                  "can",
+                  "i",
+                  "get",
+                  "a",
+                  "refund"
+                ]
+              },
+              {
+                "intent": "order.transaction",
+                "tokens": [
+                  "where",
+                  "is",
+                  "my",
+                  "order"
+                ]
+              },
+              {
+                "intent": "farewell.goodbye",
+                "tokens": [
+                  "thank",
+                  "for",
+                  "your",
+                  "help"
+                ]
+              },
+              {
+                "intent": "farewell.goodbye",
+                "tokens": [
+                  "goodby"
+                ]
+              },
+              {
+                "intent": "farewell.goodbye",
+                "tokens": [
+                  "see",
+                  "you",
+                  "later"
+                ]
+              },
+              {
+                "intent": "farewell.goodbye",
+                "tokens": [
+                  "thank",
+                  "you"
+                ]
+              },
+              {
+                "intent": "farewell.goodbye",
+                "tokens": [
+                  "bye"
+                ]
+              },
+              {
+                "intent": "smalltalk.howareyou",
+                "tokens": [
+                  "how",
+                  "are",
+                  "you"
+                ]
+              },
+              {
+                "intent": "smalltalk.howareyou",
+                "tokens": [
+                  "what",
+                  "is",
+                  "your",
+                  "name"
+                ]
+              },
+              {
+                "intent": "smalltalk.howareyou",
+                "tokens": [
+                  "do",
+                  "you",
+                  "like",
+                  "music"
+                ]
+              },
+              {
+                "intent": "smalltalk.howareyou",
+                "tokens": [
+                  "how",
+                  "is",
+                  "your",
+                  "day"
+                ]
+              },
+              {
+                "intent": "smalltalk.howareyou",
+                "tokens": [
+                  "what",
+                  "do",
+                  "you",
+                  "do"
+                ]
+              },
+              {
+                "intent": "custom.fact",
+                "tokens": [
+                  "tell",
+                  "me",
+                  "a",
+                  "fun",
+                  "fact"
+                ]
+              },
+              {
+                "intent": "custom.fact",
+                "tokens": [
+                  "what",
+                  "is",
+                  "ai"
+                ]
+              },
+              {
+                "intent": "custom.fact",
+                "tokens": [
+                  "can",
+                  "you",
+                  "recommend",
+                  "a",
+                  "book"
+                ]
+              },
+              {
+                "intent": "custom.fact",
+                "tokens": [
+                  "tell",
+                  "me",
+                  "someth",
+                  "interest"
+                ]
+              },
+              {
+                "intent": "custom.fact",
+                "tokens": [
+                  "do",
+                  "you",
+                  "know",
+                  "ani",
+                  "trivia"
+                ]
+              },
+              {
+                "intent": "personalization.reminder",
+                "tokens": [
+                  "what",
+                  "is",
+                  "my",
+                  "name"
+                ]
+              },
+              {
+                "intent": "personalization.reminder",
+                "tokens": [
+                  "remind",
+                  "me",
+                  "to",
+                  "call",
+                  "john",
+                  "tomorrow"
+                ]
+              },
+              {
+                "intent": "personalization.reminder",
+                "tokens": [
+                  "what",
+                  "is",
+                  "my",
+                  "schedul",
+                  "for",
+                  "today"
+                ]
+              },
+              {
+                "intent": "personalization.reminder",
+                "tokens": [
+                  "can",
+                  "you",
+                  "set",
+                  "a",
+                  "remind",
+                  "for",
+                  "me"
+                ]
+              },
+              {
+                "intent": "personalization.reminder",
+                "tokens": [
+                  "do",
+                  "i",
+                  "have",
+                  "ani",
+                  "appoint"
+                ]
+              },
+              {
+                "intent": "info.help",
+                "tokens": [
+                  "how",
+                  "do",
+                  "i",
+                  "contact",
+                  "support"
+                ]
+              },
+              {
+                "intent": "info.help",
+                "tokens": [
+                  "where",
+                  "can",
+                  "i",
+                  "find",
+                  "more",
+                  "inform"
+                ]
+              },
+              {
+                "intent": "info.help",
+                "tokens": [
+                  "what",
+                  "should",
+                  "i",
+                  "do",
+                  "if",
+                  "i",
+                  "have",
+                  "an",
+                  "issu"
+                ]
+              },
+              {
+                "intent": "info.help",
+                "tokens": [
+                  "i",
+                  "need",
+                  "help"
+                ]
+              },
+              {
+                "intent": "info.help",
+                "tokens": [
+                  "can",
+                  "you",
+                  "assist",
+                  "me"
+                ]
+              },
+              {
+                "intent": "info.feedback",
+                "tokens": [
+                  "i",
+                  "want",
+                  "to",
+                  "give",
+                  "feedback"
+                ]
+              },
+              {
+                "intent": "info.feedback",
+                "tokens": [
+                  "how",
+                  "can",
+                  "i",
+                  "leav",
+                  "a",
+                  "review"
+                ]
+              },
+              {
+                "intent": "info.feedback",
+                "tokens": [
+                  "where",
+                  "can",
+                  "i",
+                  "provid",
+                  "feedback"
+                ]
+              },
+              {
+                "intent": "info.feedback",
+                "tokens": [
+                  "can",
+                  "i",
+                  "give",
+                  "you",
+                  "feedback"
+                ]
+              },
+              {
+                "intent": "info.feedback",
+                "tokens": [
+                  "i",
+                  "have",
+                  "some",
+                  "feedback"
+                ]
+              },
+              {
+                "intent": "directions.location",
+                "tokens": [
+                  "how",
+                  "do",
+                  "i",
+                  "get",
+                  "to",
+                  "the",
+                  "nearest",
+                  "gas",
+                  "station"
+                ]
+              },
+              {
+                "intent": "directions.location",
+                "tokens": [
+                  "where",
+                  "is",
+                  "the",
+                  "closest",
+                  "restaur"
+                ]
+              },
+              {
+                "intent": "directions.location",
+                "tokens": [
+                  "can",
+                  "you",
+                  "give",
+                  "me",
+                  "direct",
+                  "to",
+                  "the",
+                  "mall"
+                ]
+              },
+              {
+                "intent": "directions.location",
+                "tokens": [
+                  "i",
+                  "need",
+                  "direct",
+                  "to",
+                  "the",
+                  "airport"
+                ]
+              },
+              {
+                "intent": "directions.location",
+                "tokens": [
+                  "where",
+                  "is",
+                  "the",
+                  "nearest",
+                  "hospit"
+                ]
+              },
+              {
+                "intent": "local.info",
+                "tokens": [
+                  "what",
+                  "event",
+                  "are",
+                  "happen",
+                  "today"
+                ]
+              },
+              {
+                "intent": "local.info",
+                "tokens": [
+                  "can",
+                  "you",
+                  "recommend",
+                  "a",
+                  "local",
+                  "attract"
+                ]
+              },
+              {
+                "intent": "local.info",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "best",
+                  "place",
+                  "to",
+                  "visit",
+                  "in",
+                  "this",
+                  "citi"
+                ]
+              },
+              {
+                "intent": "local.info",
+                "tokens": [
+                  "are",
+                  "there",
+                  "ani",
+                  "event",
+                  "today"
+                ]
+              },
+              {
+                "intent": "local.info",
+                "tokens": [
+                  "what",
+                  "is",
+                  "a",
+                  "good",
+                  "place",
+                  "to",
+                  "eat",
+                  "around",
+                  "here"
+                ]
+              },
+              {
+                "intent": "transport.info",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "best",
+                  "way",
+                  "to",
+                  "get",
+                  "around",
+                  "the",
+                  "citi"
+                ]
+              },
+              {
+                "intent": "transport.info",
+                "tokens": [
+                  "how",
+                  "do",
+                  "i",
+                  "get",
+                  "to",
+                  "the",
+                  "train",
+                  "station"
+                ]
+              },
+              {
+                "intent": "transport.info",
+                "tokens": [
+                  "is",
+                  "there",
+                  "a",
+                  "bus",
+                  "stop",
+                  "nearbi"
+                ]
+              },
+              {
+                "intent": "transport.info",
+                "tokens": [
+                  "can",
+                  "you",
+                  "call",
+                  "me",
+                  "a",
+                  "taxi"
+                ]
+              },
+              {
+                "intent": "transport.info",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "closest",
+                  "subway",
+                  "station"
+                ]
+              },
+              {
+                "intent": "emergency.info",
+                "tokens": [
+                  "i",
+                  "need",
+                  "emerg",
+                  "help"
+                ]
+              },
+              {
+                "intent": "emergency.info",
+                "tokens": [
+                  "call",
+                  "911"
+                ]
+              },
+              {
+                "intent": "emergency.info",
+                "tokens": [
+                  "where",
+                  "is",
+                  "the",
+                  "nearest",
+                  "polic",
+                  "station"
+                ]
+              },
+              {
+                "intent": "emergency.info",
+                "tokens": [
+                  "i",
+                  "have",
+                  "an",
+                  "emerg"
+                ]
+              },
+              {
+                "intent": "emergency.info",
+                "tokens": [
+                  "can",
+                  "you",
+                  "help",
+                  "in",
+                  "an",
+                  "emerg"
+                ]
+              },
+              {
+                "intent": "fallback",
+                "tokens": [
+                  "sorri",
+                  "i",
+                  "did",
+                  "not",
+                  "understand",
+                  "that"
+                ]
+              },
+              {
+                "intent": "fallback",
+                "tokens": [
+                  "i",
+                  "am",
+                  "not",
+                  "sure",
+                  "what",
+                  "you",
+                  "mean"
+                ]
+              },
+              {
+                "intent": "fallback",
+                "tokens": [
+                  "could",
+                  "you",
+                  "pleas",
+                  "rephras",
+                  "that"
+                ]
+              },
+              {
+                "intent": "fallback",
+                "tokens": [
+                  "i",
+                  "did",
+                  "not",
+                  "catch",
+                  "that"
+                ]
+              },
+              {
+                "intent": "fallback",
+                "tokens": [
+                  "pleas",
+                  "provid",
+                  "more",
+                  "detail"
+                ]
+              }
+            ],
+            "features": {
+              "911": 1,
+              "hi": 1,
+              "there": 3,
+              "hello": 1,
+              "good": 4,
+              "morn": 1,
+              "afternoon": 1,
+              "even": 1,
+              "what": 24,
+              "is": 27,
+              "the": 23,
+              "weather": 2,
+              "like": 2,
+              "today": 8,
+              "how": 10,
+              "it": 2,
+              "go": 1,
+              "to": 11,
+              "rain": 1,
+              "do": 14,
+              "i": 30,
+              "need": 8,
+              "an": 4,
+              "umbrella": 1,
+              "forecast": 1,
+              "for": 4,
+              "tomorrow": 2,
+              "time": 4,
+              "can": 17,
+              "you": 22,
+              "tell": 6,
+              "me": 14,
+              "current": 2,
+              "date": 4,
+              "news": 3,
+              "latest": 1,
+              "happen": 2,
+              "in": 3,
+              "world": 1,
+              "ani": 5,
+              "updat": 1,
+              "help": 8,
+              "with": 6,
+              "my": 10,
+              "account": 3,
+              "reset": 1,
+              "password": 1,
+              "issu": 3,
+              "assist": 2,
+              "technic": 3,
+              "support": 2,
+              "a": 12,
+              "am": 2,
+              "have": 6,
+              "troubl": 1,
+              "devic": 1,
+              "problem": 1,
+              "about": 1,
+              "your": 6,
+              "product": 4,
+              "discount": 1,
+              "are": 4,
+              "best": 3,
+              "sell": 1,
+              "item": 1,
+              "offer": 1,
+              "show": 1,
+              "track": 1,
+              "order": 3,
+              "want": 2,
+              "cancel": 1,
+              "return": 1,
+              "get": 4,
+              "refund": 1,
+              "where": 6,
+              "thank": 2,
+              "goodby": 1,
+              "see": 1,
+              "later": 1,
+              "bye": 1,
+              "name": 2,
+              "music": 1,
+              "day": 1,
+              "fun": 1,
+              "fact": 1,
+              "ai": 1,
+              "recommend": 2,
+              "book": 1,
+              "someth": 1,
+              "interest": 1,
+              "know": 1,
+              "trivia": 1,
+              "remind": 2,
+              "call": 3,
+              "john": 1,
+              "schedul": 1,
+              "set": 1,
+              "appoint": 1,
+              "contact": 1,
+              "find": 1,
+              "more": 2,
+              "inform": 1,
+              "should": 1,
+              "if": 1,
+              "give": 3,
+              "feedback": 4,
+              "leav": 1,
+              "review": 1,
+              "provid": 2,
+              "some": 1,
+              "nearest": 3,
+              "gas": 1,
+              "station": 4,
+              "closest": 2,
+              "restaur": 1,
+              "direct": 2,
+              "mall": 1,
+              "airport": 1,
+              "hospit": 1,
+              "event": 2,
+              "local": 1,
+              "attract": 1,
+              "place": 2,
+              "visit": 1,
+              "this": 1,
+              "citi": 2,
+              "eat": 1,
+              "around": 2,
+              "here": 1,
+              "way": 1,
+              "train": 1,
+              "bus": 1,
+              "stop": 1,
+              "nearbi": 1,
+              "taxi": 1,
+              "subway": 1,
+              "emerg": 3,
+              "polic": 1,
+              "sorri": 1,
+              "did": 2,
+              "not": 3,
+              "understand": 1,
+              "that": 3,
+              "sure": 1,
+              "mean": 1,
+              "could": 1,
+              "pleas": 2,
+              "rephras": 1,
+              "catch": 1,
+              "detail": 1
+            },
+            "isEditing": false,
+            "className": "BrainNLU",
+            "classifier": {
+              "className": "BrainClassifier",
+              "settings": {
+                "language": "en",
+                "useNoneFeature": true,
+                "config": {
+                  "activation": "leaky-relu",
+                  "hiddenLayers": [],
+                  "iterations": 20000,
+                  "learningRate": 0.7,
+                  "errorThresh": 0.00005,
+                  "momentum": 0.5,
+                  "deltaErrorThresh": 0.000001,
+                  "maxDecimals": 9,
+                  "leakyReluAlpha": 0.08,
+                  "timeout": 120000
+                }
+              },
+              "labels": [],
+              "network": {
+                "sizes": [
+                  151,
+                  21
+                ],
+                "layers": [
+                  {
+                    "911": {},
+                    "hi": {},
+                    "there": {},
+                    "hello": {},
+                    "good": {},
+                    "morn": {},
+                    "afternoon": {},
+                    "even": {},
+                    "what": {},
+                    "is": {},
+                    "the": {},
+                    "weather": {},
+                    "like": {},
+                    "today": {},
+                    "how": {},
+                    "it": {},
+                    "go": {},
+                    "to": {},
+                    "rain": {},
+                    "do": {},
+                    "i": {},
+                    "need": {},
+                    "an": {},
+                    "umbrella": {},
+                    "forecast": {},
+                    "for": {},
+                    "tomorrow": {},
+                    "time": {},
+                    "can": {},
+                    "you": {},
+                    "tell": {},
+                    "me": {},
+                    "current": {},
+                    "date": {},
+                    "news": {},
+                    "latest": {},
+                    "happen": {},
+                    "in": {},
+                    "world": {},
+                    "ani": {},
+                    "updat": {},
+                    "help": {},
+                    "with": {},
+                    "my": {},
+                    "account": {},
+                    "reset": {},
+                    "password": {},
+                    "issu": {},
+                    "assist": {},
+                    "technic": {},
+                    "support": {},
+                    "a": {},
+                    "am": {},
+                    "have": {},
+                    "troubl": {},
+                    "devic": {},
+                    "problem": {},
+                    "about": {},
+                    "your": {},
+                    "product": {},
+                    "discount": {},
+                    "are": {},
+                    "best": {},
+                    "sell": {},
+                    "item": {},
+                    "offer": {},
+                    "show": {},
+                    "track": {},
+                    "order": {},
+                    "want": {},
+                    "cancel": {},
+                    "return": {},
+                    "get": {},
+                    "refund": {},
+                    "where": {},
+                    "thank": {},
+                    "goodby": {},
+                    "see": {},
+                    "later": {},
+                    "bye": {},
+                    "name": {},
+                    "music": {},
+                    "day": {},
+                    "fun": {},
+                    "fact": {},
+                    "ai": {},
+                    "recommend": {},
+                    "book": {},
+                    "someth": {},
+                    "interest": {},
+                    "know": {},
+                    "trivia": {},
+                    "remind": {},
+                    "call": {},
+                    "john": {},
+                    "schedul": {},
+                    "set": {},
+                    "appoint": {},
+                    "contact": {},
+                    "find": {},
+                    "more": {},
+                    "inform": {},
+                    "should": {},
+                    "if": {},
+                    "give": {},
+                    "feedback": {},
+                    "leav": {},
+                    "review": {},
+                    "provid": {},
+                    "some": {},
+                    "nearest": {},
+                    "gas": {},
+                    "station": {},
+                    "closest": {},
+                    "restaur": {},
+                    "direct": {},
+                    "mall": {},
+                    "airport": {},
+                    "hospit": {},
+                    "event": {},
+                    "local": {},
+                    "attract": {},
+                    "place": {},
+                    "visit": {},
+                    "this": {},
+                    "citi": {},
+                    "eat": {},
+                    "around": {},
+                    "here": {},
+                    "way": {},
+                    "train": {},
+                    "bus": {},
+                    "stop": {},
+                    "nearbi": {},
+                    "taxi": {},
+                    "subway": {},
+                    "emerg": {},
+                    "polic": {},
+                    "sorri": {},
+                    "did": {},
+                    "not": {},
+                    "understand": {},
+                    "that": {},
+                    "sure": {},
+                    "mean": {},
+                    "could": {},
+                    "pleas": {},
+                    "rephras": {},
+                    "catch": {},
+                    "detail": {},
+                    "nonefeature": {}
+                  },
+                  {
+                    "greetings.hello": {
+                      "bias": 2.562848876,
+                      "weights": {
+                        "911": -1.264361024,
+                        "hi": 5.969135284,
+                        "there": 3.952575684,
+                        "hello": 9.644918442,
+                        "good": 7.237806797,
+                        "morn": 2.693347454,
+                        "afternoon": 2.682723761,
+                        "even": 2.666055202,
+                        "what": -1.489948153,
+                        "is": -2.568334341,
+                        "the": -0.983836591,
+                        "weather": -0.495459616,
+                        "like": -0.314950913,
+                        "today": -1.751030922,
+                        "how": -0.442579448,
+                        "it": -0.280685395,
+                        "go": -0.192293778,
+                        "to": -1.076586246,
+                        "rain": -0.192293778,
+                        "do": -0.629453361,
+                        "i": -1.681970835,
+                        "need": -0.765073717,
+                        "an": -0.359668076,
+                        "umbrella": -0.322222888,
+                        "forecast": -0.080701306,
+                        "for": -0.430768669,
+                        "tomorrow": -0.117819466,
+                        "time": -0.282076269,
+                        "can": -0.449297518,
+                        "you": -1.683891296,
+                        "tell": -0.822651029,
+                        "me": -1.187892556,
+                        "date": -0.093678996,
+                        "news": -0.72801733,
+                        "latest": -0.135585546,
+                        "ani": -1.987952948,
+                        "updat": -0.592431724,
+                        "help": -0.564639211,
+                        "with": -0.382596284,
+                        "my": -0.619551063,
+                        "account": -0.249381542,
+                        "reset": -0.139579207,
+                        "password": -0.139579207,
+                        "issu": -0.067522615,
+                        "assist": -0.057196114,
+                        "technic": -0.260991961,
+                        "support": -0.23860544,
+                        "a": -1.69824934,
+                        "am": -0.110828228,
+                        "have": -0.491108507,
+                        "troubl": -0.110828228,
+                        "devic": -0.110828228,
+                        "about": -0.181237593,
+                        "your": -0.959584653,
+                        "product": -0.442482084,
+                        "discount": -0.130997241,
+                        "are": -1.51868248,
+                        "best": -0.167678371,
+                        "sell": -0.167678371,
+                        "item": -0.167678371,
+                        "offer": -0.000643021,
+                        "show": -0.260601461,
+                        "order": -0.119762093,
+                        "want": -0.042852554,
+                        "cancel": -0.033903114,
+                        "get": -0.094314672,
+                        "refund": -0.094314672,
+                        "where": -0.137432501,
+                        "thank": -0.907038689,
+                        "goodby": -2.508143425,
+                        "see": -0.500664771,
+                        "later": -0.500664771,
+                        "bye": -2.487680674,
+                        "music": -0.036011096,
+                        "fun": -0.007395238,
+                        "fact": -0.007395238,
+                        "recommend": -0.017795205,
+                        "book": -0.016756106,
+                        "someth": -0.280341595,
+                        "interest": -0.280341595,
+                        "remind": -0.037118167,
+                        "call": -1.301479101,
+                        "john": -0.037118167,
+                        "find": -0.033827644,
+                        "more": -0.646233559,
+                        "inform": -0.033827644,
+                        "give": -0.008949444,
+                        "feedback": -0.238533005,
+                        "provid": -0.630151749,
+                        "some": -0.211837694,
+                        "event": -1.264523625,
+                        "local": -0.001039098,
+                        "attract": -0.001039098,
+                        "place": -0.804321766,
+                        "eat": -0.804321766,
+                        "around": -0.804321766,
+                        "here": -0.804321766,
+                        "bus": -0.752036035,
+                        "stop": -0.752036035,
+                        "nearbi": -0.752036035,
+                        "emerg": -0.037445232,
+                        "sorri": -0.094241716,
+                        "did": -0.228466049,
+                        "not": -0.228466049,
+                        "understand": -0.094241716,
+                        "that": -0.29717958,
+                        "could": -0.068713695,
+                        "pleas": -0.681119621,
+                        "rephras": -0.068713695,
+                        "catch": -0.134224311,
+                        "detail": -0.612405896,
+                        "nonefeature": -2.43906498
+                      }
+                    },
+                    "information.weather": {
+                      "bias": -0.711185708,
+                      "weights": {
+                        "there": -0.360171884,
+                        "what": -2.318040371,
+                        "is": 2.772654295,
+                        "the": 1.353908062,
+                        "weather": 8.240913391,
+                        "like": 2.249867916,
+                        "today": 0.913487136,
+                        "how": 0.842193604,
+                        "it": 2.381983757,
+                        "go": 3.481182814,
+                        "to": 0.180519626,
+                        "rain": 3.481182814,
+                        "do": 1.642386436,
+                        "i": -1.011453629,
+                        "need": 2.790459871,
+                        "an": 4.255573273,
+                        "umbrella": 5.532920837,
+                        "forecast": 4.522262573,
+                        "for": 3.087707281,
+                        "tomorrow": 3.792283297,
+                        "time": -3.498940229,
+                        "can": -0.405522466,
+                        "you": -1.890359163,
+                        "tell": -0.341862231,
+                        "me": -1.071841955,
+                        "current": -0.781014204,
+                        "date": -3.065033913,
+                        "news": -2.183834791,
+                        "latest": -0.096986189,
+                        "happen": -0.565821826,
+                        "in": -0.681202829,
+                        "world": -0.565821826,
+                        "ani": -0.265356779,
+                        "updat": -0.074981697,
+                        "help": -1.067451239,
+                        "with": -0.598614037,
+                        "my": -2.643830061,
+                        "account": -0.498653859,
+                        "reset": -0.671749771,
+                        "password": -0.671749771,
+                        "issu": -0.212724313,
+                        "assist": -0.122499473,
+                        "technic": -0.679631889,
+                        "support": -0.849202991,
+                        "a": -0.620778203,
+                        "have": -1.467722535,
+                        "problem": -0.099960245,
+                        "your": -1.663188457,
+                        "product": -0.160646424,
+                        "discount": -0.180475593,
+                        "are": -0.167666838,
+                        "best": -0.140831441,
+                        "track": -0.285807073,
+                        "order": -0.368953049,
+                        "want": -0.163926244,
+                        "cancel": -0.034587078,
+                        "return": -0.160646424,
+                        "get": -0.98845613,
+                        "where": -1.603643417,
+                        "thank": -0.330082655,
+                        "goodby": -0.031377073,
+                        "bye": -0.029770467,
+                        "music": -1.297340512,
+                        "day": -1.333105803,
+                        "ai": -0.032695439,
+                        "remind": -0.729979932,
+                        "call": -0.729979932,
+                        "john": -0.729979932,
+                        "schedul": -1.104474068,
+                        "appoint": -0.009899492,
+                        "contact": -0.269531369,
+                        "should": -0.212724313,
+                        "if": -0.212724313,
+                        "give": -0.129339173,
+                        "feedback": -0.129339173,
+                        "nearest": -1.214896321,
+                        "gas": -0.618012547,
+                        "station": -0.963005662,
+                        "closest": -0.958200634,
+                        "restaur": -0.958200634,
+                        "direct": -1.302921295,
+                        "airport": -1.302921295,
+                        "hospit": -0.596884072,
+                        "place": -0.115381002,
+                        "visit": -0.115381002,
+                        "this": -0.115381002,
+                        "citi": -0.140831441,
+                        "around": -0.025450421,
+                        "way": -0.025450421,
+                        "train": -0.344993263,
+                        "bus": -0.360171884,
+                        "stop": -0.360171884,
+                        "nearbi": -0.360171884,
+                        "emerg": -1.064623356,
+                        "nonefeature": 3.15e-7
+                      }
+                    },
+                    "information.time": {
+                      "bias": -0.614900235,
+                      "weights": {
+                        "good": -0.02595612,
+                        "what": 0.739493489,
+                        "is": 0.224873871,
+                        "the": 1.375410676,
+                        "weather": -0.41354838,
+                        "today": -2.149467945,
+                        "how": -0.547360659,
+                        "it": 1.710386872,
+                        "go": -0.013723624,
+                        "to": -0.518302381,
+                        "rain": -0.013723624,
+                        "do": -0.551680148,
+                        "i": -0.258988798,
+                        "need": -0.048276633,
+                        "forecast": -0.542326331,
+                        "for": -0.608717561,
+                        "tomorrow": -0.542326331,
+                        "time": 10.472784042,
+                        "can": 0.607149661,
+                        "you": -0.053788066,
+                        "tell": 0.848090351,
+                        "me": -0.160829946,
+                        "current": 0.358706385,
+                        "date": -3.494146347,
+                        "news": -1.196132302,
+                        "latest": -0.541024089,
+                        "happen": -0.827396274,
+                        "in": -0.848226786,
+                        "world": -0.827396274,
+                        "ani": -0.092594475,
+                        "help": -0.3999075,
+                        "with": -0.3999075,
+                        "my": -0.528878629,
+                        "account": -0.259923577,
+                        "reset": -0.026734252,
+                        "password": -0.026734252,
+                        "issu": -0.36778146,
+                        "assist": -0.307586223,
+                        "technic": -0.156134501,
+                        "support": -0.016150601,
+                        "a": -0.544999242,
+                        "am": -0.000834693,
+                        "have": -0.092594475,
+                        "about": -0.155704558,
+                        "your": -0.725454211,
+                        "product": -0.41584599,
+                        "discount": -0.092594475,
+                        "are": -0.148537964,
+                        "best": -0.33082366,
+                        "sell": -0.11936219,
+                        "item": -0.11936219,
+                        "offer": -0.2443638,
+                        "order": -0.157900617,
+                        "return": -0.015777646,
+                        "get": -0.272405207,
+                        "refund": -0.081774153,
+                        "where": -0.594967723,
+                        "thank": -0.113877207,
+                        "goodby": -0.024089349,
+                        "see": -0.106851935,
+                        "later": -0.106851935,
+                        "bye": -0.01265301,
+                        "name": -0.472583145,
+                        "day": -0.06212458,
+                        "fun": -0.112466671,
+                        "fact": -0.112466671,
+                        "ai": -0.548397064,
+                        "recommend": -0.10264948,
+                        "book": -0.10264948,
+                        "someth": -0.244576812,
+                        "interest": -0.244576812,
+                        "remind": -0.066391274,
+                        "set": -0.066391274,
+                        "find": -0.017178111,
+                        "more": -0.017178111,
+                        "inform": -0.017178111,
+                        "give": -0.335556477,
+                        "feedback": -0.068413362,
+                        "provid": -0.000018068,
+                        "nearest": -0.202679366,
+                        "station": -0.501509249,
+                        "closest": -0.718700588,
+                        "restaur": -0.217191443,
+                        "direct": -0.267161191,
+                        "mall": -0.267161191,
+                        "hospit": -0.202679366,
+                        "place": -0.046786606,
+                        "visit": -0.020830488,
+                        "this": -0.020830488,
+                        "citi": -0.211461514,
+                        "eat": -0.02595612,
+                        "around": -0.216587156,
+                        "here": -0.02595612,
+                        "way": -0.190631017,
+                        "subway": -0.501509249,
+                        "not": -0.000834693,
+                        "sure": -0.000834693,
+                        "mean": -0.000834693,
+                        "nonefeature": 3.15e-7
+                      }
+                    },
+                    "information.date": {
+                      "bias": -0.739946868,
+                      "weights": {
+                        "there": -0.154951349,
+                        "what": 0.4312796,
+                        "is": 0.373809159,
+                        "the": 0.144299358,
+                        "weather": -1.042508245,
+                        "like": -1.042508245,
+                        "today": 1.409214735,
+                        "how": -0.173374996,
+                        "it": -0.249874219,
+                        "go": -0.249874219,
+                        "to": -0.60598284,
+                        "rain": -0.249874219,
+                        "do": -0.61583221,
+                        "i": -0.3863208,
+                        "need": -0.117736541,
+                        "forecast": -0.010625808,
+                        "for": -0.592837274,
+                        "tomorrow": -0.010625808,
+                        "time": -1.530621052,
+                        "can": 0.871280968,
+                        "you": 0.153409079,
+                        "tell": 1.160893679,
+                        "me": -0.063328452,
+                        "current": 1.299877524,
+                        "date": 10.976231575,
+                        "news": -2.812763214,
+                        "latest": -0.592893243,
+                        "happen": -1.00567019,
+                        "in": -0.915702105,
+                        "world": -0.915702105,
+                        "ani": -0.293285578,
+                        "help": -0.674167156,
+                        "with": -0.674167156,
+                        "my": -1.174872875,
+                        "account": -0.486522377,
+                        "reset": -0.071469322,
+                        "password": -0.071469322,
+                        "issu": -0.588283837,
+                        "assist": -0.331608355,
+                        "technic": -0.219498023,
+                        "support": -0.031853244,
+                        "a": -0.662365019,
+                        "have": -0.13833423,
+                        "about": -0.256275952,
+                        "your": -0.785156608,
+                        "product": -0.517509282,
+                        "discount": -0.13833423,
+                        "are": -0.421901703,
+                        "best": -0.231217548,
+                        "sell": -0.133631229,
+                        "item": -0.133631229,
+                        "offer": -0.242293894,
+                        "order": -0.080477275,
+                        "return": -0.018939402,
+                        "get": -0.198122174,
+                        "refund": -0.100535855,
+                        "where": -0.409102142,
+                        "thank": -0.13444975,
+                        "goodby": -0.020467794,
+                        "see": -0.126677006,
+                        "later": -0.126677006,
+                        "bye": -0.00703404,
+                        "name": -0.355634093,
+                        "day": -0.039615367,
+                        "fun": -0.159119129,
+                        "fact": -0.159119129,
+                        "ai": -0.496860743,
+                        "recommend": -0.150318369,
+                        "book": -0.150318369,
+                        "someth": -0.273754269,
+                        "interest": -0.273754269,
+                        "remind": -0.045807533,
+                        "schedul": -0.536403954,
+                        "set": -0.045807533,
+                        "find": -0.011493403,
+                        "more": -0.011493403,
+                        "inform": -0.011493403,
+                        "give": -0.324668586,
+                        "feedback": -0.066146277,
+                        "nearest": -0.145309538,
+                        "station": -0.266569257,
+                        "closest": -0.438391238,
+                        "restaur": -0.171821967,
+                        "direct": -0.258522302,
+                        "mall": -0.258522302,
+                        "hospit": -0.145309538,
+                        "event": -0.244919538,
+                        "citi": -0.097586349,
+                        "around": -0.097586349,
+                        "way": -0.097586349,
+                        "subway": -0.266569257,
+                        "nonefeature": 3.14e-7
+                      }
+                    },
+                    "information.news": {
+                      "bias": -1.008902034,
+                      "weights": {
+                        "there": -0.13452813,
+                        "what": 0.203860536,
+                        "is": -0.06472674,
+                        "the": 2.537829399,
+                        "weather": -1.469200015,
+                        "like": -1.177957177,
+                        "today": 0.880369008,
+                        "how": -0.746305525,
+                        "to": -1.536639094,
+                        "do": -0.80862999,
+                        "i": -0.948723376,
+                        "need": -0.567478657,
+                        "forecast": -0.539248228,
+                        "for": -0.862942636,
+                        "tomorrow": -0.586280644,
+                        "time": -1.656897426,
+                        "can": -0.874517739,
+                        "you": -1.321238399,
+                        "tell": 0.134875089,
+                        "me": -0.603618979,
+                        "current": -0.389292896,
+                        "date": -2.368176937,
+                        "news": 9.795093536,
+                        "latest": 1.668541789,
+                        "happen": 3.020606756,
+                        "in": 3.500515699,
+                        "world": 4.312961102,
+                        "ani": 1.681718826,
+                        "updat": 2.076771736,
+                        "help": -0.615005374,
+                        "with": -0.615005374,
+                        "my": -1.291081667,
+                        "account": -0.473575085,
+                        "reset": -0.177943066,
+                        "password": -0.177943066,
+                        "issu": -0.401174635,
+                        "technic": -0.26201123,
+                        "support": -0.120580941,
+                        "a": -0.539683878,
+                        "have": -0.243366733,
+                        "about": -0.489624083,
+                        "your": -1.330771089,
+                        "product": -0.651571512,
+                        "discount": -0.243366733,
+                        "are": -1.664673805,
+                        "best": -1.054965138,
+                        "sell": -0.237792999,
+                        "item": -0.237792999,
+                        "offer": -0.107726045,
+                        "show": -0.054221399,
+                        "order": -0.208680928,
+                        "get": -0.208028719,
+                        "where": -1.600532174,
+                        "thank": -0.008776838,
+                        "goodby": -0.187435329,
+                        "see": -0.01055856,
+                        "later": -0.01055856,
+                        "bye": -0.177764758,
+                        "name": -0.582502842,
+                        "day": -0.073817968,
+                        "fun": -0.398253649,
+                        "fact": -0.398253649,
+                        "ai": -0.65503037,
+                        "someth": -0.40851143,
+                        "interest": -0.40851143,
+                        "know": -0.017158436,
+                        "trivia": -0.017158436,
+                        "remind": -0.047032423,
+                        "call": -0.047032423,
+                        "john": -0.047032423,
+                        "schedul": -0.323694348,
+                        "give": -0.23606582,
+                        "nearest": -0.780474186,
+                        "gas": -0.203301594,
+                        "station": -0.781769753,
+                        "closest": -1.393146992,
+                        "restaur": -0.814678609,
+                        "direct": -0.4691329,
+                        "mall": -0.23606582,
+                        "airport": -0.23306708,
+                        "hospit": -0.577172637,
+                        "event": -1.426880836,
+                        "place": -0.812445045,
+                        "visit": -0.812445045,
+                        "this": -0.812445045,
+                        "citi": -0.81717217,
+                        "around": -0.004727125,
+                        "way": -0.004727125,
+                        "subway": -0.578468204,
+                        "nonefeature": 3.15e-7
+                      }
+                    },
+                    "assistance.account": {
+                      "bias": -0.99539188,
+                      "weights": {
+                        "what": -1.270178318,
+                        "is": -1.22600925,
+                        "the": -0.087863803,
+                        "like": -0.026197955,
+                        "today": -0.276539862,
+                        "how": 1.112406015,
+                        "to": -0.564225614,
+                        "do": 0.730729699,
+                        "i": -0.071628161,
+                        "need": 0.496602118,
+                        "an": -0.193326801,
+                        "umbrella": -0.149842247,
+                        "for": -0.420143008,
+                        "can": 0.163229361,
+                        "you": -0.40132311,
+                        "tell": -0.096715219,
+                        "me": 0.105009735,
+                        "in": -0.043484557,
+                        "ani": -0.157504216,
+                        "help": 0.602160811,
+                        "with": 2.47871542,
+                        "my": 4.221231937,
+                        "account": 5.701675892,
+                        "reset": 3.745443583,
+                        "password": 3.745443583,
+                        "issu": 0.614024341,
+                        "assist": 0.671667159,
+                        "technic": -2.447168827,
+                        "support": -0.796823561,
+                        "a": -1.850442529,
+                        "am": -1.372519135,
+                        "have": -1.530023336,
+                        "troubl": -1.372519135,
+                        "devic": -1.372519135,
+                        "problem": -0.508343339,
+                        "about": -0.096715219,
+                        "your": -0.305083245,
+                        "product": -0.340142459,
+                        "discount": -0.157504216,
+                        "are": -0.198416889,
+                        "best": -0.033943135,
+                        "sell": -0.033943135,
+                        "item": -0.033943135,
+                        "offer": -0.227407306,
+                        "show": -0.016019892,
+                        "track": -2.165801048,
+                        "order": -2.844542027,
+                        "want": -0.476361781,
+                        "cancel": -0.476361781,
+                        "get": -0.087863803,
+                        "where": -0.213410154,
+                        "thank": -0.143603116,
+                        "name": -0.732287705,
+                        "music": -0.026197955,
+                        "day": -0.014801854,
+                        "schedul": -0.276539862,
+                        "contact": -0.200097308,
+                        "find": -0.011030759,
+                        "more": -0.011030759,
+                        "inform": -0.011030759,
+                        "nearest": -0.045180798,
+                        "gas": -0.045180798,
+                        "station": -0.087863803,
+                        "train": -0.042682994,
+                        "emerg": -0.500498295,
+                        "nonefeature": 3.15e-7
+                      }
+                    },
+                    "assistance.technical": {
+                      "bias": -0.495123101,
+                      "weights": {
+                        "there": -0.133629814,
+                        "what": -0.979625344,
+                        "is": -0.133629814,
+                        "the": -0.119001746,
+                        "how": -1.32824111,
+                        "to": -0.517140388,
+                        "do": -1.838069201,
+                        "i": 0.216275766,
+                        "need": 1.152816772,
+                        "an": -0.55708158,
+                        "for": -0.484085023,
+                        "tomorrow": -0.017256092,
+                        "can": -0.290861517,
+                        "you": -0.258277148,
+                        "tell": -0.670357287,
+                        "me": 0.519002497,
+                        "in": -0.08764711,
+                        "ani": -0.539759696,
+                        "help": -0.881785989,
+                        "with": 3.477683783,
+                        "my": -0.834311008,
+                        "account": -3.067543983,
+                        "issu": 1.644592881,
+                        "assist": -0.447819769,
+                        "technic": 7.771203995,
+                        "support": 3.848247051,
+                        "a": 1.012422562,
+                        "am": 2.647705793,
+                        "have": 1.436394811,
+                        "troubl": 3.024637222,
+                        "devic": 3.024637222,
+                        "problem": 0.246845692,
+                        "about": -0.322354347,
+                        "your": -0.775702298,
+                        "product": -1.171653509,
+                        "discount": -0.434224129,
+                        "are": -0.117277183,
+                        "best": -0.117277183,
+                        "sell": -0.117277183,
+                        "item": -0.117277183,
+                        "offer": -0.179432943,
+                        "show": -0.160283431,
+                        "track": -0.410523444,
+                        "order": -0.791406035,
+                        "want": -0.380882651,
+                        "cancel": -0.380882651,
+                        "return": -0.509582818,
+                        "get": -0.644437909,
+                        "refund": -0.644437909,
+                        "where": -0.076664425,
+                        "thank": -0.264427364,
+                        "goodby": -0.031336572,
+                        "see": -0.124633752,
+                        "later": -0.124633752,
+                        "bye": -0.019207327,
+                        "fun": -0.335356146,
+                        "fact": -0.335356146,
+                        "recommend": -0.333664894,
+                        "book": -0.325692356,
+                        "someth": -0.012646774,
+                        "interest": -0.012646774,
+                        "remind": -0.325553715,
+                        "call": -0.254688203,
+                        "john": -0.017256092,
+                        "set": -0.308297634,
+                        "appoint": -0.105535552,
+                        "contact": -0.402371436,
+                        "find": -0.076664425,
+                        "more": -0.076664425,
+                        "inform": -0.076664425,
+                        "should": -0.305981904,
+                        "if": -0.305981904,
+                        "feedback": -0.579049408,
+                        "leav": -0.005763509,
+                        "review": -0.005763509,
+                        "some": -0.579049408,
+                        "direct": -0.119001746,
+                        "airport": -0.119001746,
+                        "local": -0.007972537,
+                        "attract": -0.007972537,
+                        "bus": -0.133629814,
+                        "stop": -0.133629814,
+                        "nearbi": -0.133629814,
+                        "taxi": -0.237432107,
+                        "emerg": -0.599929929,
+                        "not": -0.376933396,
+                        "sure": -0.376933396,
+                        "mean": -0.376933396,
+                        "nonefeature": 3.15e-7
+                      }
+                    },
+                    "product.inquiry": {
+                      "bias": -1.181297284,
+                      "weights": {
+                        "there": -0.585125208,
+                        "what": -0.008646009,
+                        "is": -1.979688764,
+                        "the": -0.567533016,
+                        "like": -0.973914146,
+                        "today": -0.808594644,
+                        "how": -1.692554832,
+                        "to": -0.428094894,
+                        "do": 0.557138145,
+                        "i": -3.40126586,
+                        "an": -0.310779929,
+                        "for": -0.895375729,
+                        "tomorrow": -0.18126528,
+                        "time": -0.15074259,
+                        "can": -1.066070795,
+                        "you": 0.860009611,
+                        "tell": 0.007265213,
+                        "me": 1.119080424,
+                        "date": -0.111714751,
+                        "news": -0.516301453,
+                        "latest": -0.21346204,
+                        "happen": -0.223469451,
+                        "in": -0.082276851,
+                        "ani": 2.005347729,
+                        "updat": -0.302839339,
+                        "help": -0.895375729,
+                        "my": -0.714534163,
+                        "issu": -0.310779929,
+                        "assist": -0.312055051,
+                        "a": -0.947494805,
+                        "have": 3.965342283,
+                        "about": 1.612346888,
+                        "your": 3.52931571,
+                        "product": 7.4392519,
+                        "discount": 6.231844902,
+                        "are": 1.385291696,
+                        "best": 2.851278782,
+                        "sell": 2.942892313,
+                        "item": 2.942892313,
+                        "offer": 4.622768879,
+                        "show": 1.605135441,
+                        "track": -0.487986982,
+                        "order": -0.714534163,
+                        "want": -0.155216068,
+                        "cancel": -0.155216068,
+                        "return": -0.400999874,
+                        "get": -0.099895537,
+                        "refund": -0.090558797,
+                        "where": -0.071331061,
+                        "thank": -1.386685848,
+                        "goodby": -0.266634464,
+                        "see": -0.636789858,
+                        "later": -0.636789858,
+                        "bye": -0.202287018,
+                        "name": -1.681121707,
+                        "music": -0.973914146,
+                        "day": -0.054561146,
+                        "fun": -0.455936164,
+                        "fact": -0.455936164,
+                        "ai": -0.081061259,
+                        "someth": -0.673225999,
+                        "interest": -0.673225999,
+                        "know": -1.382809162,
+                        "trivia": -1.382809162,
+                        "remind": -0.18126528,
+                        "call": -0.18126528,
+                        "john": -0.18126528,
+                        "appoint": -1.955724001,
+                        "should": -0.310779929,
+                        "if": -0.310779929,
+                        "event": -0.808594644,
+                        "place": -0.082276851,
+                        "visit": -0.082276851,
+                        "this": -0.082276851,
+                        "citi": -0.091613583,
+                        "around": -0.009336738,
+                        "way": -0.009336738,
+                        "nonefeature": 3.15e-7
+                      }
+                    },
+                    "order.transaction": {
+                      "bias": -1.186884524,
+                      "weights": {
+                        "there": -0.650317252,
+                        "good": -0.030541709,
+                        "what": -1.977233291,
+                        "is": 0.694415033,
+                        "the": -0.883687496,
+                        "like": -0.105179764,
+                        "today": -0.4522762,
+                        "how": 0.08791697,
+                        "to": -0.622279704,
+                        "do": -1.358446002,
+                        "i": 0.901688933,
+                        "need": -1.232451916,
+                        "an": -0.016740495,
+                        "for": -0.869434059,
+                        "tomorrow": -0.176891536,
+                        "can": 1.974440694,
+                        "you": -2.309690952,
+                        "tell": -0.493828446,
+                        "me": -1.158670664,
+                        "ani": -0.702412784,
+                        "help": -1.052573442,
+                        "with": -1.231978536,
+                        "my": 3.789191246,
+                        "account": -0.818019211,
+                        "reset": -1.200485706,
+                        "password": -1.200485706,
+                        "issu": -0.016740495,
+                        "assist": -0.387794346,
+                        "support": -1.025808215,
+                        "a": 3.094162464,
+                        "am": -0.413959324,
+                        "have": -1.133112669,
+                        "troubl": -0.413959324,
+                        "devic": -0.413959324,
+                        "your": -1.165738821,
+                        "product": 3.710860491,
+                        "are": -0.361345947,
+                        "show": -0.205880627,
+                        "track": 2.529113054,
+                        "order": 7.741824627,
+                        "want": 0.434861541,
+                        "cancel": 1.446533203,
+                        "return": 3.916741133,
+                        "get": 3.454842329,
+                        "refund": 4.259308338,
+                        "where": 1.446461201,
+                        "thank": -0.428753674,
+                        "goodby": -0.282289237,
+                        "see": -0.225625038,
+                        "later": -0.225625038,
+                        "bye": -0.248056784,
+                        "name": -1.315153956,
+                        "music": -0.105179764,
+                        "day": -0.459438026,
+                        "fun": -0.485156655,
+                        "fact": -0.485156655,
+                        "ai": -0.130054995,
+                        "recommend": -1.127407074,
+                        "book": -0.904872239,
+                        "someth": -0.008671775,
+                        "interest": -0.008671775,
+                        "remind": -0.340891302,
+                        "call": -0.29496181,
+                        "john": -0.176891536,
+                        "schedul": -0.4522762,
+                        "set": -0.163999781,
+                        "appoint": -0.702412784,
+                        "contact": -1.025808215,
+                        "find": -1.224077821,
+                        "more": -1.224077821,
+                        "inform": -1.224077821,
+                        "should": -0.016740495,
+                        "if": -0.016740495,
+                        "give": -1.011671782,
+                        "feedback": -2.073331118,
+                        "leav": -2.506391764,
+                        "review": -2.506391764,
+                        "provid": -1.061659575,
+                        "nearest": -0.492886156,
+                        "gas": -0.492886156,
+                        "station": -0.804465592,
+                        "closest": -0.033979516,
+                        "restaur": -0.033979516,
+                        "direct": -0.045242436,
+                        "airport": -0.045242436,
+                        "local": -0.222535118,
+                        "attract": -0.222535118,
+                        "place": -0.030541709,
+                        "eat": -0.030541709,
+                        "around": -0.030541709,
+                        "here": -0.030541709,
+                        "train": -0.311579466,
+                        "bus": -0.650317252,
+                        "stop": -0.650317252,
+                        "nearbi": -0.650317252,
+                        "taxi": -0.118070319,
+                        "sorri": -0.031253267,
+                        "did": -0.049879134,
+                        "not": -0.049879134,
+                        "understand": -0.031253267,
+                        "that": -0.049879134,
+                        "catch": -0.018625859,
+                        "nonefeature": 3.15e-7
+                      }
+                    },
+                    "farewell.goodbye": {
+                      "bias": 2.898358234,
+                      "weights": {
+                        "911": -1.364181399,
+                        "hi": -1.421720743,
+                        "there": -1.456696987,
+                        "hello": -2.702008247,
+                        "good": -2.158649683,
+                        "morn": -0.727142215,
+                        "afternoon": -0.720460474,
+                        "even": -0.711047888,
+                        "what": -2.057114124,
+                        "is": -1.945319176,
+                        "the": -0.342628211,
+                        "like": -1.028481126,
+                        "today": -0.421213567,
+                        "how": -2.484938622,
+                        "it": -0.050881479,
+                        "go": -0.050881479,
+                        "to": -0.362985104,
+                        "rain": -0.050881479,
+                        "do": -2.546456099,
+                        "i": -2.038887978,
+                        "need": -1.330711007,
+                        "an": -0.798731327,
+                        "forecast": -0.024209084,
+                        "for": 1.388123989,
+                        "tomorrow": -0.19802174,
+                        "can": -2.283765554,
+                        "you": 1.692917585,
+                        "tell": -0.697232604,
+                        "me": -2.078614235,
+                        "news": -0.719045997,
+                        "in": -0.760155797,
+                        "ani": -1.439492941,
+                        "updat": -0.719045997,
+                        "help": 0.087086745,
+                        "my": -0.40026179,
+                        "assist": -0.237297773,
+                        "a": -1.351644397,
+                        "am": -0.112886876,
+                        "have": -0.409028679,
+                        "about": -0.159254208,
+                        "your": 0.38460508,
+                        "product": -0.715823531,
+                        "discount": -0.16972813,
+                        "are": -2.103965759,
+                        "show": -0.556569338,
+                        "order": -0.064906053,
+                        "want": -0.121728629,
+                        "where": -0.465305835,
+                        "thank": 7.806034088,
+                        "goodby": 9.427898407,
+                        "see": 3.979264975,
+                        "later": 3.979264975,
+                        "bye": 9.335800171,
+                        "name": -0.645012975,
+                        "music": -1.028481126,
+                        "day": -0.415949911,
+                        "fun": -0.246540412,
+                        "fact": -0.246540412,
+                        "ai": -0.107148089,
+                        "recommend": -0.691401064,
+                        "book": -0.553610384,
+                        "someth": -0.291438192,
+                        "interest": -0.291438192,
+                        "know": -0.509164274,
+                        "trivia": -0.509164274,
+                        "remind": -0.587516308,
+                        "call": -1.537994027,
+                        "john": -0.173812687,
+                        "schedul": -0.335356027,
+                        "set": -0.41370365,
+                        "appoint": -0.006578837,
+                        "find": -0.090019189,
+                        "more": -0.537428796,
+                        "inform": -0.090019189,
+                        "give": -0.204394817,
+                        "feedback": -0.407065332,
+                        "provid": -0.455934048,
+                        "some": -0.19414638,
+                        "nearest": -0.163002834,
+                        "station": -0.039627649,
+                        "closest": -0.138853699,
+                        "restaur": -0.138853699,
+                        "direct": -0.016562501,
+                        "airport": -0.016562501,
+                        "hospit": -0.123375222,
+                        "event": -0.034976278,
+                        "local": -0.137791201,
+                        "attract": -0.137791201,
+                        "emerg": -1.047207236,
+                        "polic": -0.039627649,
+                        "sorri": -0.049935371,
+                        "did": -0.053053427,
+                        "not": -0.16594024,
+                        "understand": -0.049935371,
+                        "that": -1.077063084,
+                        "sure": -0.112886876,
+                        "mean": -0.112886876,
+                        "could": -1.024009705,
+                        "pleas": -1.471419334,
+                        "rephras": -1.024009705,
+                        "catch": -0.003118054,
+                        "detail": -0.447409868,
+                        "nonefeature": -2.747503519
+                      }
+                    },
+                    "smalltalk.howareyou": {
+                      "bias": -1.65692457,
+                      "weights": {
+                        "911": -0.04151554,
+                        "hi": -0.004784976,
+                        "there": -0.022405216,
+                        "hello": -0.006130282,
+                        "good": -0.020658724,
+                        "morn": -0.004572707,
+                        "afternoon": -0.004061862,
+                        "even": -0.003480525,
+                        "what": 3.117643595,
+                        "is": 0.442469627,
+                        "the": -2.685992718,
+                        "weather": -1.947208405,
+                        "like": 2.057773113,
+                        "today": -1.980093718,
+                        "how": 5.446251869,
+                        "it": -0.913670063,
+                        "to": -0.539035857,
+                        "do": 4.240468502,
+                        "i": -3.863055229,
+                        "an": -0.562689662,
+                        "for": -1.251577139,
+                        "tomorrow": -0.061164863,
+                        "time": -0.913670063,
+                        "can": -2.010548353,
+                        "you": 5.80482626,
+                        "tell": -0.800398111,
+                        "me": -1.744075894,
+                        "happen": -1.165484309,
+                        "in": -0.404395491,
+                        "ani": -4.145103455,
+                        "help": -1.158623099,
+                        "my": -5.874074459,
+                        "issu": -0.228004873,
+                        "assist": -0.544966459,
+                        "support": -2.076817274,
+                        "a": -1.263973951,
+                        "am": -0.845436871,
+                        "have": -2.28242135,
+                        "about": -0.411249012,
+                        "your": 6.445343971,
+                        "product": -5.809831619,
+                        "discount": -1.870045066,
+                        "are": 2.873404264,
+                        "best": -3.601579905,
+                        "sell": -3.50886488,
+                        "item": -3.50886488,
+                        "offer": -5.137392044,
+                        "show": -0.261191249,
+                        "get": -0.399616927,
+                        "where": -0.211363941,
+                        "thank": -3.745460987,
+                        "see": -2.008781672,
+                        "later": -2.008781672,
+                        "name": 4.091985703,
+                        "music": 2.521098375,
+                        "day": 1.835810304,
+                        "fun": -0.258723676,
+                        "fact": -0.258723676,
+                        "ai": -1.88482523,
+                        "recommend": -0.902731478,
+                        "book": -0.828723431,
+                        "someth": -0.130425453,
+                        "interest": -0.130425453,
+                        "know": -2.090684414,
+                        "trivia": -2.090684414,
+                        "remind": -0.137519851,
+                        "call": -0.1026804,
+                        "john": -0.061164863,
+                        "schedul": -0.351284117,
+                        "set": -0.076354995,
+                        "appoint": -0.184371725,
+                        "contact": -2.076817274,
+                        "should": -0.228004873,
+                        "if": -0.228004873,
+                        "give": -0.151810631,
+                        "feedback": -0.151810631,
+                        "nearest": -0.337312818,
+                        "gas": -0.261667967,
+                        "station": -0.434706062,
+                        "closest": -0.193812788,
+                        "restaur": -0.135719091,
+                        "hospit": -0.075644843,
+                        "event": -1.165484309,
+                        "local": -0.074008077,
+                        "attract": -0.074008077,
+                        "place": -0.07825429,
+                        "visit": -0.069710664,
+                        "this": -0.069710664,
+                        "citi": -0.092715226,
+                        "eat": -0.00854363,
+                        "around": -0.031548187,
+                        "here": -0.00854363,
+                        "way": -0.023004558,
+                        "train": -0.114944518,
+                        "bus": -0.017620239,
+                        "stop": -0.017620239,
+                        "nearbi": -0.017620239,
+                        "subway": -0.058093701,
+                        "emerg": -0.334684849,
+                        "not": -0.845436871,
+                        "that": -1.062916517,
+                        "sure": -0.845436871,
+                        "mean": -0.845436871,
+                        "could": -1.062916517,
+                        "pleas": -1.062916517,
+                        "rephras": -1.062916517,
+                        "nonefeature": -0.006707122
+                      }
+                    },
+                    "custom.fact": {
+                      "bias": 0.411371886,
+                      "weights": {
+                        "911": -0.04587933,
+                        "hi": -0.018619834,
+                        "there": -1.408636808,
+                        "hello": -0.530116558,
+                        "good": -0.89957267,
+                        "morn": -0.0361403,
+                        "afternoon": -0.032978885,
+                        "even": -0.029319236,
+                        "what": 0.480717778,
+                        "is": 2.21620369,
+                        "the": -2.543570757,
+                        "like": -0.38659215,
+                        "today": -1.814582348,
+                        "how": -0.733632505,
+                        "it": -1.310201883,
+                        "to": -1.479915977,
+                        "do": -0.302667081,
+                        "i": -1.917649269,
+                        "need": -0.105912775,
+                        "an": -0.226629496,
+                        "for": -1.820255041,
+                        "tomorrow": -0.439088017,
+                        "time": -1.797335625,
+                        "can": -0.869823992,
+                        "you": -0.441243589,
+                        "tell": 3.954792976,
+                        "me": -0.003925258,
+                        "date": -1.289370775,
+                        "news": -1.759410381,
+                        "latest": -0.743911505,
+                        "happen": -0.371127933,
+                        "in": -0.140127182,
+                        "world": -0.052323181,
+                        "ani": 2.392200232,
+                        "updat": -1.015499234,
+                        "help": -0.413594067,
+                        "with": -0.350013345,
+                        "my": -1.912612081,
+                        "issu": -0.518500447,
+                        "assist": -1.041588187,
+                        "technic": -0.350013345,
+                        "support": -0.281013995,
+                        "a": 2.387732029,
+                        "am": -0.084837183,
+                        "have": -1.821991682,
+                        "problem": -0.050237197,
+                        "about": -1.329076767,
+                        "your": -1.639918089,
+                        "product": -1.710392237,
+                        "discount": -0.896574199,
+                        "are": -0.508659244,
+                        "best": -0.079898894,
+                        "offer": -0.38131541,
+                        "order": -0.064137399,
+                        "get": -0.002811208,
+                        "refund": -0.002811208,
+                        "where": -0.626416147,
+                        "thank": -0.285353303,
+                        "goodby": -0.414875656,
+                        "see": -0.200960502,
+                        "later": -0.200960502,
+                        "bye": -0.408562273,
+                        "name": -1.474153996,
+                        "music": -0.38659215,
+                        "day": -0.223491549,
+                        "fun": 2.885773897,
+                        "fact": 2.885773897,
+                        "ai": 9.309772491,
+                        "recommend": 4.10367775,
+                        "book": 6.905272961,
+                        "someth": 4.067504883,
+                        "interest": 4.067504883,
+                        "know": 5.200819969,
+                        "trivia": 5.200819969,
+                        "remind": -1.797672749,
+                        "call": -1.144851685,
+                        "john": -0.439088017,
+                        "schedul": -0.461670339,
+                        "set": -1.358584523,
+                        "appoint": -0.706693411,
+                        "contact": -0.281013995,
+                        "find": -0.149299964,
+                        "more": -0.266377717,
+                        "inform": -0.149299964,
+                        "should": -0.21872434,
+                        "if": -0.21872434,
+                        "give": -0.299025029,
+                        "feedback": -0.139229909,
+                        "leav": -0.229127079,
+                        "review": -0.229127079,
+                        "provid": -0.11707782,
+                        "nearest": -0.174716428,
+                        "station": -0.16241385,
+                        "closest": -0.400676161,
+                        "restaur": -0.23826237,
+                        "direct": -0.159795076,
+                        "mall": -0.159795076,
+                        "hospit": -0.174716428,
+                        "event": -0.508659244,
+                        "local": -2.801597357,
+                        "attract": -2.801597357,
+                        "place": -0.881033063,
+                        "visit": -0.079898894,
+                        "this": -0.079898894,
+                        "citi": -0.079898894,
+                        "eat": -0.801134229,
+                        "around": -0.801134229,
+                        "here": -0.801134229,
+                        "bus": -1.200162649,
+                        "stop": -1.200162649,
+                        "nearbi": -1.200162649,
+                        "taxi": -0.659884632,
+                        "subway": -0.16241385,
+                        "emerg": -0.007905156,
+                        "not": -0.084837183,
+                        "that": -0.285270989,
+                        "sure": -0.084837183,
+                        "mean": -0.084837183,
+                        "could": -0.285270989,
+                        "pleas": -0.402348787,
+                        "rephras": -0.285270989,
+                        "detail": -0.11707782,
+                        "nonefeature": -0.543197393
+                      }
+                    },
+                    "personalization.reminder": {
+                      "bias": -1.555540154,
+                      "weights": {
+                        "911": -0.581675887,
+                        "there": -0.911549926,
+                        "hello": -0.044415623,
+                        "good": -0.665432572,
+                        "what": 1.589497685,
+                        "is": 0.263676435,
+                        "the": -3.626795292,
+                        "weather": -0.192723021,
+                        "like": -0.192723021,
+                        "today": -0.263284355,
+                        "how": -2.709710836,
+                        "it": -0.924918711,
+                        "go": -0.513455272,
+                        "to": -0.129132822,
+                        "rain": -0.513455272,
+                        "do": 1.250261664,
+                        "i": -0.193361014,
+                        "need": -0.727715075,
+                        "an": -0.967600763,
+                        "forecast": -2.084139109,
+                        "for": 3.610568762,
+                        "tomorrow": 0.892281532,
+                        "time": -0.411463469,
+                        "can": -0.113573685,
+                        "you": -2.416220427,
+                        "tell": -0.774321795,
+                        "me": 2.71546793,
+                        "date": -1.010145426,
+                        "news": -0.884064317,
+                        "happen": -0.541515946,
+                        "in": -0.364978462,
+                        "ani": 3.264329672,
+                        "updat": -0.884064317,
+                        "help": -1.103238821,
+                        "with": -2.163932562,
+                        "my": 6.397031784,
+                        "account": -0.649485707,
+                        "reset": -1.567917466,
+                        "password": -1.567917466,
+                        "issu": -1.081948757,
+                        "assist": -1.075754166,
+                        "support": -0.415481299,
+                        "a": 0.492325574,
+                        "am": -1.519064546,
+                        "have": 2.118912458,
+                        "troubl": -1.514447689,
+                        "devic": -1.514447689,
+                        "about": -0.149064034,
+                        "your": -5.332975388,
+                        "product": -0.277017057,
+                        "discount": -2.625623941,
+                        "are": -1.088945866,
+                        "best": -0.403634548,
+                        "show": -0.127953023,
+                        "track": -0.474589825,
+                        "order": -2.689792633,
+                        "want": -1.038003802,
+                        "cancel": -0.742630422,
+                        "get": -0.141637489,
+                        "where": -2.299979687,
+                        "thank": -0.238229737,
+                        "name": 5.458963871,
+                        "fun": -0.417495668,
+                        "fact": -0.417495668,
+                        "ai": -0.158316106,
+                        "recommend": -0.148302868,
+                        "someth": -0.207762152,
+                        "interest": -0.207762152,
+                        "know": -0.242154926,
+                        "trivia": -0.242154926,
+                        "remind": 6.367371082,
+                        "call": 1.24021256,
+                        "john": 2.976418734,
+                        "schedul": 2.541985512,
+                        "set": 3.390949488,
+                        "appoint": 7.563602924,
+                        "contact": -0.415481299,
+                        "find": -0.421008497,
+                        "more": -0.421008497,
+                        "inform": -0.421008497,
+                        "should": -0.88459295,
+                        "if": -0.88459295,
+                        "give": -0.714262247,
+                        "feedback": -0.669234514,
+                        "leav": -0.148741871,
+                        "review": -0.148741871,
+                        "some": -0.337018937,
+                        "nearest": -0.244794324,
+                        "gas": -0.102981389,
+                        "station": -0.157852158,
+                        "closest": -0.319457561,
+                        "restaur": -0.264586776,
+                        "direct": -0.382046729,
+                        "mall": -0.382046729,
+                        "hospit": -0.14181295,
+                        "event": -1.088945866,
+                        "local": -0.148302868,
+                        "attract": -0.148302868,
+                        "place": -1.030410886,
+                        "visit": -0.364978462,
+                        "this": -0.364978462,
+                        "citi": -0.403634548,
+                        "eat": -0.665432572,
+                        "around": -0.704088688,
+                        "here": -0.665432572,
+                        "way": -0.038656108,
+                        "bus": -0.364119887,
+                        "stop": -0.364119887,
+                        "nearbi": -0.364119887,
+                        "taxi": -1.154532433,
+                        "subway": -0.054870773,
+                        "emerg": -0.083007857,
+                        "not": -0.004616747,
+                        "sure": -0.004616747,
+                        "mean": -0.004616747,
+                        "nonefeature": -0.046923492
+                      }
+                    },
+                    "info.help": {
+                      "bias": -0.45326506,
+                      "weights": {
+                        "911": -0.020177644,
+                        "hi": -0.08769042,
+                        "there": -0.08963833,
+                        "hello": -0.109688222,
+                        "good": -0.162031502,
+                        "morn": -0.059512567,
+                        "afternoon": -0.0542989,
+                        "even": -0.048220027,
+                        "what": 0.449090481,
+                        "is": -0.563317776,
+                        "the": -2.554754496,
+                        "like": -0.082567796,
+                        "today": -0.498667389,
+                        "how": 1.848636866,
+                        "it": -0.167694464,
+                        "to": -1.987717986,
+                        "do": 0.617357612,
+                        "i": 3.065994978,
+                        "need": 1.548652172,
+                        "an": -1.027605057,
+                        "umbrella": -3.566378593,
+                        "for": -1.726795197,
+                        "tomorrow": -0.01477218,
+                        "time": -0.566461027,
+                        "can": 1.860017896,
+                        "you": -0.476420641,
+                        "tell": -1.578330517,
+                        "me": 3.436227083,
+                        "date": -0.459052652,
+                        "happen": -0.479333669,
+                        "in": -0.577898741,
+                        "ani": -1.940032959,
+                        "help": 6.363892555,
+                        "with": -3.931010485,
+                        "my": -4.51808691,
+                        "account": -3.476905823,
+                        "reset": -0.72248894,
+                        "password": -0.72248894,
+                        "issu": 1.316308498,
+                        "assist": 7.926679134,
+                        "technic": -5.107224941,
+                        "support": 1.433734894,
+                        "a": -3.709713459,
+                        "am": -0.686125219,
+                        "have": 0.613091052,
+                        "about": -0.088494636,
+                        "your": -2.164208174,
+                        "product": -1.645144343,
+                        "discount": -0.299641341,
+                        "are": -0.785339057,
+                        "best": -0.018477451,
+                        "sell": -0.018477451,
+                        "item": -0.018477451,
+                        "offer": -0.448239565,
+                        "show": -0.330441147,
+                        "track": -0.318694383,
+                        "order": -0.318694383,
+                        "want": -0.634662211,
+                        "return": -0.777969182,
+                        "get": -0.693011343,
+                        "where": 0.659748614,
+                        "thank": -1.726795197,
+                        "music": -0.082567796,
+                        "ai": -0.002200364,
+                        "recommend": -0.215099066,
+                        "someth": -0.64940238,
+                        "interest": -0.64940238,
+                        "remind": -0.01477218,
+                        "call": -0.857016206,
+                        "john": -0.01477218,
+                        "appoint": -1.638443589,
+                        "contact": 6.086854935,
+                        "find": 2.685252666,
+                        "more": 2.231232166,
+                        "inform": 2.685252666,
+                        "should": 4.045880318,
+                        "if": 4.045880318,
+                        "give": -1.436256409,
+                        "feedback": -3.533288956,
+                        "leav": -1.44047451,
+                        "review": -1.44047451,
+                        "provid": -2.134910822,
+                        "some": -0.565497935,
+                        "nearest": -0.516485035,
+                        "gas": -0.448493689,
+                        "station": -0.724434912,
+                        "closest": -0.308045685,
+                        "restaur": -0.276622057,
+                        "direct": -0.645272911,
+                        "mall": -0.149355084,
+                        "airport": -0.495917857,
+                        "hospit": -0.067991383,
+                        "event": -0.481281549,
+                        "local": -0.215099066,
+                        "attract": -0.215099066,
+                        "train": -0.244517684,
+                        "taxi": -0.822066486,
+                        "subway": -0.031423636,
+                        "emerg": -9.552073479,
+                        "sorri": -0.303244323,
+                        "did": -0.560941041,
+                        "not": -1.247066021,
+                        "understand": -0.303244323,
+                        "that": -0.563396096,
+                        "sure": -0.686125219,
+                        "mean": -0.686125219,
+                        "could": -0.002455077,
+                        "pleas": -0.456475973,
+                        "rephras": -0.002455077,
+                        "catch": -0.257696897,
+                        "detail": -0.454020888,
+                        "nonefeature": -0.117338985
+                      }
+                    },
+                    "info.feedback": {
+                      "bias": -0.436596356,
+                      "weights": {
+                        "911": -0.011194541,
+                        "there": -0.210741475,
+                        "hello": -0.001563627,
+                        "good": -0.023142714,
+                        "what": -0.405486345,
+                        "is": -0.45636341,
+                        "the": -1.932749748,
+                        "today": -0.183855176,
+                        "how": 0.910738826,
+                        "to": -0.407462627,
+                        "do": -1.787830353,
+                        "i": 1.859755635,
+                        "need": -1.395189285,
+                        "an": -0.912035704,
+                        "can": 1.581026673,
+                        "you": -0.708764791,
+                        "me": -1.047196507,
+                        "happen": -0.129161388,
+                        "in": -0.020009933,
+                        "ani": -0.359349698,
+                        "help": -0.733328283,
+                        "with": -0.467582256,
+                        "my": -1.613201261,
+                        "account": -0.185457677,
+                        "reset": -0.404079854,
+                        "password": -0.404079854,
+                        "assist": -0.098985597,
+                        "technic": -0.31466803,
+                        "support": -0.436226815,
+                        "a": -0.068964519,
+                        "am": -0.535306811,
+                        "have": 1.0292207,
+                        "troubl": -0.282124519,
+                        "devic": -0.282124519,
+                        "your": -0.008825424,
+                        "product": -1.924103856,
+                        "are": -0.183855176,
+                        "track": -0.144733191,
+                        "order": -0.741539121,
+                        "want": 1.280082583,
+                        "cancel": -0.59680593,
+                        "return": -1.924103856,
+                        "get": -1.878507137,
+                        "refund": -1.065704346,
+                        "where": 0.43122673,
+                        "day": -0.008825424,
+                        "recommend": -0.762993932,
+                        "call": -0.475008994,
+                        "appoint": -0.30465588,
+                        "contact": -0.121558778,
+                        "find": -1.077754974,
+                        "more": -1.32587719,
+                        "inform": -1.077754974,
+                        "give": 2.668123722,
+                        "feedback": 7.536864758,
+                        "leav": 4.326841831,
+                        "review": 4.326841831,
+                        "provid": 1.52920723,
+                        "some": 2.5080266,
+                        "nearest": -0.771245122,
+                        "gas": -0.771245122,
+                        "station": -0.812802732,
+                        "closest": -0.268347591,
+                        "restaur": -0.268347591,
+                        "direct": -0.851599574,
+                        "mall": -0.58338213,
+                        "airport": -0.268217415,
+                        "event": -0.183855176,
+                        "local": -0.762993932,
+                        "attract": -0.762993932,
+                        "place": -0.023142714,
+                        "eat": -0.023142714,
+                        "around": -0.023142714,
+                        "here": -0.023142714,
+                        "train": -0.04155761,
+                        "bus": -0.156047672,
+                        "stop": -0.156047672,
+                        "nearbi": -0.156047672,
+                        "taxi": -0.463814467,
+                        "emerg": -1.538882017,
+                        "sorri": -0.466697246,
+                        "did": -0.729227662,
+                        "not": -0.982409954,
+                        "understand": -0.466697246,
+                        "that": -0.729227662,
+                        "sure": -0.253182262,
+                        "mean": -0.253182262,
+                        "pleas": -0.248122215,
+                        "catch": -0.262530476,
+                        "detail": -0.248122215,
+                        "nonefeature": -0.001646675
+                      }
+                    },
+                    "directions.location": {
+                      "bias": -1.001813817,
+                      "weights": {
+                        "911": -0.002013657,
+                        "there": -0.179365054,
+                        "hello": -0.007333518,
+                        "good": -0.165766269,
+                        "what": -2.67615819,
+                        "is": -1.164535642,
+                        "the": 3.900919199,
+                        "weather": -1.573778391,
+                        "like": -0.023844648,
+                        "today": -0.53863728,
+                        "how": -0.15263319,
+                        "it": -0.211970136,
+                        "go": -0.211970136,
+                        "to": 2.407695293,
+                        "rain": -0.211970136,
+                        "do": 0.953550458,
+                        "i": 0.166284174,
+                        "need": 0.744447112,
+                        "an": -0.432250351,
+                        "umbrella": -0.428414255,
+                        "forecast": -0.032810897,
+                        "for": -0.032810897,
+                        "tomorrow": -0.235091195,
+                        "time": -0.841417313,
+                        "can": -0.585930407,
+                        "you": -0.043792542,
+                        "tell": -1.89781487,
+                        "me": -0.12140394,
+                        "date": -0.617267251,
+                        "news": -0.439130634,
+                        "latest": -0.439130634,
+                        "happen": -0.23626858,
+                        "in": -1.078295469,
+                        "ani": -0.081889972,
+                        "help": -0.477959007,
+                        "with": -0.115396045,
+                        "my": -0.87675339,
+                        "account": -0.115396045,
+                        "assist": -0.08575774,
+                        "technic": -0.194971979,
+                        "support": -0.194971979,
+                        "a": -1.200197458,
+                        "have": -0.019172143,
+                        "are": -0.302822471,
+                        "best": -1.473782063,
+                        "order": -0.761357307,
+                        "want": -1.288993239,
+                        "cancel": -0.039119907,
+                        "get": 1.001814127,
+                        "where": 2.522807837,
+                        "recommend": -0.478675336,
+                        "remind": -0.202280298,
+                        "call": -0.647238553,
+                        "john": -0.202280298,
+                        "appoint": -0.01533607,
+                        "find": -0.424670935,
+                        "more": -0.424670935,
+                        "inform": -0.424670935,
+                        "give": 1.171762466,
+                        "feedback": -1.452464342,
+                        "provid": -0.202591211,
+                        "nearest": 4.2607584,
+                        "gas": 4.885789871,
+                        "station": -3.922222137,
+                        "closest": 3.753651619,
+                        "restaur": 4.497338295,
+                        "direct": 4.353185654,
+                        "mall": 2.421636581,
+                        "airport": 1.931550026,
+                        "hospit": 3.950806618,
+                        "event": -0.302822471,
+                        "local": -0.478675336,
+                        "attract": -0.478675336,
+                        "place": -1.244061708,
+                        "visit": -1.078295469,
+                        "this": -1.078295469,
+                        "citi": -1.473782063,
+                        "eat": -0.165766269,
+                        "around": -0.561252773,
+                        "here": -0.165766269,
+                        "way": -0.395486504,
+                        "train": -3.48848772,
+                        "bus": -0.112811156,
+                        "stop": -0.112811156,
+                        "nearbi": -0.112811156,
+                        "taxi": -0.442944616,
+                        "subway": -0.743686318,
+                        "emerg": -0.452156782,
+                        "polic": -4.575836658,
+                        "sorri": -0.031685527,
+                        "did": -0.040035844,
+                        "not": -0.040035844,
+                        "understand": -0.031685527,
+                        "that": -0.125160009,
+                        "could": -0.085124165,
+                        "pleas": -0.085124165,
+                        "rephras": -0.085124165,
+                        "catch": -0.008350316,
+                        "nonefeature": -0.007774947
+                      }
+                    },
+                    "local.info": {
+                      "bias": -0.861720328,
+                      "weights": {
+                        "911": -0.028599538,
+                        "hi": -0.411492407,
+                        "there": 1.171135187,
+                        "hello": -0.118781924,
+                        "good": 0.921512187,
+                        "morn": -0.3616831,
+                        "afternoon": -0.330767006,
+                        "even": -0.293963581,
+                        "what": 1.070258617,
+                        "is": -1.642225623,
+                        "the": -1.343970656,
+                        "weather": -0.762021899,
+                        "like": -0.762021899,
+                        "today": 2.224520445,
+                        "how": -1.285699129,
+                        "it": -0.763639331,
+                        "go": -0.717886925,
+                        "to": 2.06085515,
+                        "rain": -0.717886925,
+                        "do": -0.486788839,
+                        "i": -1.001962543,
+                        "need": -0.06026246,
+                        "an": -0.778063655,
+                        "forecast": -0.00611391,
+                        "for": -0.245378628,
+                        "tomorrow": -0.00611391,
+                        "time": -0.045752432,
+                        "can": 0.341403097,
+                        "you": -0.988827348,
+                        "tell": -0.097706534,
+                        "me": -1.092813373,
+                        "date": -1.023216605,
+                        "news": -0.549417853,
+                        "happen": 1.938232064,
+                        "in": 1.406936049,
+                        "world": -0.681785166,
+                        "ani": 1.835197687,
+                        "updat": -0.446868628,
+                        "help": -0.853402793,
+                        "with": -0.058578596,
+                        "my": -0.30594635,
+                        "issu": -0.058578596,
+                        "technic": -0.058578596,
+                        "a": 2.019370556,
+                        "am": -0.324171543,
+                        "have": -0.204794914,
+                        "your": -1.16806221,
+                        "product": -0.12568669,
+                        "discount": -0.16129297,
+                        "are": 3.060796738,
+                        "best": 0.132136911,
+                        "sell": -1.16806221,
+                        "item": -1.16806221,
+                        "order": -0.066681676,
+                        "want": -0.109971315,
+                        "cancel": -0.066681676,
+                        "return": -0.12568669,
+                        "get": -1.842495918,
+                        "fun": -0.097706534,
+                        "fact": -0.097706534,
+                        "recommend": 2.196758032,
+                        "book": -2.698186874,
+                        "know": -0.00608359,
+                        "trivia": -0.00608359,
+                        "call": -0.965127766,
+                        "schedul": -0.239264712,
+                        "more": -0.082772352,
+                        "give": -0.043289658,
+                        "feedback": -0.043289658,
+                        "provid": -0.082772352,
+                        "station": -0.72435683,
+                        "closest": -0.404944628,
+                        "event": 5.069459915,
+                        "local": 4.894944191,
+                        "attract": 4.894944191,
+                        "place": 4.731207848,
+                        "visit": 2.82328248,
+                        "this": 2.82328248,
+                        "citi": 1.30019927,
+                        "eat": 1.907925606,
+                        "around": 0.384842426,
+                        "here": 1.907925606,
+                        "way": -1.523083687,
+                        "train": -0.319412261,
+                        "bus": -0.866814852,
+                        "stop": -0.866814852,
+                        "nearbi": -0.866814852,
+                        "taxi": -0.936528206,
+                        "subway": -0.404944628,
+                        "emerg": -0.838326156,
+                        "sorri": -0.018956346,
+                        "did": -0.018956346,
+                        "not": -0.343127906,
+                        "understand": -0.018956346,
+                        "that": -0.142725557,
+                        "sure": -0.324171543,
+                        "mean": -0.324171543,
+                        "could": -0.123769201,
+                        "pleas": -0.206541538,
+                        "rephras": -0.123769201,
+                        "detail": -0.082772352,
+                        "nonefeature": -0.143413141
+                      }
+                    },
+                    "transport.info": {
+                      "bias": -2.12567926,
+                      "weights": {
+                        "911": -1.415087938,
+                        "hi": -0.683225214,
+                        "there": 2.131209612,
+                        "hello": -0.108216323,
+                        "good": -1.208128333,
+                        "morn": -0.068611182,
+                        "afternoon": -0.060942072,
+                        "even": -0.052212909,
+                        "what": 0.596008539,
+                        "is": 1.122181296,
+                        "the": 0.768225968,
+                        "weather": -1.852527618,
+                        "like": -0.829507649,
+                        "today": -1.442891598,
+                        "how": 0.493374527,
+                        "it": -0.609467268,
+                        "go": -0.609467268,
+                        "to": 0.916786432,
+                        "rain": -0.609467268,
+                        "do": 0.935884118,
+                        "i": -1.96288991,
+                        "need": -0.470792443,
+                        "an": -0.601638615,
+                        "umbrella": -0.057242949,
+                        "forecast": -0.610571206,
+                        "for": -1.007202148,
+                        "tomorrow": -1.701903582,
+                        "time": -1.439149618,
+                        "can": -0.225550681,
+                        "you": 0.593220413,
+                        "tell": -1.535356283,
+                        "me": 1.722036123,
+                        "current": -0.470306605,
+                        "date": -0.717864692,
+                        "news": -0.027204653,
+                        "latest": -0.023287993,
+                        "happen": -0.103252321,
+                        "in": -1.293841243,
+                        "world": -0.103252321,
+                        "ani": -0.185557216,
+                        "help": -1.475058675,
+                        "with": -0.765178204,
+                        "my": -0.484021842,
+                        "reset": -0.276296854,
+                        "password": -0.276296854,
+                        "issu": -0.759998024,
+                        "technic": -0.765178204,
+                        "a": 2.929773569,
+                        "am": -0.454517335,
+                        "have": -0.428441882,
+                        "problem": -0.005180166,
+                        "your": -0.236451298,
+                        "product": -0.76045996,
+                        "discount": -0.185557216,
+                        "are": -0.236451298,
+                        "best": 1.638873577,
+                        "sell": -0.236451298,
+                        "item": -0.236451298,
+                        "offer": -0.250640243,
+                        "track": -0.111500174,
+                        "order": -0.207725018,
+                        "want": -0.096224844,
+                        "cancel": -0.096224844,
+                        "return": -0.509819746,
+                        "get": 3.206103086,
+                        "refund": -1.972310781,
+                        "where": -2.194270611,
+                        "fun": -0.495155007,
+                        "fact": -0.495155007,
+                        "recommend": -0.773721159,
+                        "book": -0.575834692,
+                        "remind": -1.487963438,
+                        "call": 3.548098326,
+                        "john": -1.091332316,
+                        "set": -0.396630943,
+                        "more": -0.084589794,
+                        "give": -0.549163163,
+                        "provid": -0.084589794,
+                        "nearest": -4.31142664,
+                        "gas": -2.889397621,
+                        "station": 4.964875221,
+                        "closest": 3.200652361,
+                        "restaur": -0.772241056,
+                        "direct": -0.549163163,
+                        "mall": -0.549163163,
+                        "local": -0.197886363,
+                        "attract": -0.197886363,
+                        "place": -1.915439487,
+                        "visit": -0.889077485,
+                        "this": -0.889077485,
+                        "citi": 1.875324488,
+                        "eat": -1.026362062,
+                        "around": 1.738039374,
+                        "here": -1.026362062,
+                        "way": 2.764401436,
+                        "train": 5.303405762,
+                        "bus": 2.814433813,
+                        "stop": 2.814433813,
+                        "nearbi": 2.814433813,
+                        "taxi": 6.054518223,
+                        "subway": 3.972891808,
+                        "emerg": -0.952765107,
+                        "polic": -1.422029734,
+                        "sorri": -0.228644162,
+                        "did": -0.242553085,
+                        "not": -0.69707036,
+                        "understand": -0.228644162,
+                        "that": -0.41830793,
+                        "sure": -0.454517335,
+                        "mean": -0.454517335,
+                        "could": -0.175754815,
+                        "pleas": -0.260344625,
+                        "rephras": -0.175754815,
+                        "catch": -0.01390893,
+                        "detail": -0.084589794,
+                        "nonefeature": -0.139088124
+                      }
+                    },
+                    "emergency.info": {
+                      "bias": 0.117138778,
+                      "weights": {
+                        "911": 6.762962818,
+                        "hi": -0.359613717,
+                        "there": -0.359613717,
+                        "hello": -0.466328382,
+                        "good": -0.688007712,
+                        "morn": -0.253910929,
+                        "afternoon": -0.230589777,
+                        "even": -0.203506991,
+                        "what": -2.048542023,
+                        "is": -0.308690548,
+                        "the": -0.613819897,
+                        "weather": -0.873841524,
+                        "like": -0.391008675,
+                        "today": -0.604019105,
+                        "how": -1.020149231,
+                        "it": -0.213010415,
+                        "go": -0.213010415,
+                        "to": -1.452788472,
+                        "rain": -0.213010415,
+                        "do": -2.129725218,
+                        "i": -0.95930177,
+                        "need": 0.188668638,
+                        "an": 1.412507176,
+                        "umbrella": -1.279797673,
+                        "forecast": -0.12318854,
+                        "for": -0.919599593,
+                        "tomorrow": -0.825649738,
+                        "time": -0.370666862,
+                        "can": -1.043561578,
+                        "you": -1.182707667,
+                        "tell": -0.460984141,
+                        "me": -2.003255606,
+                        "current": -0.02542742,
+                        "date": -0.211505279,
+                        "news": -0.150690719,
+                        "happen": -0.313808262,
+                        "in": 0.639244616,
+                        "world": -0.313808262,
+                        "ani": -0.290375024,
+                        "updat": -0.150690719,
+                        "help": 1.523041606,
+                        "with": -1.370974541,
+                        "my": -1.332795858,
+                        "account": -0.799349964,
+                        "issu": -0.5101825,
+                        "technic": -0.753529668,
+                        "support": -0.235190168,
+                        "a": -1.087890625,
+                        "am": -0.485869408,
+                        "have": 0.963293612,
+                        "troubl": -0.053285185,
+                        "devic": -0.053285185,
+                        "problem": -0.360758752,
+                        "your": -0.796411097,
+                        "discount": -0.09306109,
+                        "order": -0.480160773,
+                        "get": -0.604313612,
+                        "refund": -0.066997193,
+                        "where": 1.201362133,
+                        "thank": -0.796411097,
+                        "goodby": -0.313870102,
+                        "see": -0.031534504,
+                        "later": -0.031534504,
+                        "bye": -0.306350589,
+                        "remind": -0.702461243,
+                        "call": 5.557948112,
+                        "john": -0.702461243,
+                        "appoint": -0.046623234,
+                        "find": -0.378856063,
+                        "more": -0.610370636,
+                        "inform": -0.378856063,
+                        "should": -0.172926113,
+                        "if": -0.172926113,
+                        "feedback": -0.832955897,
+                        "provid": -0.481481373,
+                        "some": -0.582989037,
+                        "nearest": 2.272660971,
+                        "gas": -0.537316442,
+                        "station": 4.388437748,
+                        "closest": -0.993469715,
+                        "restaur": -0.499631077,
+                        "hospit": -2.60961628,
+                        "taxi": -0.502553642,
+                        "subway": -0.493838787,
+                        "emerg": 11.059824944,
+                        "polic": 5.419591904,
+                        "sorri": -0.396969259,
+                        "did": -0.538604736,
+                        "not": -0.971188962,
+                        "understand": -0.396969259,
+                        "that": -0.81639123,
+                        "sure": -0.432584226,
+                        "mean": -0.432584226,
+                        "could": -0.277786553,
+                        "pleas": -0.509301066,
+                        "rephras": -0.277786553,
+                        "catch": -0.141635478,
+                        "detail": -0.231514528,
+                        "nonefeature": -0.492768466
+                      }
+                    },
+                    "fallback": {
+                      "bias": 0.0001441,
+                      "weights": {
+                        "911": -0.002556511,
+                        "hi": -0.273113251,
+                        "there": -0.273113251,
+                        "hello": -0.287184864,
+                        "good": -0.587493122,
+                        "morn": -0.22176075,
+                        "afternoon": -0.196973115,
+                        "even": -0.168759257,
+                        "what": 0.603534043,
+                        "is": -0.963989794,
+                        "the": -1.203133225,
+                        "weather": -0.455254257,
+                        "like": -0.343007863,
+                        "today": -0.46980983,
+                        "how": -0.568259239,
+                        "it": -0.221343294,
+                        "go": -0.099699892,
+                        "to": -0.329484671,
+                        "rain": -0.099699892,
+                        "do": -1.412569284,
+                        "i": 1.087253809,
+                        "need": -1.030102849,
+                        "an": -0.444975883,
+                        "umbrella": -0.425435692,
+                        "forecast": -0.150210574,
+                        "for": -0.150210574,
+                        "tomorrow": -0.150210574,
+                        "time": -0.545727909,
+                        "can": -1.837887406,
+                        "you": 0.746372521,
+                        "tell": -0.487588853,
+                        "me": -0.626030385,
+                        "date": -0.200685978,
+                        "news": -0.114274099,
+                        "ani": -0.3153449,
+                        "updat": -0.114274099,
+                        "help": -0.390626341,
+                        "with": -0.858641982,
+                        "my": -1.108756661,
+                        "account": -0.393954098,
+                        "reset": -0.197176382,
+                        "password": -0.197176382,
+                        "issu": -0.138441473,
+                        "assist": -0.04980335,
+                        "technic": -0.349154711,
+                        "support": -0.302679121,
+                        "a": -0.204505727,
+                        "am": 1.681914449,
+                        "have": -0.646462083,
+                        "troubl": -0.418212324,
+                        "devic": -0.418212324,
+                        "your": -0.155663177,
+                        "product": -0.38958627,
+                        "discount": -0.201070815,
+                        "are": -0.400338829,
+                        "best": -0.155663177,
+                        "sell": -0.155663177,
+                        "item": -0.155663177,
+                        "offer": -0.375425428,
+                        "order": -0.099413984,
+                        "want": -0.229784772,
+                        "cancel": -0.099413984,
+                        "return": -0.014160816,
+                        "get": -0.123043753,
+                        "refund": -0.123043753,
+                        "where": -0.940974116,
+                        "thank": -0.746101379,
+                        "goodby": -0.059576843,
+                        "see": -0.496739656,
+                        "later": -0.496739656,
+                        "bye": -0.024307376,
+                        "recommend": -0.020825563,
+                        "book": -0.020825563,
+                        "call": -0.002556511,
+                        "find": -0.442482084,
+                        "more": 2.496855736,
+                        "inform": -0.442482084,
+                        "give": -0.243223399,
+                        "feedback": -0.749354064,
+                        "provid": 2.440846443,
+                        "some": -0.007638769,
+                        "emerg": -0.019540211,
+                        "sorri": 0.69414252,
+                        "did": 2.080614567,
+                        "not": 4.180740356,
+                        "understand": 0.69414252,
+                        "that": 3.764041424,
+                        "sure": 2.100126266,
+                        "mean": 2.100126266,
+                        "could": 1.683428049,
+                        "pleas": 4.622764587,
+                        "rephras": 1.683428049,
+                        "catch": 1.386471272,
+                        "detail": 2.939337492,
+                        "nonefeature": -0.317263603
+                      }
+                    },
+                    "None": {
+                      "bias": 1.16573974,
+                      "weights": {
+                        "911": -0.551274598,
+                        "hi": -0.580259562,
+                        "there": -0.580259562,
+                        "hello": -1.092146754,
+                        "good": -0.869812727,
+                        "morn": -0.292989224,
+                        "afternoon": -0.290218115,
+                        "even": -0.286605239,
+                        "what": -0.450095505,
+                        "is": -0.600814879,
+                        "the": -0.306378514,
+                        "weather": -0.133516014,
+                        "like": -0.124494232,
+                        "today": -0.258934945,
+                        "how": -0.1712652,
+                        "it": -0.124249883,
+                        "go": -0.06391795,
+                        "to": -0.166642159,
+                        "rain": -0.06391795,
+                        "do": -0.211125568,
+                        "i": -0.709465861,
+                        "need": -0.231664225,
+                        "an": -0.144510463,
+                        "umbrella": -0.074840494,
+                        "forecast": -0.01765296,
+                        "for": -0.172890976,
+                        "tomorrow": -0.041878272,
+                        "time": -0.103283025,
+                        "can": -0.170000672,
+                        "you": -0.744886994,
+                        "tell": -0.34243539,
+                        "me": -0.49758774,
+                        "date": -0.052055184,
+                        "news": -0.394559354,
+                        "latest": -0.031436268,
+                        "happen": -0.102068365,
+                        "in": -0.000427675,
+                        "world": -0.000427675,
+                        "ani": -0.399849266,
+                        "updat": -0.363123119,
+                        "help": -0.204975411,
+                        "with": -0.090274826,
+                        "my": -0.254214615,
+                        "account": -0.053534277,
+                        "reset": -0.02933451,
+                        "password": -0.02933451,
+                        "issu": -0.016886376,
+                        "assist": -0.012904107,
+                        "technic": -0.118458591,
+                        "support": -0.111068681,
+                        "a": -0.179358974,
+                        "am": -0.029350629,
+                        "have": -0.218892336,
+                        "troubl": -0.029350629,
+                        "devic": -0.029350629,
+                        "about": -0.048192747,
+                        "your": -0.38258934,
+                        "product": -0.166702971,
+                        "discount": -0.036726158,
+                        "are": -0.232531682,
+                        "best": -0.065118179,
+                        "sell": -0.065118179,
+                        "item": -0.065118179,
+                        "offer": -0.003779081,
+                        "show": -0.114040472,
+                        "order": -0.141995251,
+                        "want": -0.078499019,
+                        "cancel": -0.023790345,
+                        "return": -0.000690752,
+                        "get": -0.07457,
+                        "refund": -0.07457,
+                        "where": -0.181872174,
+                        "thank": -0.403468758,
+                        "goodby": -1.069638968,
+                        "see": -0.205989629,
+                        "later": -0.205989629,
+                        "bye": -1.054548621,
+                        "music": -0.06644547,
+                        "fun": -0.064748891,
+                        "fact": -0.064748891,
+                        "ai": -0.093984343,
+                        "recommend": -0.031959482,
+                        "book": -0.021960076,
+                        "someth": -0.152163416,
+                        "interest": -0.152163416,
+                        "remind": -0.024225309,
+                        "call": -0.575499892,
+                        "john": -0.024225309,
+                        "more": -0.279037952,
+                        "give": -0.054708693,
+                        "feedback": -0.137854159,
+                        "provid": -0.279037952,
+                        "some": -0.083145499,
+                        "nearest": -0.034683652,
+                        "station": -0.010323094,
+                        "closest": -0.028983591,
+                        "restaur": -0.028983591,
+                        "hospit": -0.024360556,
+                        "event": -0.101640686,
+                        "local": -0.009999404,
+                        "attract": -0.009999404,
+                        "emerg": -0.069670066,
+                        "polic": -0.010323094,
+                        "sorri": -0.039503783,
+                        "did": -0.11254099,
+                        "not": -0.11254099,
+                        "understand": -0.039503783,
+                        "that": -0.135744229,
+                        "could": -0.023203304,
+                        "pleas": -0.302241236,
+                        "rephras": -0.023203304,
+                        "catch": -0.073037192,
+                        "detail": -0.279037952,
+                        "nonefeature": 10.982134819
+                      }
+                    }
+                  }
+                ],
+                "trainOpts": {
+                  "iterations": 20000,
+                  "errorThresh": 0.00005,
+                  "fixedError": false,
+                  "deltaErrorThresh": 0.000001,
+                  "learningRate": 0.7,
+                  "momentum": 0.5,
+                  "leakyReluAlpha": 0.08,
+                  "maxDecimals": 9,
+                  "log": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extraSentences": [
+      [
+        "en",
+        "Hi there!"
+      ],
+      [
+        "en",
+        "Hello!"
+      ],
+      [
+        "en",
+        "Good morning!"
+      ],
+      [
+        "en",
+        "Good afternoon!"
+      ],
+      [
+        "en",
+        "Good evening!"
+      ],
+      [
+        "en",
+        "What's the weather like today?"
+      ],
+      [
+        "en",
+        "How's the weather?"
+      ],
+      [
+        "en",
+        "Is it going to rain today?"
+      ],
+      [
+        "en",
+        "Do I need an umbrella?"
+      ],
+      [
+        "en",
+        "What's the forecast for tomorrow?"
+      ],
+      [
+        "en",
+        "What's the time?"
+      ],
+      [
+        "en",
+        "What time is it?"
+      ],
+      [
+        "en",
+        "Can you tell me the time?"
+      ],
+      [
+        "en",
+        "What's the current time?"
+      ],
+      [
+        "en",
+        "What's the date today?"
+      ],
+      [
+        "en",
+        "What's today's date?"
+      ],
+      [
+        "en",
+        "Can you tell me the date?"
+      ],
+      [
+        "en",
+        "What's the current date?"
+      ],
+      [
+        "en",
+        "What's the news today?"
+      ],
+      [
+        "en",
+        "Tell me the latest news."
+      ],
+      [
+        "en",
+        "What's happening in the world?"
+      ],
+      [
+        "en",
+        "Any news updates?"
+      ],
+      [
+        "en",
+        "I need help with my account."
+      ],
+      [
+        "en",
+        "How do I reset my password?"
+      ],
+      [
+        "en",
+        "Can you help me with my account issues?"
+      ],
+      [
+        "en",
+        "I need assistance with my account."
+      ],
+      [
+        "en",
+        "I need technical support."
+      ],
+      [
+        "en",
+        "Can you help me with a technical issue?"
+      ],
+      [
+        "en",
+        "I'm having trouble with my device."
+      ],
+      [
+        "en",
+        "I need help with a technical problem."
+      ],
+      [
+        "en",
+        "Tell me about your products."
+      ],
+      [
+        "en",
+        "Do you have any discounts?"
+      ],
+      [
+        "en",
+        "What are your best-selling items?"
+      ],
+      [
+        "en",
+        "What products do you offer?"
+      ],
+      [
+        "en",
+        "Show me your products."
+      ],
+      [
+        "en",
+        "How do I track my order?"
+      ],
+      [
+        "en",
+        "I want to cancel my order."
+      ],
+      [
+        "en",
+        "How can I return a product?"
+      ],
+      [
+        "en",
+        "Can I get a refund?"
+      ],
+      [
+        "en",
+        "Where is my order?"
+      ],
+      [
+        "en",
+        "Thanks for your help!"
+      ],
+      [
+        "en",
+        "Goodbye!"
+      ],
+      [
+        "en",
+        "See you later!"
+      ],
+      [
+        "en",
+        "Thank you!"
+      ],
+      [
+        "en",
+        "Bye!"
+      ],
+      [
+        "en",
+        "How are you?"
+      ],
+      [
+        "en",
+        "What's your name?"
+      ],
+      [
+        "en",
+        "Do you like music?"
+      ],
+      [
+        "en",
+        "How is your day?"
+      ],
+      [
+        "en",
+        "What do you do?"
+      ],
+      [
+        "en",
+        "Tell me a fun fact."
+      ],
+      [
+        "en",
+        "What is AI?"
+      ],
+      [
+        "en",
+        "Can you recommend a book?"
+      ],
+      [
+        "en",
+        "Tell me something interesting."
+      ],
+      [
+        "en",
+        "Do you know any trivia?"
+      ],
+      [
+        "en",
+        "What's my name?"
+      ],
+      [
+        "en",
+        "Remind me to call John tomorrow."
+      ],
+      [
+        "en",
+        "What's my schedule for today?"
+      ],
+      [
+        "en",
+        "Can you set a reminder for me?"
+      ],
+      [
+        "en",
+        "Do I have any appointments?"
+      ],
+      [
+        "en",
+        "How do I contact support?"
+      ],
+      [
+        "en",
+        "Where can I find more information?"
+      ],
+      [
+        "en",
+        "What should I do if I have an issue?"
+      ],
+      [
+        "en",
+        "I need help."
+      ],
+      [
+        "en",
+        "Can you assist me?"
+      ],
+      [
+        "en",
+        "I want to give feedback."
+      ],
+      [
+        "en",
+        "How can I leave a review?"
+      ],
+      [
+        "en",
+        "Where can I provide feedback?"
+      ],
+      [
+        "en",
+        "Can I give you feedback?"
+      ],
+      [
+        "en",
+        "I have some feedback."
+      ],
+      [
+        "en",
+        "How do I get to the nearest gas station?"
+      ],
+      [
+        "en",
+        "Where is the closest restaurant?"
+      ],
+      [
+        "en",
+        "Can you give me directions to the mall?"
+      ],
+      [
+        "en",
+        "I need directions to the airport."
+      ],
+      [
+        "en",
+        "Where is the nearest hospital?"
+      ],
+      [
+        "en",
+        "What events are happening today?"
+      ],
+      [
+        "en",
+        "Can you recommend a local attraction?"
+      ],
+      [
+        "en",
+        "What's the best place to visit in this city?"
+      ],
+      [
+        "en",
+        "Are there any events today?"
+      ],
+      [
+        "en",
+        "What's a good place to eat around here?"
+      ],
+      [
+        "en",
+        "What's the best way to get around the city?"
+      ],
+      [
+        "en",
+        "How do I get to the train station?"
+      ],
+      [
+        "en",
+        "Is there a bus stop nearby?"
+      ],
+      [
+        "en",
+        "Can you call me a taxi?"
+      ],
+      [
+        "en",
+        "What's the closest subway station?"
+      ],
+      [
+        "en",
+        "I need emergency help."
+      ],
+      [
+        "en",
+        "Call 911."
+      ],
+      [
+        "en",
+        "Where is the nearest police station?"
+      ],
+      [
+        "en",
+        "I have an emergency."
+      ],
+      [
+        "en",
+        "Can you help in an emergency?"
+      ],
+      [
+        "en",
+        "Sorry, I didn't understand that."
+      ],
+      [
+        "en",
+        "I'm not sure what you mean."
+      ],
+      [
+        "en",
+        "Could you please rephrase that?"
+      ],
+      [
+        "en",
+        "I didn't catch that."
+      ],
+      [
+        "en",
+        "Please provide more details."
+      ]
+    ]
+  },
+  "nerManager": {
+    "settings": {},
+    "threshold": 0.8,
+    "builtins": [
+      "Number",
+      "Ordinal",
+      "Percentage",
+      "Age",
+      "Currency",
+      "Dimension",
+      "Temperature",
+      "DateTime",
+      "PhoneNumber",
+      "IpAddress",
+      "Boolean",
+      "Email",
+      "Hashtag",
+      "URL"
+    ],
+    "namedEntities": {}
+  },
+  "slotManager": {},
+  "responses": {
+    "en": {
+      "greetings.hello": [
+        {
+          "response": "Hello! How can I help you today?"
+        },
+        {
+          "response": "Hi! What can I do for you?"
+        },
+        {
+          "response": "Good morning! How can I assist you?"
+        },
+        {
+          "response": "Good afternoon! How may I help you today?"
+        },
+        {
+          "response": "Good evening! What can I do for you?"
+        }
+      ],
+      "information.weather": [
+        {
+          "response": "Let me check for you. It's sunny with a high of 75°F."
+        },
+        {
+          "response": "The weather is clear and sunny."
+        },
+        {
+          "response": "There is no rain expected today."
+        },
+        {
+          "response": "You won't need an umbrella today."
+        },
+        {
+          "response": "Tomorrow's forecast is partly cloudy with a chance of rain."
+        }
+      ],
+      "information.time": [
+        {
+          "response": "The current time is 3:00 PM."
+        },
+        {
+          "response": "It's 3:00 PM right now."
+        },
+        {
+          "response": "It is now 3:00 PM."
+        },
+        {
+          "response": "The time is 3:00 PM."
+        }
+      ],
+      "information.date": [
+        {
+          "response": "Today is July 4, 2024."
+        },
+        {
+          "response": "It's July 4, 2024."
+        },
+        {
+          "response": "The date today is July 4, 2024."
+        },
+        {
+          "response": "Today's date is July 4, 2024."
+        }
+      ],
+      "information.news": [
+        {
+          "response": "Here are the latest headlines: one Ant die after drink coca-cola."
+        },
+        {
+          "response": "Today's top news: dogs goes viral after his first song release."
+        },
+        {
+          "response": "The latest news updates: the temperature reach to 50 degree in last 7 days."
+        },
+        {
+          "response": "Here are some recent news updates: today Gandhiji said we all are independent ."
+        }
+      ],
+      "assistance.account": [
+        {
+          "response": "Sure, I can help with that. What seems to be the problem?"
+        },
+        {
+          "response": "To reset your password, go to the settings page and click on \"Forgot Password\"."
+        },
+        {
+          "response": "Please describe the issue you're facing with your account."
+        },
+        {
+          "response": "I'm here to help with your account issues. What do you need assistance with?"
+        }
+      ],
+      "assistance.technical": [
+        {
+          "response": "I'm here to help. Please describe the issue you're facing."
+        },
+        {
+          "response": "What technical problem are you experiencing?"
+        },
+        {
+          "response": "Tell me more about the trouble you're having with your device."
+        },
+        {
+          "response": "I can assist you with your technical issue. What seems to be the problem?"
+        }
+      ],
+      "product.inquiry": [
+        {
+          "response": "We offer a variety of products including electronics, clothing, and home goods."
+        },
+        {
+          "response": "Yes, we have ongoing discounts on selected items. Check our website for more details."
+        },
+        {
+          "response": "Our best-selling items include the latest smartphones, laptops, and smartwatches."
+        },
+        {
+          "response": "We have a wide range of products including electronics, clothing, and more."
+        },
+        {
+          "response": "You can view all our products on our website."
+        }
+      ],
+      "order.transaction": [
+        {
+          "response": "You can track your order by entering your tracking number on our tracking page."
+        },
+        {
+          "response": "Please provide your order number, and I’ll assist you with the cancellation."
+        },
+        {
+          "response": "To return a product, visit our returns page and follow the instructions."
+        },
+        {
+          "response": "Refunds can be requested through our customer service. Please provide your order details."
+        },
+        {
+          "response": "Your order status can be checked using your tracking number on our website."
+        }
+      ],
+      "farewell.goodbye": [
+        {
+          "response": "You're welcome! If you have any more questions, feel free to ask."
+        },
+        {
+          "response": "Goodbye! Have a great day!"
+        },
+        {
+          "response": "See you! Take care!"
+        },
+        {
+          "response": "You're welcome! Have a great day!"
+        },
+        {
+          "response": "Bye! Take care!"
+        }
+      ],
+      "smalltalk.howareyou": [
+        {
+          "response": "I'm doing well, thank you. How about you?"
+        },
+        {
+          "response": "I’m your friendly chatbot assistant. How can I help you?"
+        },
+        {
+          "response": "I love music! What’s your favorite song?"
+        },
+        {
+          "response": "My day is going great! How about yours?"
+        },
+        {
+          "response": "I'm here to assist you with any questions or issues you have."
+        }
+      ],
+      "custom.fact": [
+        {
+          "response": "Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible."
+        },
+        {
+          "response": "AI stands for Artificial Intelligence. It's a field of computer science that aims to create intelligent machines that can mimic human behavior and thinking."
+        },
+        {
+          "response": "Sure! I recommend \"To Kill a Mockingbird\" by Harper Lee. It's a classic!"
+        },
+        {
+          "response": "Here's something interesting: The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after 38 minutes."
+        },
+        {
+          "response": "Here's a trivia for you: The Eiffel Tower can be 15 cm taller during the summer due to the expansion of iron in the heat."
+        }
+      ],
+      "personalization.reminder": [
+        {
+          "response": "Your name is stored in my memory, but I need you to tell me your name first."
+        },
+        {
+          "response": "I've set a reminder to call Nikhil tomorrow."
+        },
+        {
+          "response": "Here is your schedule for today: go to walk and do excercise."
+        },
+        {
+          "response": "I can set a reminder for you. What would you like to be reminded of?"
+        },
+        {
+          "response": "Let me check your appointments: it is on wednesday."
+        }
+      ],
+      "info.help": [
+        {
+          "response": "You can contact support by emailing hawkscode@gmail.com."
+        },
+        {
+          "response": "For more information, visit our website."
+        },
+        {
+          "response": "If you have an issue, please describe it to me, and I will do my best to help."
+        },
+        {
+          "response": "I'm here to help. What do you need assistance with?"
+        },
+        {
+          "response": "Sure, I'm here to assist you. What seems to be the problem?"
+        }
+      ],
+      "info.feedback": [
+        {
+          "response": "We appreciate your feedback! Please leave a review on our website."
+        },
+        {
+          "response": "You can leave a review by visiting our feedback page."
+        },
+        {
+          "response": "Feel free to provide your feedback here or on our website."
+        },
+        {
+          "response": "Of course! Please share your feedback with us."
+        },
+        {
+          "response": "Thank you for your feedback! We value your opinion."
+        }
+      ],
+      "directions.location": [
+        {
+          "response": "The nearest gas station is 2 miles away on Main Street."
+        },
+        {
+          "response": "The closest restaurant is 5 minutes away on foot."
+        },
+        {
+          "response": "To get to the mall, head north on 5th Avenue for 3 miles."
+        },
+        {
+          "response": "The airport is 10 miles away. Follow the highway signs for the quickest route."
+        },
+        {
+          "response": "The nearest hospital is 3 miles away on Elm Street."
+        }
+      ],
+      "local.info": [
+        {
+          "response": "Here are some events happening today: might have rain today."
+        },
+        {
+          "response": "I recommend visiting the city park. It's beautiful this time of year."
+        },
+        {
+          "response": "The best place to visit in this city is the downtown museum."
+        },
+        {
+          "response": "Yes, there are several events today: [list events]."
+        },
+        {
+          "response": "A great place to eat around here is Joe's Diner."
+        }
+      ],
+      "transport.info": [
+        {
+          "response": "The best way to get around the city is by subway."
+        },
+        {
+          "response": "To get to the train station, take the subway to Central Station."
+        },
+        {
+          "response": "Yes, there's a bus stop two blocks away."
+        },
+        {
+          "response": "Sure, I can call a taxi for you."
+        },
+        {
+          "response": "The closest subway station is 5 minutes away on foot."
+        }
+      ],
+      "emergency.info": [
+        {
+          "response": "For emergencies, please call 911 immediately."
+        },
+        {
+          "response": "Dial 911 for emergency assistance."
+        },
+        {
+          "response": "The nearest police station is 1 mile away on Main Street."
+        },
+        {
+          "response": "If you have an emergency, call 911."
+        },
+        {
+          "response": "In case of an emergency, it is best to call 911 directly."
+        }
+      ],
+      "fallback": [
+        {
+          "response": "I'm sorry, I couldn't understand your request. Could you please try again?"
+        },
+        {
+          "response": "Apologies, I'm not sure how to respond to that. Could you rephrase your question?"
+        },
+        {
+          "response": "I didn't quite get that. Can you provide more context or details?"
+        },
+        {
+          "response": "Sorry, I didn't understand what you said. Could you clarify?"
+        },
+        {
+          "response": "I'm not able to process that request. Could you try asking in a different way?"
+        }
+      ]
+    }
+  },
+  "actions": {},
+  "utteranceDict": {
+    "?": "help"
+  }
+}
