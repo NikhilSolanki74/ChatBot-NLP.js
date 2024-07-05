@@ -777,22 +777,332 @@ const trainingData = [
 ]
 
 
-}
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about apples.', 'What is an apple?', 'Apple information.', 'Describe an apple.', 'Apple.'],
+  responses: ['An apple is a sweet, edible fruit produced by an apple tree. Apples are rich in fiber, vitamins, and minerals. They come in various colors such as red, green, and yellow.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about bananas.', 'What is a banana?', 'Banana information.', 'Describe a banana.', 'Banana.'],
+  responses: ['A banana is a long, curved fruit with a yellow skin and soft, sweet flesh inside. Bananas are a good source of potassium, vitamin C, and dietary fiber. They are commonly eaten raw or used in cooking.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about mobiles.', 'What is a mobile?', 'Mobile information.', 'Describe a mobile.', 'Mobile.'],
+  responses: ['A mobile phone, also known as a cellphone, is a portable device used for communication. It can make and receive calls, send text messages, and access the internet. Modern smartphones have many features including cameras, GPS, and various apps.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about laptops.', 'What is a laptop?', 'Laptop information.', 'Describe a laptop.', 'Laptop.'],
+  responses: ['A laptop is a portable computer that combines a screen, keyboard, and a battery into a single device. Laptops are used for various tasks such as browsing the internet, working on documents, and running software applications.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about cats.', 'What is a cat?', 'Cat information.', 'Describe a cat.', 'Cat.'],
+  responses: ['A cat is a small, domesticated carnivorous mammal with soft fur, a short snout, and retractable claws. Cats are known for their agility, playfulness, and ability to hunt rodents. They are popular pets and often kept for companionship.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about males.', 'What is a male?', 'Male information.', 'Describe a male.', 'Male.'],
+  responses: ['A male is a person or animal of the sex that typically has the capacity to produce small, mobile gametes (spermatozoa) for fertilizing female gametes (ova). In humans, males are typically characterized by XY chromosomes and the production of testosterone.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about females.', 'What is a female?', 'Female information.', 'Describe a female.', 'Female.'],
+  responses: ['A female is a person or animal of the sex that typically has the capacity to produce large, immobile gametes (ova) and usually carries and nurtures offspring. In humans, females are typically characterized by XX chromosomes and the production of estrogen.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about cups.', 'What is a cup?', 'Cup information.', 'Describe a cup.', 'Cup.'],
+  responses: ['A cup is a small open container used for drinking beverages. It usually has a handle and can be made from various materials such as ceramic, glass, plastic, or metal. Cups are commonly used to drink coffee, tea, or other beverages.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about chargers.', 'What is a charger?', 'Charger information.', 'Describe a charger.', 'Charger.'],
+  responses: ['A charger is a device used to recharge the battery of electronic devices such as mobile phones, laptops, and tablets. It converts electrical energy from an outlet into a form that the battery can use. Chargers come in various types and specifications.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about books.', 'What is a book?', 'Book information.', 'Describe a book.', 'Book.'],
+  responses: ['A book is a written or printed work consisting of pages glued or sewn together along one side and bound in covers. Books can be fiction or non-fiction and cover a wide range of subjects.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about tables.', 'What is a table?', 'Table information.', 'Describe a table.', 'Table.'],
+  responses: ['A table is a piece of furniture with a flat top and one or more legs, providing a level surface for eating, writing, working, or placing items. Tables are commonly used in dining rooms, kitchens, offices, and living rooms.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about chairs.', 'What is a chair?', 'Chair information.', 'Describe a chair.', 'Chair.'],
+  responses: ['A chair is a piece of furniture designed for sitting, typically consisting of a seat, back, and four legs. Chairs can be made from various materials, including wood, metal, and plastic. They are used in homes, offices, and many other settings.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about televisions.', 'What is a television?', 'Television information.', 'Describe a television.', 'Television.'],
+  responses: ['A television, commonly referred to as a TV, is an electronic device used for viewing video content. Televisions receive broadcast signals and display them as audio and visual content. Modern TVs include features like smart functionality, high-definition displays, and various connectivity options.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about refrigerators.', 'What is a refrigerator?', 'Refrigerator information.', 'Describe a refrigerator.', 'Refrigerator.'],
+  responses: ['A refrigerator is an appliance used to keep food and drinks cold. It works by removing heat from the interior to maintain a temperature below the ambient temperature. Refrigerators typically have a freezer compartment for storing frozen food.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about shoes.', 'What are shoes?', 'Shoe information.', 'Describe shoes.', 'Shoes.'],
+  responses: ['Shoes are footwear designed to protect and comfort the human foot while engaging in various activities. They come in many styles, including sneakers, boots, sandals, and dress shoes. Shoes are typically made from materials like leather, fabric, and rubber.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about watches.', 'What is a watch?', 'Watch information.', 'Describe a watch.', 'Watch.'],
+  responses: ['A watch is a small timepiece worn typically on a strap on one\'s wrist. Watches can be analog or digital and may include additional features such as date displays, alarms, and timers. Modern smartwatches offer functionalities like fitness tracking and notifications.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about keys.', 'What are keys?', 'Key information.', 'Describe keys.', 'Keys.'],
+  responses: ['Keys are small metal instruments used to operate locks. Each key is cut to fit a specific lock, allowing access to secured areas or items. Keys come in various types, including house keys, car keys, and padlock keys.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about pens.', 'What is a pen?', 'Pen information.', 'Describe a pen.', 'Pen.'],
+  responses: ['A pen is a writing instrument used to apply ink to a surface, usually paper, for writing or drawing. Pens come in various types, including ballpoint, fountain, and gel pens. They are commonly used in offices, schools, and homes.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about notebooks.', 'What is a notebook?', 'Notebook information.', 'Describe a notebook.', 'Notebook.'],
+  responses: ['A notebook is a book or binder of pages for writing notes. Notebooks are commonly used by students and professionals for taking notes, journaling, and organizing information. They come in various sizes and formats, such as lined, blank, or grid paper.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about backpacks.', 'What is a backpack?', 'Backpack information.', 'Describe a backpack.', 'Backpack.'],
+  responses: ['A backpack is a bag with shoulder straps that allow it to be carried on one\'s back. Backpacks are commonly used for carrying books, laptops, and other personal items. They come in various sizes and designs, suitable for school, travel, and outdoor activities.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about water bottles.', 'What is a water bottle?', 'Water bottle information.', 'Describe a water bottle.', 'Water bottle.'],
+  responses: ['A water bottle is a container used to hold water and other beverages for drinking. Water bottles can be made from plastic, glass, or metal and are commonly used for hydration on the go. Many water bottles are reusable and eco-friendly.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about headphones.', 'What are headphones?', 'Headphone information.', 'Describe headphones.', 'Headphones.'],
+  responses: ['Headphones are a pair of small loudspeaker drivers worn on or around the head over a user\'s ears. They are used to listen to audio without disturbing others. Headphones come in various styles, including over-ear, on-ear, and in-ear, and can be wired or wireless.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about glasses.', 'What are glasses?', 'Glass information.', 'Describe glasses.', 'Glasses.'],
+  responses: ['Glasses, also known as eyeglasses or spectacles, are lenses mounted in a frame that rests on the nose and ears. They are used to correct vision or protect the eyes. Glasses can be prescription for vision correction or non-prescription for fashion or safety.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about umbrellas.', 'What is an umbrella?', 'Umbrella information.', 'Describe an umbrella.', 'Umbrella.'],
+  responses: ['An umbrella is a portable device used to protect a person from rain or sunlight. It consists of a circular canopy of fabric attached to a folding frame of rods that extend from a central pole. Umbrellas come in various sizes and designs, including compact and automatic versions.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about wallets.', 'What is a wallet?', 'Wallet information.', 'Describe a wallet.', 'Wallet.'],
+  responses: ['A wallet is a small, flat case used to carry personal items such as cash, credit cards, identification documents, and photos. Wallets are typically made from leather or fabric and come in various styles, including bifold, trifold, and cardholder designs.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about toothbrushes.', 'What is a toothbrush?', 'Toothbrush information.', 'Describe a toothbrush.', 'Toothbrush.'],
+  responses: ['A toothbrush is a dental instrument used to clean teeth and gums. It consists of a handle and bristles arranged on a head. Toothbrushes come in manual and electric versions and should be used with toothpaste for effective oral hygiene.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about toothpaste.', 'What is toothpaste?', 'Toothpaste information.', 'Describe toothpaste.', 'Toothpaste.'],
+  responses: ['Toothpaste is a gel or paste used with a toothbrush to clean and maintain the health of teeth and gums. It helps remove plaque, prevent cavities, and freshen breath. Toothpaste typically contains fluoride, abrasives, and flavoring agents.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about combs.', 'What is a comb?', 'Comb information.', 'Describe a comb.', 'Comb.'],
+  responses: ['A comb is a flat, toothed device used to arrange, untangle, and style hair. Combs come in various sizes and shapes, made from materials such as plastic, wood, or metal. They are commonly used for grooming hair and maintaining hairstyles.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about soap.', 'What is soap?', 'Soap information.', 'Describe soap.', 'Soap.'],
+  responses: ['Soap is a substance used for cleaning and washing. It is made from natural oils or fats combined with an alkali. Soap helps remove dirt and oil from the skin, and it can come in various forms, including bars, liquids, and powders.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about towels.', 'What is a towel?', 'Towel information.', 'Describe a towel.', 'Towel.'],
+  responses: ['A towel is a piece of absorbent fabric used for drying or wiping. Towels are typically made from cotton and come in various sizes and thicknesses. They are commonly used in bathrooms, kitchens, and for sports and fitness activities.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about blankets.', 'What is a blanket?', 'Blanket information.', 'Describe a blanket.', 'Blanket.'],
+  responses: ['A blanket is a large piece of soft fabric used to keep warm while sleeping or resting. Blankets come in various materials, including wool, cotton, and synthetic fibers. They are used on beds, couches, and for outdoor activities like picnics.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about pillows.', 'What is a pillow?', 'Pillow information.', 'Describe a pillow.', 'Pillow.'],
+  responses: ['A pillow is a soft cushion used to support the head and neck while sleeping or resting. Pillows are typically filled with materials such as feathers, foam, or synthetic fibers and are covered with a fabric case. They come in various shapes and sizes for different sleeping positions.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about beds.', 'What is a bed?', 'Bed information.', 'Describe a bed.', 'Bed.'],
+  responses: ['A bed is a piece of furniture used for sleeping or resting. It typically consists of a frame, a mattress, and bedding such as sheets, blankets, and pillows. Beds come in various sizes, including twin, full, queen, and king.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about desks.', 'What is a desk?', 'Desk information.', 'Describe a desk.', 'Desk.'],
+  responses: ['A desk is a piece of furniture with a flat work surface used for writing, reading, and working on a computer. Desks often have drawers and compartments for storage and are commonly found in offices, homes, and schools.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about lamps.', 'What is a lamp?', 'Lamp information.', 'Describe a lamp.', 'Lamp.'],
+  responses: ['A lamp is a device that produces light, often used for illumination in homes and offices. Lamps can be table lamps, floor lamps, or wall-mounted. They typically use incandescent, fluorescent, or LED bulbs and come in various styles and designs.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about clocks.', 'What is a clock?', 'Clock information.', 'Describe a clock.', 'Clock.'],
+  responses: ['A clock is a device used to measure and display time. Clocks can be analog or digital and come in various forms, such as wall clocks, alarm clocks, and wristwatches. They use mechanical or electronic mechanisms to keep time.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about mirrors.', 'What is a mirror?', 'Mirror information.', 'Describe a mirror.', 'Mirror.'],
+  responses: ['A mirror is a reflective surface, typically made of glass with a metallic coating, used to view oneself. Mirrors come in various shapes and sizes and are used in bathrooms, bedrooms, and for decorative purposes. They can also be used to create the illusion of more space in a room.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about dishes.', 'What are dishes?', 'Dish information.', 'Describe dishes.', 'Dishes.'],
+  responses: ['Dishes are flat, typically round containers used for serving food. They include plates, bowls, and platters, and are made from materials such as ceramic, glass, plastic, or metal. Dishes are commonly used in kitchens and dining areas for serving and eating meals.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about forks.', 'What is a fork?', 'Fork information.', 'Describe a fork.', 'Fork.'],
+  responses: ['A fork is a utensil with a handle and several narrow tines used for eating and serving food. Forks are typically made from metal or plastic and come in various sizes and designs, including dinner forks, salad forks, and dessert forks.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about knives.', 'What is a knife?', 'Knife information.', 'Describe a knife.', 'Knife.'],
+  responses: ['A knife is a tool with a handle and a blade used for cutting food and other materials. Knives come in various types, including kitchen knives, utility knives, and pocket knives. Kitchen knives are used for food preparation, while utility knives are used for various cutting tasks.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about spoons.', 'What is a spoon?', 'Spoon information.', 'Describe a spoon.', 'Spoon.'],
+  responses: ['A spoon is a utensil with a handle and a shallow bowl used for eating, stirring, and serving food. Spoons come in various sizes, including teaspoons, tablespoons, and soup spoons, and are typically made from metal, plastic, or wood.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about pots.', 'What is a pot?', 'Pot information.', 'Describe a pot.', 'Pot.'],
+  responses: ['A pot is a deep, round container used for cooking food. Pots are typically made from metal, such as stainless steel or aluminum, and come with handles and lids. They are used for boiling, simmering, and making soups and stews.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about pans.', 'What is a pan?', 'Pan information.', 'Describe a pan.', 'Pan.'],
+  responses: ['A pan is a shallow, flat-bottomed container used for cooking food. Pans are typically made from metal, such as stainless steel or cast iron, and have a long handle. They are used for frying, sautéing, and browning food.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about ovens.', 'What is an oven?', 'Oven information.', 'Describe an oven.', 'Oven.'],
+  responses: ['An oven is a kitchen appliance used for baking, roasting, and broiling food. Ovens can be powered by gas or electricity and come in various types, including conventional, convection, and microwave ovens. They are commonly used for cooking meals and baking desserts.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about microwaves.', 'What is a microwave?', 'Microwave information.', 'Describe a microwave.', 'Microwave.'],
+  responses: ['A microwave is a kitchen appliance that cooks food using microwave radiation. Microwaves are quick and efficient for heating and defrosting food. They come in various sizes and styles, including countertop and built-in models.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about blenders.', 'What is a blender?', 'Blender information.', 'Describe a blender.', 'Blender.'],
+  responses: ['A blender is a kitchen appliance used to mix, puree, or emulsify food and other substances. Blenders have a motorized base and a container with rotating blades. They are commonly used for making smoothies, soups, and sauces.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about vacuum cleaners.', 'What is a vacuum cleaner?', 'Vacuum cleaner information.', 'Describe a vacuum cleaner.', 'Vacuum cleaner.'],
+  responses: ['A vacuum cleaner is an appliance that uses suction to remove dirt and debris from floors and other surfaces. Vacuum cleaners come in various types, including upright, canister, and robotic models. They are commonly used for cleaning carpets, hardwood floors, and upholstery.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about washing machines.', 'What is a washing machine?', 'Washing machine information.', 'Describe a washing machine.', 'Washing machine.'],
+  responses: ['A washing machine is an appliance used to wash laundry. It uses water, detergent, and mechanical agitation to clean clothes, towels, and other textiles. Washing machines come in various types, including top-loading and front-loading models.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about dryers.', 'What is a dryer?', 'Dryer information.', 'Describe a dryer.', 'Dryer.'],
+  responses: ['A dryer is an appliance used to remove moisture from laundry after washing. Dryers use heat and tumbling action to dry clothes, towels, and other textiles. They come in various types, including vented, condenser, and heat pump models.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about irons.', 'What is an iron?', 'Iron information.', 'Describe an iron.', 'Iron.'],
+  responses: ['An iron is a small appliance used to remove wrinkles from fabric by pressing it with a heated flat surface. Irons come in various types, including steam irons and dry irons. They are commonly used for pressing clothes and linens.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about fans.', 'What is a fan?', 'Fan information.', 'Describe a fan.', 'Fan.'],
+  responses: ['A fan is a device that creates airflow to cool or ventilate a space. Fans come in various types, including ceiling fans, table fans, and floor fans. They are commonly used in homes, offices, and outdoor areas to provide comfort and improve air circulation.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about air conditioners.', 'What is an air conditioner?', 'Air conditioner information.', 'Describe an air conditioner.', 'Air conditioner.'],
+  responses: ['An air conditioner is an appliance used to cool and dehumidify indoor air. Air conditioners come in various types, including window units, split systems, and central air systems. They are commonly used in homes, offices, and commercial buildings to provide comfort in hot weather.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about heaters.', 'What is a heater?', 'Heater information.', 'Describe a heater.', 'Heater.'],
+  responses: ['A heater is a device that produces heat to warm a space. Heaters come in various types, including electric heaters, gas heaters, and central heating systems. They are commonly used in homes, offices, and outdoor areas to provide comfort in cold weather.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about hair dryers.', 'What is a hair dryer?', 'Hair dryer information.', 'Describe a hair dryer.', 'Hair dryer.'],
+  responses: ['A hair dryer is an electric device used to dry and style hair. It blows hot or cold air over wet hair to evaporate moisture. Hair dryers come in various types, including handheld, hooded, and travel models. They are commonly used for personal grooming and styling.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about razors.', 'What is a razor?', 'Razor information.', 'Describe a razor.', 'Razor.'],
+  responses: ['A razor is a tool used for shaving hair from the skin. Razors come in various types, including disposable razors, safety razors, and electric razors. They are commonly used for personal grooming to achieve a smooth and clean appearance.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about shavers.', 'What is a shaver?', 'Shaver information.', 'Describe a shaver.', 'Shaver.'],
+  responses: ['A shaver, also known as an electric razor, is a device used to remove hair from the skin. It uses rotating or oscillating blades to cut hair. Shavers come in various types, including rotary and foil shavers. They are commonly used for personal grooming and achieving a smooth appearance.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about scissors.', 'What are scissors?', 'Scissors information.', 'Describe scissors.', 'Scissors.'],
+  responses: ['Scissors are a cutting instrument consisting of two blades joined in the middle, pivoting to cut material. They come in various types, including household, kitchen, and sewing scissors. Scissors are commonly used for cutting paper, fabric, and other materials.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about staplers.', 'What is a stapler?', 'Stapler information.', 'Describe a stapler.', 'Stapler.'],
+  responses: ['A stapler is a device used to join sheets of paper together by driving a metal staple through the sheets and folding the ends. Staplers come in various types, including manual, electric, and heavy-duty models. They are commonly used in offices, schools, and homes.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about tape.', 'What is tape?', 'Tape information.', 'Describe tape.', 'Tape.'],
+  responses: ['Tape is a flexible strip of material coated with adhesive on one or both sides, used for sticking items together. Tapes come in various types, including masking tape, duct tape, and double-sided tape. They are commonly used for sealing, repairing, and crafting.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about glue.', 'What is glue?', 'Glue information.', 'Describe glue.', 'Glue.'],
+  responses: ['Glue is an adhesive substance used for sticking objects or materials together. Glues come in various types, including white glue, super glue, and epoxy. They are commonly used for crafts, repairs, and construction.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about rulers.', 'What is a ruler?', 'Ruler information.', 'Describe a ruler.', 'Ruler.'],
+  responses: ['A ruler is a measuring tool used to measure length or draw straight lines. Rulers are typically made from wood, plastic, or metal and come in various lengths, such as 12 inches or 30 centimeters. They are commonly used in schools, offices, and workshops.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about erasers.', 'What is an eraser?', 'Eraser information.', 'Describe an eraser.', 'Eraser.'],
+  responses: ['An eraser is a small, rubbery object used to remove pencil or pen marks from paper. Erasers come in various shapes and sizes, including block and pencil-top erasers. They are commonly used in schools, offices, and for artistic purposes.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about pencils.', 'What is a pencil?', 'Pencil information.', 'Describe a pencil.', 'Pencil.'],
+  responses: ['A pencil is a writing instrument with a core of graphite encased in wood or a similar material. Pencils are used for writing, drawing, and sketching. They come in various types, including standard, mechanical, and colored pencils.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about crayons.', 'What is a crayon?', 'Crayon information.', 'Describe a crayon.', 'Crayon.'],
+  responses: ['A crayon is a stick of colored wax used for writing, drawing, and coloring. Crayons come in various colors and are commonly used by children for artistic activities. They are available in sets and are a staple in school and home art supplies.']
+},
+{
+  intent: 'object_information',
+  utterances: ['Tell me about markers.', 'What is a marker?', 'Marker information.', 'Describe a marker.', 'Marker.'],
+  responses: ['A marker is a writing instrument with a felt tip used for marking or drawing. Markers come in various types, including permanent, dry-erase, and highlighters. They are commonly used']
+} 
   
   ];
   
