@@ -55,14 +55,14 @@
         background-color: #007bff;
         color: #ffffff;
         align-self: flex-end;
-        margin-left: auto; /* Push user message to the right */
+        margin-left: auto;
       }
 
       .bot-message {
         background-color: #adb5bd;
         color: #000000;
         align-self: flex-start;
-        margin-right: auto; /* Push bot message to the left */
+        margin-right: auto; 
       }
 
       .user-input {
@@ -105,7 +105,6 @@
         <h1>Hawks ChatBot</h1>
       </div>
       <div class="chat-box" id="chat-box">
-        <!-- Messages will be appended here -->
       </div>
       <div class="user-input">
         <input
@@ -118,7 +117,6 @@
       </div>
     </div>
 
-    <!-- Add your JavaScript here -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       function handleKeyDown(event) {
@@ -130,10 +128,8 @@
       function sendMessage() {
         var userInput = document.getElementById("user-input").value.trim();
         if (userInput !== "") {
-          // Display user message
           appendMessage("user", userInput);
 
-          // Send user message to server
           fetch("/process-message", {
             method: "POST",
             headers: {
@@ -143,82 +139,71 @@
           })
             .then((response) => response.json())
             .then((data) => {
-              // Display bot response
               appendMessage("bot", data.response);
             })
             .catch((error) => {
               console.error("Error:", error);
-              // Display error message in chat
               appendMessage("bot", "Oops! Something went wrong.");
             });
 
-          // Clear input field after sending message
           document.getElementById("user-input").value = "";
         }
       }
-      var kk = 0;
-      function appendMessage(sender, message) {
-        var chatBox = document.getElementById("chat-box");
-        var messageElement = document.createElement("div");
-        messageElement.classList.add(
-          "message",
-          sender === "user" ? "user-message" : "bot-message",
-          kk++
-        );
-        if (sender == "bot") {
-          var tx = "";
-          chatBox.appendChild(messageElement);
-          var botmsg = document.getElementsByClassName(kk - 1);
-          for (var i = 0; i < message.length; i++) {
-            setTimeout(
-              (index) => {
-                tx += message.charAt(index);
-                messageElement.textContent = tx;
-              },
-              60 * i,
-              i
-            );
-          }
-        } else {
-          messageElement.textContent = message;
-        }
+   
+
+    var kk = 0;
+function appendMessage(sender, message) {
+    var chatBox = document.getElementById("chat-box");
+    var messageElement = document.createElement("div");
+    messageElement.classList.add(
+        "message",
+        sender === "user" ? "user-message" : "bot-message",
+        kk++
+    );
+
+    if (sender == "bot") {
+        var tx = "";
         chatBox.appendChild(messageElement);
-        // Scroll to bottom of chat box
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
+        var botmsg = document.getElementsByClassName(kk - 1);
+        let i = 0;
 
-      //         function appendMessage(sender, message) {
-      //     var chatBox = document.getElementById('chat-box');
-      //     var messageElement = document.createElement('div');
-      //     messageElement.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+        function typeCharacter() {
+            if (i < message.length) {
+                tx += message.charAt(i);
+                messageElement.textContent = tx;
+                i++;
+                
+          
+                let delay;
+                if (Math.random() < 0.69) {
+                  
+                    delay = Math.floor(Math.random() * 100) ;
+                } else {
+                   
+                    if(Math.random() < 0.97){
+                        delay = Math.floor(Math.random() * 150) ;
+                    }else{
+                        delay = Math.floor(Math.random() * 200)+2000 ;
 
-      //     if (sender === 'bot') {
-      //         var words = message.split(' ');
-      //         animateBotMessage(messageElement, words, 0);
-      //     } else {
-      //         messageElement.textContent = message;
-      //         chatBox.appendChild(messageElement);
-      //         chatBox.scrollTop = chatBox.scrollHeight;
-      //     }
-      // }
+                    }
 
-      // function animateBotMessage(element, words, index) {
-      //     if (index < words.length) {
-      //         var word = words[index];
-      //         var wordElement = document.createElement('span');
-      //         wordElement.textContent = word + ' '; // Add space to separate words visually
-      //         element.appendChild(wordElement);
-      //         element.scrollTop = element.scrollHeight;
+                }
+                
+                // Call typeCharacter again after the calculated delay
+                setTimeout(typeCharacter, delay);
+            }
+        }
 
-      //         setTimeout(function() {
-      //             animateBotMessage(element, words, index + 1);
-      //         }, 300); // Adjust the delay between each word animation (in milliseconds)
-      //     } else {
-      //         var chatBox = document.getElementById('chat-box');
-      //         chatBox.appendChild(element);
-      //         chatBox.scrollTop = chatBox.scrollHeight;
-      //     }
-      // }
+        typeCharacter();
+    } else {
+        messageElement.textContent = message;
+    }
+
+    chatBox.appendChild(messageElement);
+    // Scroll to bottom of chat box
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
     </script>
   </body>
 </html>
