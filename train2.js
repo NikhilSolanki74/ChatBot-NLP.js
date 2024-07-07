@@ -1,1125 +1,131 @@
+
+
+// const { NlpManager } = require('node-nlp');
+// const fs = require('fs');
+// const readline = require('readline');
+
+// // Create an instance of NlpManager
+// const manager = new NlpManager({ languages: ['en'] });
+// let a = 1;
+
+// // Function to process a line of training data
+// const processLine = (line) => {
+//     const data = JSON.parse(line);
+    
+//     data.utterances.forEach(utterance => {
+//         manager.addDocument('en', utterance, data.intent);
+//     })
+
+//     data.responses.forEach(response => {
+//         manager.addAnswer('en', data.intent, response);
+//     })
+//     console.log(a++);
+// }
+
+// // Function to read and process the training file line by line
+// const processFile = async (filePath) => {
+//     const fileStream = fs.createReadStream(filePath);
+//     const rl = readline.createInterface({
+//         input: fileStream,
+//         crlfDelay: Infinity
+//     });
+
+//     for await (const line of rl) {
+        
+//         // console.log(line," ++++ ");
+//         processLine(line);
+//     }
+// };
+
+// const trainModel = async () => {
+//     // Process the training data file
+//     await processFile('finaldata.json'); // Use the filename here
+
+//     // Train the model
+//     await manager.train();
+//     manager.save('model2.nlp');
+//     console.log('Model trained and saved');
+// };
+
+// // Start the training process
+// trainModel();
+
+
+
+
 const { NlpManager } = require('node-nlp');
+const fs = require('fs');
+const readline = require('readline');
+
 // Create an instance of NlpManager
 const manager = new NlpManager({ languages: ['en'] });
 
-const trainingData = [
-    { intent: 'greetings.hello', utterances: ['Hi there!', 'Hello!', 'Good morning!', 'Good afternoon!', 'Good evening!'], responses: ['Hello! How can I help you today?', 'Hi! What can I do for you?', 'Good morning! How can I assist you?', 'Good afternoon! How may I help you today?', 'Good evening! What can I do for you?'] },
-    { intent: 'information.weather', utterances: ['What\'s the weather like today?', 'How\'s the weather?', 'Is it going to rain today?', 'Do I need an umbrella?', 'What\'s the forecast for tomorrow?'], responses: ['Let me check for you. It\'s sunny with a high of 75°F.', 'The weather is clear and sunny.', 'There is no rain expected today.', 'You won\'t need an umbrella today.', 'Tomorrow\'s forecast is partly cloudy with a chance of rain.'] },
-    { intent: 'information.time', utterances: ['What\'s the time?', 'What time is it?', 'Can you tell me the time?', 'What\'s the current time?'], responses: ['The current time is 3:00 PM.', 'It\'s 3:00 PM right now.', 'It is now 3:00 PM.', 'The time is 3:00 PM.'] },
-    { intent: 'information.date', utterances: ['What\'s the date today?', 'What\'s today\'s date?', 'Can you tell me the date?', 'What\'s the current date?'], responses: ['Today is July 4, 2024.', 'It\'s July 4, 2024.', 'The date today is July 4, 2024.', 'Today\'s date is July 4, 2024.'] },
-    { intent: 'information.news', utterances: ['What\'s the news today?', 'Tell me the latest news.', 'What\'s happening in the world?', 'Any news updates?'], responses: ['Here are the latest headlines: one Ant die after drink coca-cola.', 'Today\'s top news: dogs goes viral after his first song release.', 'The latest news updates: the temperature reach to 50 degree in last 7 days.', 'Here are some recent news updates: today Gandhiji said we all are independent .'] },
-    { intent: 'assistance.account', utterances: ['I need help with my account.', 'How do I reset my password?', 'Can you help me with my account issues?', 'I need assistance with my account.'], responses: ['Sure, I can help with that. What seems to be the problem?', 'To reset your password, go to the settings page and click on "Forgot Password".', 'Please describe the issue you\'re facing with your account.', 'I\'m here to help with your account issues. What do you need assistance with?'] },
-    { intent: 'assistance.technical', utterances: ['I need technical support.', 'Can you help me with a technical issue?', 'I\'m having trouble with my device.', 'I need help with a technical problem.'], responses: ['I\'m here to help. Please describe the issue you\'re facing.', 'What technical problem are you experiencing?', 'Tell me more about the trouble you\'re having with your device.', 'I can assist you with your technical issue. What seems to be the problem?'] },
-    { intent: 'product.inquiry', utterances: ['Tell me about your products.', 'Do you have any discounts?', 'What are your best-selling items?', 'What products do you offer?', 'Show me your products.'], responses: ['We offer a variety of products including electronics, clothing, and home goods.', 'Yes, we have ongoing discounts on selected items. Check our website for more details.', 'Our best-selling items include the latest smartphones, laptops, and smartwatches.', 'We have a wide range of products including electronics, clothing, and more.', 'You can view all our products on our website.'] },
-    { intent: 'order.transaction', utterances: ['How do I track my order?', 'I want to cancel my order.', 'How can I return a product?', 'Can I get a refund?', 'Where is my order?'], responses: ['You can track your order by entering your tracking number on our tracking page.', 'Please provide your order number, and I’ll assist you with the cancellation.', 'To return a product, visit our returns page and follow the instructions.', 'Refunds can be requested through our customer service. Please provide your order details.', 'Your order status can be checked using your tracking number on our website.'] },
-    { intent: 'farewell.goodbye', utterances: ['Thanks for your help!', 'Goodbye!', 'See you later!', 'Thank you!', 'Bye!'], responses: ['You\'re welcome! If you have any more questions, feel free to ask.', 'Goodbye! Have a great day!', 'See you! Take care!', 'You\'re welcome! Have a great day!', 'Bye! Take care!'] },
-    { intent: 'smalltalk.howareyou', utterances: ['How are you?', 'What\'s your name?', 'Do you like music?', 'How is your day?', 'What do you do?'], responses: ['I\'m doing well, thank you. How about you?', 'I’m your friendly chatbot assistant. How can I help you?', 'I love music! What’s your favorite song?', 'My day is going great! How about yours?', 'I\'m here to assist you with any questions or issues you have.'] },
-    { intent: 'custom.fact', utterances: ['Tell me a fun fact.', 'What is AI?', 'Can you recommend a book?', 'Tell me something interesting.', 'Do you know any trivia?'], responses: ['Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible.', 'AI stands for Artificial Intelligence. It\'s a field of computer science that aims to create intelligent machines that can mimic human behavior and thinking.', 'Sure! I recommend "To Kill a Mockingbird" by Harper Lee. It\'s a classic!', 'Here\'s something interesting: The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after 38 minutes.', 'Here\'s a trivia for you: The Eiffel Tower can be 15 cm taller during the summer due to the expansion of iron in the heat.'] },
-    { intent: 'personalization.reminder', utterances: ['What\'s my name?', 'Remind me to call John tomorrow.', 'What\'s my schedule for today?', 'Can you set a reminder for me?', 'Do I have any appointments?'], responses: ['Your name is stored in my memory, but I need you to tell me your name first.', 'I\'ve set a reminder to call Nikhil tomorrow.', 'Here is your schedule for today: go to walk and do excercise.', 'I can set a reminder for you. What would you like to be reminded of?', 'Let me check your appointments: it is on wednesday.'] },
-    { intent: 'info.help', utterances: ['How do I contact support?', 'Where can I find more information?', 'What should I do if I have an issue?', 'I need help.', 'Can you assist me?'], responses: ['You can contact support by emailing hawkscode@gmail.com.', 'For more information, visit our website.', 'If you have an issue, please describe it to me, and I will do my best to help.', 'I\'m here to help. What do you need assistance with?', 'Sure, I\'m here to assist you. What seems to be the problem?'] },
-    { intent: 'info.feedback', utterances: ['I want to give feedback.', 'How can I leave a review?', 'Where can I provide feedback?', 'Can I give you feedback?', 'I have some feedback.'], responses: ['We appreciate your feedback! Please leave a review on our website.', 'You can leave a review by visiting our feedback page.', 'Feel free to provide your feedback here or on our website.', 'Of course! Please share your feedback with us.', 'Thank you for your feedback! We value your opinion.'] },
-    { intent: 'directions.location', utterances: ['How do I get to the nearest gas station?', 'Where is the closest restaurant?', 'Can you give me directions to the mall?', 'I need directions to the airport.', 'Where is the nearest hospital?'], responses: ['The nearest gas station is 2 miles away on Main Street.', 'The closest restaurant is 5 minutes away on foot.', 'To get to the mall, head north on 5th Avenue for 3 miles.', 'The airport is 10 miles away. Follow the highway signs for the quickest route.', 'The nearest hospital is 3 miles away on Elm Street.'] },
-    { intent: 'local.info', utterances: ['What events are happening today?', 'Can you recommend a local attraction?', 'What\'s the best place to visit in this city?', 'Are there any events today?', 'What\'s a good place to eat around here?'], responses: ['Here are some events happening today: might have rain today.', 'I recommend visiting the city park. It\'s beautiful this time of year.', 'The best place to visit in this city is the downtown museum.', 'Yes, there are several events today: [list events].', 'A great place to eat around here is Joe\'s Diner.'] },
-    { intent: 'transport.info', utterances: ['What\'s the best way to get around the city?', 'How do I get to the train station?', 'Is there a bus stop nearby?', 'Can you call me a taxi?', 'What\'s the closest subway station?'], responses: ['The best way to get around the city is by subway.', 'To get to the train station, take the subway to Central Station.', 'Yes, there\'s a bus stop two blocks away.', 'Sure, I can call a taxi for you.', 'The closest subway station is 5 minutes away on foot.'] },
-    { intent: 'emergency.info', utterances: ['I need emergency help.', 'Call 911.', 'Where is the nearest police station?', 'I have an emergency.', 'Can you help in an emergency?'], responses: ['For emergencies, please call 911 immediately.', 'Dial 911 for emergency assistance.', 'The nearest police station is 1 mile away on Main Street.', 'If you have an emergency, call 911.', 'In case of an emergency, it is best to call 911 directly.'] },
-    { intent: 'fallback', utterances: ['Sorry, I didn\'t understand that.', 'I\'m not sure what you mean.', 'Could you please rephrase that?', 'I didn\'t catch that.', 'Please provide more details.'],responses: ['I\'m sorry, I couldn\'t understand your request. Could you please try again?', 'Apologies, I\'m not sure how to respond to that. Could you rephrase your question?', 'I didn\'t quite get that. Can you provide more context or details?', 'Sorry, I didn\'t understand what you said. Could you clarify?', 'I\'m not able to process that request. Could you try asking in a different way?'] },
-    { intent: 'news.latest', utterances: ['What\'s the latest news?', 'Tell me the latest headlines.', 'What are the current news stories?', 'Give me today\'s news.', 'Any breaking news?'], responses: ['Here are the latest headlines: [provide latest news].', 'Today\'s top stories: [provide latest news].', 'The current news stories are: [provide latest news].', 'Here is what\'s happening today: [provide latest news].', 'Yes, here are some breaking news updates: [provide latest news].'] },
-    { intent: 'news.celebrity', utterances: ['What\'s new with celebrities?', 'Any celebrity news?', 'Tell me about celebrity gossip.', 'What are the latest celebrity updates?', 'Who is in the news today?'], responses: ['Here are the latest updates on celebrities: [provide latest celebrity news].', 'The latest celebrity gossip includes: [provide latest celebrity news].', 'Here\'s what\'s happening in the world of celebrities: [provide latest celebrity news].', 'Today\'s celebrity news: [provide latest celebrity news].', 'Here are some recent updates on celebrities: [provide latest celebrity news].'] },
-  
-    // Politician Information
-    { intent: 'politician.news', utterances: ['What\'s happening in politics?', 'Tell me about the latest political news.', 'Any news about politicians?', 'What are the latest updates in politics?', 'Who is making headlines in politics?'], responses: ['Here are the latest political updates: [provide latest political news].', 'Today\'s political news: [provide latest political news].', 'Here is what\'s happening with politicians: [provide latest political news].', 'The latest news in politics: [provide latest political news].', 'Here are the headlines in politics today: [provide latest political news].'] },
-    { intent: 'politician.bio', utterances: ['Tell me about [politician name].', 'Who is [politician name]?', 'Give me information about [politician name].', 'What do you know about [politician name]?', 'Who is [politician name] and what do they do?'], responses: ['[Politician name] is [biographical information].', '[Politician name] serves as [current role/position].', '[Politician name] has been in the news for [reason].', 'Here is some information about [politician name]: [biographical information].', '[Politician name] is known for [achievements or controversies].'] },
-  
-    // General Knowledge
-    { intent: 'generalknowledge.fact', utterances: ['Tell me a fun fact.', 'Do you know any interesting facts?', 'Give me a piece of trivia.', 'What\'s an interesting fact?', 'Share some trivia with me.'], responses: ['Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible.', 'Here\'s a fun fact: The Eiffel Tower can be 15 cm taller during the summer due to the expansion of iron in the heat.', 'Did you know that a group of flamingos is called a "flamboyance"?', 'Here\'s some trivia: Bananas are berries, but strawberries are not.', 'Did you know that octopuses have three hearts?'] },
-    { intent: 'generalknowledge.quiz', utterances: ['Ask me a trivia question.', 'I want to take a quiz.', 'Give me a quiz question.', 'Do you have any quiz questions?', 'Let\'s do some trivia.'], responses: ['Sure! Here\'s a trivia question: What is the capital of France?', 'Let\'s see how you do with this question: Who wrote "To Kill a Mockingbird"?', 'Here\'s a quiz question for you: What is the largest planet in our solar system?', 'Try this one: What year did the Titanic sink?', 'Here\'s a trivia question: Who painted the Mona Lisa?'] },
-    { intent: 'generalknowledge.explain', utterances: ['Explain photosynthesis.', 'How does the internet work?', 'What is the theory of relativity?', 'Can you explain quantum mechanics?', 'Tell me about the Big Bang theory.'], responses: ['Photosynthesis is the process by which green plants use sunlight to synthesize nutrients from carbon dioxide and water. It involves the green pigment chlorophyll and generates oxygen as a byproduct.', 'The internet is a global network of interconnected computers that communicate through standardized protocols. It allows for data exchange, web browsing, email, and more.', 'The theory of relativity, developed by Albert Einstein, encompasses two theories: special relativity and general relativity. It revolutionized our understanding of space, time, and gravity.', 'Quantum mechanics is a fundamental theory in physics that describes the behavior of particles at the atomic and subatomic levels. It explains phenomena like wave-particle duality and entanglement.', 'The Big Bang theory is the leading explanation for the origin of the universe. It suggests that the universe began as a singularity approximately 13.8 billion years ago and has been expanding ever since.'] },
-    { intent: 'news.india', utterances: ['What\'s the latest news in India?', 'Tell me the latest headlines in India.', 'What are the current news stories in India?', 'Give me today\'s news in India.', 'Any breaking news in India?'], responses: ['Here are the latest headlines in India: [provide latest news].', 'Today\'s top stories in India: [provide latest news].', 'The current news stories in India are: [provide latest news].', 'Here is what\'s happening today in India: [provide latest news].', 'Yes, here are some breaking news updates from India: [provide latest news].'] },
+// Function to process a line of training data
+const processLine = (line, lineNumber, totalLines) => {
+    const data = JSON.parse(line);
 
-    // Indian Celebrity Information
-    { intent: 'news.celebrity.india', utterances: ['What\'s new with Bollywood celebrities?', 'Any Bollywood news?', 'Tell me about Bollywood gossip.', 'What are the latest updates on Bollywood stars?', 'Who is in the news today in Bollywood?'], responses: ['Here are the latest updates on Bollywood celebrities: [provide latest celebrity news].', 'The latest Bollywood gossip includes: [provide latest celebrity news].', 'Here\'s what\'s happening in the world of Bollywood: [provide latest celebrity news].', 'Today\'s Bollywood news: [provide latest celebrity news].', 'Here are some recent updates on Bollywood stars: [provide latest celebrity news].'] },
-  
-    // Indian Politician Information
-    { intent: 'politician.news.india', utterances: ['What\'s happening in Indian politics?', 'Tell me about the latest political news in India.', 'Any news about Indian politicians?', 'What are the latest updates in Indian politics?', 'Who is making headlines in Indian politics?'], responses: ['Here are the latest political updates in India: [provide latest political news].', 'Today\'s political news in India: [provide latest political news].', 'Here is what\'s happening with Indian politicians: [provide latest political news].', 'The latest news in Indian politics: [provide latest political news].', 'Here are the headlines in Indian politics today: [provide latest political news].'] },
-    { intent: 'politician.bio.india', utterances: ['Tell me about Narendra Modi.', 'Who is Rahul Gandhi?', 'Give me information about Arvind Kejriwal.', 'What do you know about Mamata Banerjee?', 'Who is Amit Shah and what does he do?'], responses: ['Narendra Modi is the current Prime Minister of India, known for his policies like Digital India and Make in India.', 'Rahul Gandhi is an Indian politician and a member of the Indian National Congress, known for his work in rural development.', 'Arvind Kejriwal is the Chief Minister of Delhi and the leader of the Aam Aadmi Party, known for his anti-corruption efforts.', 'Mamata Banerjee is the Chief Minister of West Bengal and the leader of the All India Trinamool Congress, known for her grassroots activism.', 'Amit Shah is the Home Minister of India and a senior leader of the Bharatiya Janata Party, known for his role in party organization and electoral strategies.'] },
-  
-    // Indian General Knowledge
-    { intent: 'generalknowledge.fact.india', utterances: ['Tell me a fun fact about India.', 'Do you know any interesting facts about India?', 'Give me a piece of trivia about India.', 'What\'s an interesting fact about India?', 'Share some trivia about India with me.'], responses: ['Did you know that India is the largest democracy in the world?', 'Here\'s a fun fact: India has the world\'s largest postal network.', 'Did you know that Chess and Snakes & Ladders were invented in India?', 'Here\'s some trivia: The Kumbh Mela gathering is so large that it is visible from space.', 'Did you know that India has the highest number of vegetarians in the world?'] },
-    { intent: 'generalknowledge.quiz.india', utterances: ['Ask me a trivia question about India.', 'I want to take a quiz about India.', 'Give me a quiz question about India.', 'Do you have any quiz questions about India?', 'Let\'s do some trivia about India.'], responses: ['Sure! Here\'s a trivia question: What is the capital of India?', 'Let\'s see how you do with this question: Who wrote the Indian national anthem?', 'Here\'s a quiz question for you: What is the national animal of India?', 'Try this one: When did India gain independence?', 'Here\'s a trivia question: Who was the first Prime Minister of India?'] },
-    { intent: 'generalknowledge.explain.india', utterances: ['Explain the Indian independence movement.', 'How does the Indian Parliament work?', 'What is the Indian caste system?', 'Can you explain the Indian education system?', 'Tell me about the Indian economy.'], responses: ['The Indian independence movement was a series of activities with the aim of ending British rule in India, culminating in independence in 1947.', 'The Indian Parliament is a bicameral legislature, consisting of the Lok Sabha (House of the People) and the Rajya Sabha (Council of States).', 'The Indian caste system is a traditional social hierarchy in India, dividing people into different groups based on their birth.', 'The Indian education system consists of primary, secondary, and higher education, with a mix of public and private institutions.', 'The Indian economy is one of the world\'s largest, characterized by a mix of agriculture, manufacturing, and services, with a significant focus on IT and software services.'] },
-    { intent: 'news.india', utterances: ['What\'s the latest news in India?', 'Tell me the latest headlines in India.', 'What are the current news stories in India?', 'Give me today\'s news in India.', 'Any breaking news in India?'], responses: ['Here are the latest headlines in India: [provide latest news].', 'Today\'s top stories in India: [provide latest news].', 'The current news stories in India are: [provide latest news].', 'Here is what\'s happening today in India: [provide latest news].', 'Yes, here are some breaking news updates from India: [provide latest news].'] },
+    data.utterances.forEach(utterance => {
+        manager.addDocument('en', utterance, data.intent);
+    });
 
-  // Indian Celebrity Information
-  { intent: 'news.celebrity.india', utterances: ['What\'s new with Bollywood celebrities?', 'Any Bollywood news?', 'Tell me about Bollywood gossip.', 'What are the latest updates on Bollywood stars?', 'Who is in the news today in Bollywood?'], responses: ['Here are the latest updates on Bollywood celebrities: [provide latest celebrity news].', 'The latest Bollywood gossip includes: [provide latest celebrity news].', 'Here\'s what\'s happening in the world of Bollywood: [provide latest celebrity news].', 'Today\'s Bollywood news: [provide latest celebrity news].', 'Here are some recent updates on Bollywood stars: [provide latest celebrity news].'] },
+    data.responses.forEach(response => {
+        manager.addAnswer('en', data.intent, response);
+    });
 
-  // Indian Politician Information
-  { intent: 'politician.news.india', utterances: ['What\'s happening in Indian politics?', 'Tell me about the latest political news in India.', 'Any news about Indian politicians?', 'What are the latest updates in Indian politics?', 'Who is making headlines in Indian politics?'], responses: ['Here are the latest political updates in India: [provide latest political news].', 'Today\'s political news in India: [provide latest political news].', 'Here is what\'s happening with Indian politicians: [provide latest political news].', 'The latest news in Indian politics: [provide latest political news].', 'Here are the headlines in Indian politics today: [provide latest political news].'] },
-  { intent: 'politician.bio.india', utterances: ['Tell me about Narendra Modi.', 'Who is Rahul Gandhi?', 'Give me information about Arvind Kejriwal.', 'What do you know about Mamata Banerjee?', 'Who is Amit Shah and what does he do?'], responses: ['Narendra Modi is the current Prime Minister of India, known for his policies like Digital India and Make in India.', 'Rahul Gandhi is an Indian politician and a member of the Indian National Congress, known for his work in rural development.', 'Arvind Kejriwal is the Chief Minister of Delhi and the leader of the Aam Aadmi Party, known for his anti-corruption efforts.', 'Mamata Banerjee is the Chief Minister of West Bengal and the leader of the All India Trinamool Congress, known for her grassroots activism.', 'Amit Shah is the Home Minister of India and a senior leader of the Bharatiya Janata Party, known for his role in party organization and electoral strategies.'] },
+    // Display progress
+    const progress = ((lineNumber / totalLines) * 100).toFixed(2);
+    console.log(`Processing line ${lineNumber}/${totalLines} (${progress}%)`);
+};
 
-  // Indian General Knowledge
-  { intent: 'generalknowledge.fact.india', utterances: ['Tell me a fun fact about India.', 'Do you know any interesting facts about India?', 'Give me a piece of trivia about India.', 'What\'s an interesting fact about India?', 'Share some trivia about India with me.'], responses: ['Did you know that India is the largest democracy in the world?', 'Here\'s a fun fact: India has the world\'s largest postal network.', 'Did you know that Chess and Snakes & Ladders were invented in India?', 'Here\'s some trivia: The Kumbh Mela gathering is so large that it is visible from space.', 'Did you know that India has the highest number of vegetarians in the world?'] },
-  { intent: 'generalknowledge.quiz.india', utterances: ['Ask me a trivia question about India.', 'I want to take a quiz about India.', 'Give me a quiz question about India.', 'Do you have any quiz questions about India?', 'Let\'s do some trivia about India.'], responses: ['Sure! Here\'s a trivia question: What is the capital of India?', 'Let\'s see how you do with this question: Who wrote the Indian national anthem?', 'Here\'s a quiz question for you: What is the national animal of India?', 'Try this one: When did India gain independence?', 'Here\'s a trivia question: Who was the first Prime Minister of India?'] },
-  { intent: 'generalknowledge.explain.india', utterances: ['Explain the Indian independence movement.', 'How does the Indian Parliament work?', 'What is the Indian caste system?', 'Can you explain the Indian education system?', 'Tell me about the Indian economy.'], responses: ['The Indian independence movement was a series of activities with the aim of ending British rule in India, culminating in independence in 1947.', 'The Indian Parliament is a bicameral legislature, consisting of the Lok Sabha (House of the People) and the Rajya Sabha (Council of States).', 'The Indian caste system is a traditional social hierarchy in India, dividing people into different groups based on their birth.', 'The Indian education system consists of primary, secondary, and higher education, with a mix of public and private institutions.', 'The Indian economy is one of the world\'s largest, characterized by a mix of agriculture, manufacturing, and services, with a significant focus on IT and software services.'] },
+// Function to get the total number of lines in the file
+const countLines = (filePath) => {
+    return new Promise((resolve, reject) => {
+        let lineCount = 0;
+        const rl = readline.createInterface({
+            input: fs.createReadStream(filePath),
+            crlfDelay: Infinity
+        });
 
-  // International News
-  { intent: 'news.world', utterances: ['What\'s the latest world news?', 'Tell me the latest international news.', 'What\'s happening around the world?', 'Any breaking news globally?', 'Give me today\'s world news.'], responses: ['Here are the latest world headlines: [provide latest news].', 'Today\'s top international stories: [provide latest news].', 'The current global news stories are: [provide latest news].', 'Here is what\'s happening around the world today: [provide latest news].', 'Yes, here are some breaking news updates globally: [provide latest news].'] },
+        rl.on('line', () => {
+            lineCount++;
+        });
 
-  // Celebrity Information (Global)
-  { intent: 'news.celebrity.world', utterances: ['What\'s new with Hollywood celebrities?', 'Any Hollywood news?', 'Tell me about Hollywood gossip.', 'What are the latest updates on Hollywood stars?', 'Who is in the news today in Hollywood?'], responses: ['Here are the latest updates on Hollywood celebrities: [provide latest celebrity news].', 'The latest Hollywood gossip includes: [provide latest celebrity news].', 'Here\'s what\'s happening in the world of Hollywood: [provide latest celebrity news].', 'Today\'s Hollywood news: [provide latest celebrity news].', 'Here are some recent updates on Hollywood stars: [provide latest celebrity news].'] },
+        rl.on('close', () => {
+            resolve(lineCount);
+        });
 
-  // International Politician Information
-  { intent: 'politician.news.world', utterances: ['What\'s happening in global politics?', 'Tell me about the latest political news worldwide.', 'Any news about international politicians?', 'What are the latest updates in global politics?', 'Who is making headlines in international politics?'], responses: ['Here are the latest political updates globally: [provide latest political news].', 'Today\'s political news worldwide: [provide latest political news].', 'Here is what\'s happening with international politicians: [provide latest political news].', 'The latest news in global politics: [provide latest political news].', 'Here are the headlines in international politics today: [provide latest political news].'] },
-  { intent: 'politician.bio.world', utterances: ['Tell me about Joe Biden.', 'Who is Boris Johnson?', 'Give me information about Angela Merkel.', 'What do you know about Emmanuel Macron?', 'Who is Vladimir Putin and what does he do?'], responses: ['Joe Biden is the current President of the United States, known for his policies on healthcare and climate change.', 'Boris Johnson is a British politician who served as the Prime Minister of the United Kingdom, known for his role in Brexit.', 'Angela Merkel is a former Chancellor of Germany, known for her leadership during the Eurozone crisis and her open-door refugee policy.', 'Emmanuel Macron is the President of France, known for his pro-European Union stance and economic reforms.', 'Vladimir Putin is the President of Russia, known for his strongman politics and efforts to restore Russian influence globally.'] },
+        rl.on('error', (err) => {
+            reject(err);
 
-  // General Knowledge (Global)
-  { intent: 'generalknowledge.fact.world', utterances: ['Tell me a fun fact about the world.', 'Do you know any interesting facts about different countries?', 'Give me a piece of global trivia.', 'What\'s an interesting fact about the world?', 'Share some trivia about different countries with me.'], responses: ['Did you know that the Great Wall of China is the longest wall in the world?', 'Here\'s a fun fact: Canada has the longest coastline of any country in the world.', 'Did you know that the Sahara Desert is the largest hot desert in the world?', 'Here\'s some trivia: The Amazon Rainforest produces around 20% of the world\'s oxygen.', 'Did you know that Russia is the largest country in the world by land area?'] },
-  { intent: 'generalknowledge.quiz.world', utterances: ['Ask me a trivia question about the world.', 'I want to take a quiz about different countries.', 'Give me a quiz question about the world.', 'Do you have any quiz questions about different countries?', 'Let\'s do some trivia about the world.'], responses: ['Sure! Here\'s a trivia question: What is the capital of Japan?', 'Let\'s see how you do with this question: Who is the current Prime Minister of Canada?', 'Here\'s a quiz question for you: What is the longest river in the world?', 'Try this one: Which country is known as the Land of the Rising Sun?', 'Here\'s a trivia question: What is the smallest country in the world by area?'] },
-  { intent: 'generalknowledge.explain.world', utterances: ['Explain the United Nations.', 'How does the European Union work?', 'What is the climate change crisis?', 'Can you explain the global financial system?', 'Tell me about the World Health Organization.'], responses: ['The United Nations is an international organization founded in 1945 to promote peace, security, and cooperation among countries.', 'The European Union is a political and economic union of 27 European countries, aiming for regional integration and a single market.', 'The climate change crisis refers to the significant changes in global temperatures and weather patterns caused by human activities.', 'The global financial system is a network of financial institutions, markets, and instruments that facilitate the flow of capital worldwide.', 'The World Health Organization is a specialized agency of the United Nations responsible for international public health.'] },
+        });
+    });
+};
 
-  // Additional General Knowledge Topics
-  { intent: 'generalknowledge.explain', utterances: ['Explain the theory of relativity.', 'What is quantum mechanics?', 'Can you explain black holes?', 'Tell me about the Big Bang theory.', 'What is artificial intelligence?'], responses: ['The theory of relativity, developed by Albert Einstein, describes the laws of physics in the presence of gravitational fields and the relationship between space and time.', 'Quantum mechanics is a fundamental theory in physics that describes the behavior of particles at the atomic and subatomic levels.', 'Black holes are regions in space where the gravitational pull is so strong that not even light can escape.', 'The Big Bang theory is the prevailing cosmological model explaining the origin of the universe, stating that it began with a massive explosion around 13.8 billion years ago.', 'Artificial intelligence is the simulation of human intelligence in machines that are programmed to think and learn like humans.'] },
-  { intent: 'generalknowledge.quiz', utterances: ['Ask me a general trivia question.', 'I want to take a quiz about general knowledge.', 'Give me a quiz question.', 'Do you have any quiz questions about various topics?', 'Let\'s do some general trivia.'], responses: ['Sure! Here\'s a trivia question: Who wrote "To Kill a Mockingbird"?', 'Let\'s see how you do with this question: What is the capital of Australia?', 'Here\'s a quiz question for you: Who discovered penicillin?', 'Try this one: What is the largest planet in our solar system?', 'Here\'s a trivia question: Who painted the Mona Lisa?'] }
+// Function to read and process the training file line by line
+const processFile = async (filePath) => {
+    const totalLines = await countLines(filePath);
+    let currentLine = 0;
 
- , { intent: 'health.wellness', utterances: [
-'How can I improve my sleep quality?',
-'What are some healthy breakfast ideas?',
-'How much water should I drink daily?',
-'What are the benefits of regular exercise?',
-'How do I relieve stress?',
-'What vitamins should I take daily?',
-'What are the symptoms of dehydration?',
-'How can I boost my immune system?',
-'What are some relaxation techniques?',
-'How do I maintain a healthy diet?',
-'How can I improve my posture?',
-'What are the signs of a heart attack?',
-'How do I treat a common cold?',
-'What exercises can I do at home?',
-'How do I prevent back pain?',
-'What foods are good for digestion?',
-    'How do I quit smoking?',
-'What are the benefits of yoga?',
-'How do I manage my weight?',
-'What are the early signs of diabetes?',
-'How do I lower my cholesterol?',
-'What are the symptoms of anxiety?',
-'How can I improve my memory?',
-'How do I treat a headache naturally?',
-'What are the benefits of meditation?',
-'How do I prevent allergies?',
-'What foods should I avoid for healthy skin?',
-'How do I check my blood pressure at home?',
-'What are the benefits of drinking green tea?',
-'How do I maintain dental hygiene?',
-'What are the symptoms of depression?',
-'How can I boost my metabolism?',
-'What are the best foods for brain health?',
-'How do I improve my cardiovascular health?',
-'What are the benefits of drinking lemon water?',
-'How do I reduce sugar intake?',
-'What are the benefits of deep breathing?',
-'How do I treat sunburn?',
-'What are the benefits of staying hydrated?',
-'How do I prevent muscle cramps?',
-'What are the symptoms of food poisoning?',
-'How do I improve my lung health?',
-'What are the benefits of regular stretching?',
-'How do I boost my energy levels?',
-'What are the best foods for eye health?',
-'How do I prevent a hangover?',
-'What are the benefits of strength training?',
-'How can I improve my digestive health?',
-'What are the signs of heat exhaustion?',
-'How do I treat a burn at home?',
-'What are the benefits of a balanced diet?',
-'How do I maintain joint health?',
-'What are the symptoms of heat stroke?',
-'How can I improve my liver health?',
-'What are the benefits of walking daily?',
-'How do I relieve menstrual cramps naturally?',
-'What are the benefits of maintaining good posture?',
-'How can I boost my fertility naturally?',
-'What are the signs of a stroke?',
-'How do I improve my blood circulation?',
-'What are the benefits of proper hydration?'
-  ],
-  responses: [
-    'Improving sleep quality can be achieved by establishing a consistent bedtime routine and avoiding screens before bed.',
-    'Healthy breakfast ideas include oatmeal with fruits, yogurt with granola, smoothies with greens and protein, and whole grain toast with avocado.',
-    'Daily water intake depends on various factors, but aiming for 8 glasses (about 2 liters) per day is a good start.',
-    'Regular exercise benefits include improved cardiovascular health, weight management, and mood enhancement.',
-    'To relieve stress, try techniques like deep breathing, meditation, exercise, and spending time in nature.',
-    'Consider taking a daily multivitamin or supplements like Vitamin D and Omega-3 fatty acids based on your health needs.',
-    'Symptoms of dehydration include dry mouth, headache, dizziness, dark urine, and feeling thirsty.',
-    'Boost your immune system by eating a balanced diet, exercising regularly, getting enough sleep, and managing stress.',
-    'Relaxation techniques such as deep breathing, progressive muscle relaxation, and guided imagery can help reduce stress levels.',
-    'Maintain a healthy diet by consuming a variety of fruits, vegetables, whole grains, lean proteins, and healthy fats.',
-    'Improve posture by practicing good ergonomics, stretching regularly, and strengthening core muscles.',
-    'Signs of a heart attack include chest pain or discomfort, shortness of breath, nausea, cold sweats, and pain in the arm or jaw.',
-    'Treat a common cold by staying hydrated, getting plenty of rest, using saline nasal sprays, and taking over-the-counter medications if needed.',
-    'Exercises you can do at home include bodyweight exercises like squats, lunges, push-ups, and yoga or pilates routines.',
-    'Prevent back pain by practicing good posture, lifting objects properly, strengthening core muscles, and staying active.',
-    'Foods good for digestion include yogurt, bananas, whole grains, ginger, and high-fiber foods like beans and lentils.',
-    'Quit smoking by seeking support, using nicotine replacement therapy, setting a quit date, and avoiding triggers.',
-    'Benefits of yoga include improved flexibility, strength, stress reduction, and overall physical and mental well-being.',
-    'Manage weight by eating a balanced diet, exercising regularly, tracking food intake, and setting realistic goals.',
-    'Early signs of diabetes include increased thirst, frequent urination, fatigue, blurred vision, and slow wound healing.',
-    'Lower cholesterol levels by eating heart-healthy foods, exercising regularly, quitting smoking, and managing stress.',
-    'Symptoms of anxiety include nervousness, restlessness, racing thoughts, sweating, and difficulty concentrating.',
-    'Improve memory with activities like brain games, getting enough sleep, staying mentally active, and eating a healthy diet.',
-    'Treat a headache naturally with rest, hydration, cold or warm compresses, and herbal remedies like peppermint or lavender oil.',
-    'Benefits of meditation include stress reduction, improved focus, emotional health, and relaxation.',
-    'Prevent allergies by avoiding triggers, keeping indoor air clean, using allergy-proof bedding, and taking allergy medications as needed.',
-    'Foods to avoid for healthy skin include sugary foods, processed snacks, fried foods, and excessive dairy products.',
-    'Check blood pressure at home using a digital blood pressure monitor and following proper measurement techniques.',
-    'Benefits of drinking green tea include antioxidants, improved brain function, fat burning, and lower risk of certain cancers.',
-    'Maintain dental hygiene by brushing and flossing daily, using fluoride toothpaste, and visiting your dentist regularly.',
-    'Symptoms of depression include persistent sadness, loss of interest, changes in appetite or sleep patterns, and feelings of worthlessness.',
-    'Boost metabolism by eating protein-rich foods, staying hydrated, doing strength training exercises, and getting enough sleep.',
-    'Best foods for brain health include fatty fish, blueberries, turmeric, broccoli, pumpkin seeds, and dark chocolate.',
-    'Improve cardiovascular health by quitting smoking, exercising regularly, eating a heart-healthy diet, and managing stress.',
-    'Benefits of drinking lemon water include hydration, vitamin C boost, improved digestion, and fresh breath.',
-    'Reduce sugar intake by reading food labels, choosing natural sweeteners, avoiding sugary drinks, and opting for whole fruits.',
-    'Benefits of deep breathing include relaxation, stress reduction, improved lung function, and better blood circulation.',
-    'Treat sunburn with cool baths, moisturizing lotions, aloe vera gel, over-the-counter pain relievers, and staying hydrated.',
-    'Benefits of staying hydrated include improved skin health, better digestion, regulation of body temperature, and kidney function support.',
-    'Prevent muscle cramps by staying hydrated, stretching before exercise, eating potassium-rich foods, and avoiding overexertion.',
-    'Symptoms of food poisoning include nausea, vomiting, diarrhea, stomach cramps, and fever.',
-    'Improve lung health by quitting smoking, avoiding pollutants, practicing deep breathing exercises, and staying physically active.',
-    'Benefits of regular stretching include improved flexibility, reduced muscle tension, enhanced circulation, and injury prevention.',
-    'Boost energy levels by eating a balanced diet, staying hydrated, getting enough sleep, and exercising regularly.',
-    'Best foods for eye health include carrots, leafy greens, citrus fruits, nuts, and fish rich in omega-3 fatty acids.',
-    'Prevent a hangover by drinking alcohol in moderation, staying hydrated, eating before drinking, and getting enough sleep.',
-    'Benefits of strength training include increased muscle mass, improved metabolism, bone health, and injury prevention.',
-    'Improve digestive health by eating fiber-rich foods, staying hydrated, exercising regularly, and managing stress.',
-    'Signs of heat exhaustion include heavy sweating, weakness, dizziness, nausea, and fast heartbeat.',
-    'Treat a burn at home by cooling the burn with cold water, covering with a clean cloth, and taking pain relievers if needed.',
-    'Benefits of a balanced diet include improved energy levels, better mood, weight management, and overall health.',
-    'Maintain joint health by staying active, doing low-impact exercises, maintaining a healthy weight, and avoiding injury.',
-    'Symptoms of heat stroke include high body temperature, confusion, headache, nausea, and rapid breathing.',
-    'Improve liver health by limiting alcohol consumption, eating a balanced diet, exercising regularly, and avoiding toxins.',
-    'Benefits of walking daily include improved cardiovascular fitness, weight management, mood enhancement, and joint health.',
-    'Relieve menstrual cramps naturally with heat therapy, herbal teas, exercise, relaxation techniques, and over-the-counter pain relievers.',
-    'Benefits of maintaining good posture include reduced back and neck pain, improved breathing, and better spinal alignment.',
-    'Boost fertility naturally by maintaining a healthy weight, managing stress, eating a balanced diet, and avoiding smoking.',
-    'Signs of a stroke include sudden numbness or weakness in the face, arm, or leg, confusion, trouble speaking, and severe headache.',
-    'Improve blood circulation with regular exercise, maintaining a healthy weight, staying hydrated, and avoiding prolonged sitting.',
-    'Benefits of proper hydration include improved digestion, kidney function, skin health, and body temperature regulation.'
-  ]
-},
-{
-  intent: 'home.lifestyle',
-  utterances: [
-    'How can I effectively organize my closet space?',
-    'What are some easy ways to declutter my living room?',
-    'How do I create a cozy reading nook in a small apartment?',
-    'What are the best plants for indoor gardening in low-light conditions?',
-    'How do I choose the right colors for painting my bedroom walls?',
-    'What are some budget-friendly ways to decorate a nursery?',
-    'How can I create an inviting outdoor patio on a budget?',
-    'What are effective methods for removing pet hair from furniture?',
-    'How do I maintain hardwood floors to keep them looking new?',
-    'What are some energy-efficient ways to cool down a hot room in summer?',
-    'How do I repurpose old furniture into something new and stylish?',
-    'What are essential tools every homeowner should have?',
-    'How can I make my home office more productive and comfortable?',
-    'What are some eco-friendly cleaning products for a sustainable home?',
-    'How do I design a kitchen layout that maximizes space and functionality?',
-    'What are the benefits of using smart home technology?',
-    'How can I improve indoor air quality in my home naturally?',
-    'What are some creative ways to display family photos?',
-    'How do I create a relaxing spa-like atmosphere in my bathroom?',
-    'What are some tips for organizing a garage to maximize storage?',
-    'What are the best practices for setting up a home gym?',
-    'How do I choose the right window treatments for my home?',
-    'What are the advantages of using solar panels at home?',
-    'How can I make my small apartment feel more spacious?',
-    'What are some affordable ways to renovate a kitchen?',
-    'How do I childproof my home to ensure safety?',
-    'What are the latest trends in home decor?',
-    'How do I prepare my garden for winter?',
-    'What are some easy DIY projects to enhance my home?',
-    'How do I create a functional and stylish workspace at home?',
-    'What are the benefits of using natural light in home design?',
-    'How do I create a minimalist living space?',
-    'What are some low-maintenance houseplants for beginners?',
-    'How do I choose the right flooring for different rooms?',
-    'What are the key elements of a cozy bedroom?',
-    'How can I make my outdoor space more entertaining?',
-    'What are some space-saving storage solutions for small apartments?',
-    'How do I design an energy-efficient home?',
-    'What are the best home security systems available?',
-    'How can I reduce energy consumption in my home?',
-    'What are some tips for maintaining a clean and organized home?',
-    'How do I create a functional laundry room?',
-    'What are the benefits of using modular furniture?',
-    'How can I make my home more eco-friendly?',
-    'What are some ways to enhance curb appeal?',
-    'How do I choose the right appliances for my kitchen?',
-    'What are the advantages of open-plan living?',
-    'How do I incorporate smart lighting into my home?',
-    'What are some practical storage solutions for a small bathroom?',
-    'How can I make my bedroom feel like a luxury hotel room?',
-    'What are the best plants for improving indoor air quality?',
-    'How do I set up a home entertainment system?',
-    'What are the latest trends in outdoor furniture?',
-    'How do I create a relaxing outdoor oasis?',
-    'What are the benefits of using recycled materials in home decor?',
-    'How do I create a pet-friendly home?',
-    'What are some tips for designing a functional mudroom?',
-    'How can I make my home more energy-efficient?',
-    'What are some innovative kitchen storage ideas?',
-    'How do I choose the right color palette for my living room?',
-    'What are the essentials for a well-stocked home bar?',
-    'How do I design a balcony garden?',
-    'What are some affordable ways to update my bathroom?',
-    'How can I incorporate Feng Shui principles into my home?',
-    'What are the benefits of using non-toxic cleaning products?',
-    'How do I create a stylish dining area in a small space?',
-    'What are some must-have gadgets for a smart home?',
-    'How do I create a cozy atmosphere in my living room?',
-    'What are the benefits of having a home library?',
-    'How can I make my home more accessible for elderly family members?',
-    'What are some ways to create a spa-like bathroom on a budget?',
-    'How do I choose the right furniture for my outdoor patio?',
-    'What are the latest trends in home technology?',
-    'How do I design a sustainable garden?',
-    'What are some ways to organize kitchen cabinets effectively?',
-    'How can I improve the acoustics in my home theater?',
-    'What are some tips for setting up a home office in a small space?',
-    'How do I create a relaxing bedtime routine?',
-    'What are the benefits of using natural materials in home construction?',
-    'How can I make my home more welcoming to guests?',
-    'What are some easy ways to update my home decor seasonally?',
-    'How do I create a functional entryway?',
-    'What are some tips for organizing a shared living space?',
-    'How can I create a meditation corner in my home?',
-    'What are some eco-friendly alternatives for everyday household items?',
-    'How do I choose the right bedding for a comfortable sleep?',
-    'What are some practical solutions for organizing a home office?',
-    'How can I create a relaxing spa experience in my bathroom?',
-    'What are the benefits of using ergonomic furniture at home?',
-    'How do I design a home bar for entertaining guests?',
-    'What are some easy ways to update kitchen cabinets?',
-    'How can I make my home more energy-efficient without major renovations?',
-    'What are some creative storage solutions for kids\' bedrooms?',
-    'How do I create a pet corner in my home?',
-    'What are some tips for organizing a walk-in closet?',
-    'How can I create a vibrant gallery wall in my living room?',
-    'What are some essential items for a well-stocked home bar?',
-    'How do I choose the right plants for a vertical garden?',
-    'What are some space-saving ideas for a small kitchen?',
-    'How can I make my bathroom more spa-like on a budget?',
-    'What are some DIY projects for updating kitchen countertops?',
-    'How do I design a home office that promotes productivity?',
-    'What are some ways to create a cozy outdoor seating area?',
-    'How can I create a study space for kids at home?',
-    'What are some tips for organizing a garage workshop?',
-    'How do I design a nursery that grows with my child?',
-    'What are the benefits of using smart thermostats in home heating?',
-    'How can I decorate my home for the holidays without spending much?',
-    'What are some essential tools for basic home repairs?',
-    'How do I create a calming color scheme for my bedroom?',
-    'What are some eco-friendly ways to dispose of household waste?',
-    'How can I make my home more pet-friendly?',
-    'What are some tips for organizing a home library?',
-    'How do I design a functional play area for kids?',
-    'What are some effective ways to soundproof a home office?',
-    'How can I create a sustainable kitchen garden?',
-    'What are some affordable ways to update outdoor landscaping?',
-    'How do I choose the right lighting fixtures for different rooms?',
-    'What are some practical solutions for organizing a laundry room?',
-    'How can I make my home office more ergonomic?',
-    'What are some ways to create a relaxing outdoor dining space?',
-    'How do I choose the best window coverings for privacy and light control?',
-    'What are some tips for designing a home gym for small spaces?',
-    'How can I incorporate vintage elements into modern home decor?',
-    'What are some creative ways to display collections in my home?',
-    'How do I design a guest bedroom that feels like a retreat?',
-    'What are some budget-friendly ways to update kitchen backsplashes?',
-    'How can I create a study space in my bedroom?',
-    'What are some energy-saving tips for home appliances?',
-    'How do I choose the right flooring for a basement?',
-    'What are some practical storage solutions for shoes and accessories?',
-    'How can I make my home more inviting for outdoor entertaining?',
-    'What are some easy ways to incorporate art into home decor?',
-    'How do I design a functional multipurpose room?',
-    'What are some eco-friendly ways to clean windows?',
-    'How can I create a welcoming entryway in a small apartment?',
-    'What are some essential items for a well-organized pantry?',
-    'How do I choose the right bathroom fixtures for a remodel?',
-    'What are some tips for organizing a kitchen pantry?',
-    'How can I make my bedroom feel like a luxurious hotel suite?',
-    'What are some easy ways to refresh bedroom decor on a budget?',
-    'How do I design a gallery wall that reflects my personal style?',
-    'What are some innovative storage solutions for a small bedroom?',
-    'How can I make my outdoor space more functional for entertaining?',
-    'What are some practical tips for organizing a home office desk?',
-    'How do I choose the right lighting for a home office?',
-    'What are some ways to create a relaxing reading corner at home?',
-    'How can I decorate my home to reflect seasonal changes?',
-    'What are some space-saving ideas for a small dining area?',
-    'How do I design a home theater for an immersive movie experience?',
-    'What are some tips for organizing a home workshop?',
-    'How can I create a cohesive look in my home decor?',
-    'What are some budget-friendly ways to update bathroom fixtures?',
-    'How do I choose the right area rug for my living room?',
-    'What are some essential items for a well-organized garage?',
-    'How can I make my bathroom feel more spacious?',
-    'What are some creative ways to decorate with mirrors?',
-    'How do I design a functional home office in a shared space?',
-    'What are some ways to create a productive workspace at home?',
-    'How can I make my home more eco-friendly on a budget?',
-    'What are some tips for organizing a home filing system?',
-    'How do I choose the right kitchen island for my space?',
-    'What are some eco-friendly alternatives for household cleaning?',
-    'How can I create a stylish entryway that welcomes guests?',
-    'What are some innovative storage solutions for a small kitchen?',
-    'How do I design a cozy reading corner in my living room?',
-    'What are some practical tips for organizing kitchen drawers?',
-    'How can I make my outdoor space cozy for year-round enjoyment?',
-    'What are some budget-friendly ways to update kitchen cabinets?',
-    'How do I choose the right bathroom vanity for a remodel?',
-    'What are some essential items for a functional home bar?',
-    'How can I create a stylish workspace in a small apartment?',
-    'What are some easy ways to update living room decor seasonally?',
-    'How do I design a home gym that motivates me to work out?',
-    'What are some tips for organizing a home art studio?',
-    'How can I make my bedroom feel like a serene retreat?',
-    'What are some space-saving ideas for a small bathroom?',
-    'How do I choose the right curtains for my living room?',
-    'What are some practical solutions for organizing a small closet?',
-    'How can I create a relaxing atmosphere in my outdoor space?',
-    'What are some ways to make my home office more inspiring?',
-    'How do I design a functional home office that fits my needs?',
-    'What are some eco-friendly ways to decorate for the holidays?',
-    'How can I update my bathroom decor on a budget?',
-    'What are some tips for organizing a craft room?',
-    'How do I choose the right kitchen backsplash for my style?',
-    'What are some creative ways to display children\'s artwork at home?',
-    'How can I make my bedroom feel cozy and inviting?',
-    'What are some budget-friendly ways to update outdoor decor?',
-    'How do I design a stylish living room on a budget?',
-    'What are some practical storage solutions for a small laundry room?',
-    'How can I create a serene outdoor sanctuary?',
-    'What are some tips for organizing a small bedroom?',
-    'How do I choose the right paint colors for my home?',
-    'What are some eco-friendly ways to clean hardwood floors?',
-    'How can I make my home more energy-efficient with smart technology?',
-    'What are some easy ways to update kitchen decor seasonally?',
-    'How do I design a home office that promotes creativity?',
-    'What are some essential items for a well-organized entryway?',
-    'How can I create a stylish dining space in a small apartment?',
-    'What are some practical solutions for organizing a home gym?',
-    'How do I choose the right furniture for my small living room?',
-    'What are some tips for organizing a small kitchen pantry?',
-    'How can I make my outdoor space more inviting for guests?',
-    'What are some budget-friendly ways to update bedroom decor?',
-    'How do I design a functional bathroom that maximizes space?',
-    'What are some space-saving ideas for a small home office?',
-    'How can I create a cozy corner in my living room?',
-    'What are some eco-friendly ways to clean carpets?',
-    'How do I choose the right curtains for my bedroom?',
-    'What are some practical storage solutions for a small kitchen?',
-    'How can I make my outdoor space feel like an extension of my home?',
-    'What are some tips for organizing a home office closet?',
-    'How do I design a home bar that\'s perfect for entertaining?',
-    'What are some easy ways to update dining room decor seasonally?',
-    'How can I make my bedroom feel like a luxurious retreat?',
-    'What are some budget-friendly ways to update outdoor furniture?',
-    'How do I choose the right flooring for a kitchen remodel?',
-    'What are some creative ways to display plants in my home?',
-    'How can I create a cozy reading nook in my bedroom?',
-    'What are some essential items for a well-organized kitchen pantry?',
-    'How do I design a stylish outdoor living space?',
-    'What are some practical tips for organizing a home office space?',
-    'How can I make my home more energy-efficient without spending much?',
-    'What are some eco-friendly ways to clean stainless steel appliances?',
-    'How do I choose the right lighting for my dining room?',
-    'What are some ways to create a functional workspace in a small apartment?',
-    'How can I make my outdoor space more enjoyable for year-round use?',
-    'What are some tips for organizing a small home office?',
-    'How do I design a nursery that\'s both practical and stylish?',
-    'What are some space-saving ideas for a small home gym?',
-    'How can I create a relaxing atmosphere in my bedroom?',
-    'What are some easy ways to update bathroom decor seasonally?',
-    'How do I choose the right bathroom accessories for a remodel?',
-    'What are some practical solutions for organizing a small bathroom?',
-    'How can I make my home office more comfortable and productive?',
-    'What are some eco-friendly ways to clean tile floors?',
-    'How do I design a home office that maximizes productivity?',
-    'What are some budget-friendly ways to update kitchen countertops?',
-    'How can I create a stylish outdoor dining area?',
-    'What are some tips for organizing a home office desk?',
-    'How do I choose the right rugs for my living room?',
-    'What are some essential items for a well-organized laundry room?',
-    'How can I make my outdoor space feel like a private retreat?',
-    'What are some creative ways to display books in my home?',
-    'How do I design a stylish and functional living room?',
-    'What are some eco-friendly ways to clean kitchen countertops?',
-    'How can I create a cozy reading corner in my home?',
-    'What are some practical storage solutions for a small bathroom?',
-    'How do I choose the right window treatments for my bedroom?',
-    'What are some tips for organizing a home gym on a budget?',
-    'How can I make my bedroom feel like a luxurious hotel suite?',
-    'What are some space-saving ideas for a small laundry room?',
-    'How do I design a home office that inspires creativity?',
-    'What are some budget-friendly ways to update outdoor lighting?',
-    'How can I create a stylish and functional outdoor space?',
-    'What are some easy ways to update living room decor seasonally?',
-    'How do I choose the right furniture for my small bedroom?',
-    'What are some essential items for a well-organized home office?',
-    'How can I make my outdoor space more inviting for entertaining?',
-    'What are some practical solutions for organizing a small kitchen?',
-    'How do I design a bathroom that\'s both functional and stylish?',
-    'What are some eco-friendly ways to clean bathroom tiles?',
-    'How can I make my home more energy-efficient with simple changes?',
-    'What are some tips for organizing a home workshop on a budget?',
-    'How do I choose the right lighting for my home gym?',
-    'What are some space-saving ideas for a small home office?',
-    'How can I create a cozy reading nook in my living room?',
-    'What are some practical storage solutions for a small kitchen pantry?',
-    'How do I design a home bar that\'s perfect for small spaces?',
-    'What are some easy ways to update dining room decor for holidays?',
-    'How can I make my bedroom feel like a luxurious retreat?',
-    'What are some budget-friendly ways to update outdoor cushions?',
-    'How do I choose the right flooring for a bathroom remodel?',
-    'What are some creative ways to display artwork in my home?',
-    'How can I create a relaxing atmosphere in my bedroom?',
-    'What are some essential items for a well-organized kitchen pantry?',
-    'How do I design a stylish outdoor living space on a budget?',
-    'What are some practical tips for organizing a home office effectively?',
-    'How can I make my home more energy-efficient without major renovations?',
-    'What are some eco-friendly ways to clean hardwood floors naturally?',
-    'How do I choose the right lighting for my dining room table?',
-    'What are some ways to create a functional workspace in a small apartment?',
-    'How can I make my outdoor space more enjoyable for year-round outdoor use?',
-    'What are some tips for organizing a small home office space?',
-    'How do I design a nursery that\'s practical and stylish?',
-    'What are some space-saving ideas for a small home gym setup?',
-    'How can I create a relaxing atmosphere in my bedroom space?',
-    'What are some easy ways to update bathroom decor for each season?',
-    'How do I choose the right bathroom accessories for a bathroom remodel?',
-    'What are some practical solutions for organizing a small bathroom space?',
-    'How can I make my home office more comfortable and productive?',
-    'What are some eco-friendly ways to clean tile floors naturally?',
-    'How do I design a home office that maximizes productivity and creativity?',
-    'What are some budget-friendly ways to update kitchen countertops and backsplashes?',
-    'How can I create a stylish outdoor dining and entertaining area?',
-    'What are some tips for organizing a home office desk and paperwork?',
-    'How do I choose the right rugs for my living room and bedroom?',
-    'What are some essential items for a well-organized laundry room space?',
-    'How can I make my outdoor space feel like a private and relaxing retreat?',
-    'What are some creative ways to display books and magazines in my home?',
-    'How do I design a stylish and functional living room space?',
-    'What are some eco-friendly ways to clean kitchen countertops and surfaces?',
-    'How can I create a cozy reading corner in my home living room or bedroom?',
-    'What are some practical storage solutions for a small bathroom space?',
-    'How do I choose the right window treatments for my bedroom or living room?',
-    'What are some tips for organizing a home gym on a budget and small space?',
-    'How can I make my bedroom feel like a luxurious hotel suite or retreat?',
-    'What are some space-saving ideas for a small laundry room setup?',
-    'How do I design a home office that inspires creativity and productivity?',
-    'What are some budget-friendly ways to update outdoor lighting and decor?',
-    'How can I create a stylish and functional outdoor living and entertaining space?',
-    'What are some easy ways to update living room decor seasonally and on a budget?',
-    'How do I choose the right furniture for my small bedroom or living space?',
-    'What are some essential items for a well-organized home office setup?',
-    'How can I make my outdoor space more inviting for entertaining and relaxation?',
-    'What are some practical solutions for organizing a small kitchen and pantry?',
-    'How do I design a bathroom that\'s both functional, stylish, and space-efficient?',
-    'What are some eco-friendly ways to clean bathroom tiles and surfaces?',
-    'How can I make my home more energy-efficient with simple changes and upgrades?',
-    'What are some tips for organizing a home workshop on a budget and limited space?',
-    'How do I choose the right lighting for my home gym or exercise space?',
-    'What are some space-saving ideas for a small home office or workspace?',
-    'How can I create a cozy reading nook in my living room or bedroom space?',
-    'What are some practical storage solutions for a small kitchen pantry or storage area?',
-    'How do I design a home bar that\'s perfect for small spaces and entertaining?',
-    'What are some easy ways to update dining room decor for holidays and special occasions?',
-    'How can I make my bedroom feel like a luxurious retreat or hotel-style sanctuary?',
-    'What are some budget-friendly ways to update outdoor cushions, furniture, and decor?',
-    'How do I choose the right flooring for a bathroom remodel or renovation project?',
-    'What are some creative ways to display artwork, photos, and collections in my home?',
-    'How can I create a relaxing atmosphere in my bedroom or personal sanctuary space?',
-    'What are some essential items for a well-organized kitchen pantry or storage system?',
-    'How do I design a stylish outdoor living space on a budget or limited outdoor area?',
-    'What are some practical tips for organizing a home office effectively and efficiently?',
-    'How can I make my home more energy-efficient without major renovations or costly upgrades?',
-    'What are some eco-friendly ways to clean tile floors, hardwood floors, and other surfaces?',
-    'How do I choose the right lighting for my dining room table, kitchen island, or breakfast nook?',
-    'What are some ways to create a functional workspace in a small apartment, condo, or urban living space?',
-    'How can I make my outdoor space more enjoyable for year-round outdoor activities, gatherings, and relaxation?',
-    'What are some tips for organizing a small home office space, desk, and storage solutions?',
-    'How do I design a nursery that\'s practical, stylish, and adaptable for a growing child or baby?',
-    'What are some space-saving ideas for a small home gym setup, exercise area, or fitness corner?',
-    'How can I create a relaxing atmosphere in my bedroom space with decor, lighting, and furniture?',
-    'What are some easy ways to update bathroom decor for each season, holiday, or personal preference?',
-    'How do I choose the right bathroom accessories, fixtures, and accents for a bathroom remodel or renovation?',
-    'What are some practical solutions for organizing a small bathroom space, storage, and daily essentials?',
-    'How can I make my home office more comfortable, productive, and inspiring for work or creative projects?',
-    'What are some eco-friendly ways to clean tile floors naturally, safely, and effectively at home?',
-    'How do I design a home office that maximizes productivity, creativity, and personal style preferences?',
-    'What are some budget-friendly ways to update kitchen countertops, backsplashes, and cabinet hardware?',
-    'How can I create a stylish outdoor dining and entertaining area, patio, or backyard retreat?',
-    'What are some tips for organizing a home office desk, paperwork, digital files, and office supplies?',
-    'How do I choose the right rugs, carpets, and flooring options for my living room, bedroom, or home office?',
-    'What are some essential items for a well-organized laundry room, cleaning supplies, and storage solutions?',
-    'How can I make my outdoor space feel like a private retreat, oasis, or peaceful sanctuary for relaxation?',
-    'What are some creative ways to display books, magazines, art, and personal collections in my home?',
-    'How do I design a stylish and functional living room space that reflects my personal taste and lifestyle?',
-    'What are some eco-friendly ways to clean kitchen countertops, surfaces, appliances, and cooking areas?',
-    'How can I create a cozy reading corner or nook in my living room, bedroom, or quiet personal space at home?',
-    'What are some practical storage solutions for a small bathroom space, pantry, kitchen, or home organization?',
-    'How do I choose the right window treatments, curtains, blinds, or shades for my bedroom, living room, or home office?',
-    'What are some tips for organizing a home gym on a budget, small space, or compact fitness area at home?',
-    'How can I make my bedroom feel like a luxurious hotel suite or peaceful sanctuary for relaxation and sleep?',
-    'What are some space-saving ideas for a small laundry room setup, organization system, or efficient cleaning area?',
-    'How do I design a home office that inspires creativity, productivity, and efficient work habits for remote work or study?',
-    'What are some budget-friendly ways to update outdoor lighting, decor, patio furniture, and backyard entertainment spaces?',
-    'How can I create a stylish and functional outdoor living space, dining area, or entertaining zone for gatherings and events?',
-    'What are some easy ways to update living room decor seasonally, with changing trends, or personal style preferences?',
-    'How do I choose the right furniture for my small bedroom, living room, dining area, or compact urban living space?',
-    'What are some essential items for a well-organized home office setup, desk organization, and productive workspace design?',
-    'How can I make my outdoor space more inviting for entertaining guests, hosting parties, or relaxing with family and friends?',
-    'What are some practical solutions for organizing a small kitchen, pantry storage, cabinet organization, and cooking essentials?',
-    'How do I design a bathroom that\'s both functional, stylish, and space-efficient, with smart storage solutions and modern amenities?',
-    'What are some eco-friendly ways to clean bathroom tiles, floors, surfaces, and fixtures using natural cleaning products and methods?',
-    'How can I make my home more energy-efficient with simple changes, eco-friendly upgrades, and sustainable living practices?',
-    'What are some tips for organizing a home workshop on a budget, small garage, or limited space for DIY projects and hobbies?',
-    'How do I choose the right lighting for my home gym, exercise space, workout area, or fitness corner to enhance visibility and ambiance?',
-    'What are some space-saving ideas for a small home office, workspace setup, desk organization, and efficient use of limited office space?',
-    'How can I create a cozy reading nook or corner in my living room, bedroom, study area, or personal space for relaxation and leisure activities?',
-    'What are some practical storage solutions for a small kitchen pantry, bathroom space, bedroom closet, or home organization challenges?',
-    'How do I design a home bar that\'s perfect for small spaces, entertaining guests, and creating a stylish yet functional area for drinks and socializing?',
-    'What are some easy ways to update dining room decor for holidays, special occasions, seasonal changes, or personal style preferences?',
-    'How can I make my bedroom feel like a luxurious retreat, hotel suite, or peaceful sanctuary with comfortable bedding, soothing colors, and elegant decor?',
-    'What are some budget-friendly ways to update outdoor cushions, furniture, decor, landscaping, and backyard entertainment areas for outdoor living?',
-    'How do I choose the right flooring for a bathroom remodel, renovation project, or updating existing floors with durable, waterproof materials and stylish designs?',
-    'What are some creative ways to display artwork, photos, collections, and personal treasures in my home to showcase memories, interests, and decorative style?',
-    'How can I create a relaxing atmosphere in my bedroom or personal sanctuary space with calming colors, soft lighting, comfortable furniture, and tranquil decor?',
-    'What are some essential items for a well-organized kitchen pantry, storage system, cooking essentials, and efficient meal preparation in a functional cooking space?',
-    'How do I design a stylish outdoor living space on a budget, limited outdoor area, or small patio with comfortable furniture, cozy accents, and entertaining options?',
-    'What are some practical tips for organizing a home office effectively, maximizing productivity, minimizing distractions, and creating a conducive work environment?',
-    'How can I make my home more energy-efficient without major renovations, reducing utility costs, minimizing environmental impact, and adopting sustainable living habits?',
-    'What are some eco-friendly ways to clean tile floors, hardwood surfaces, kitchen countertops, bathroom fixtures, and household appliances using natural cleaning solutions?',
-    'How do I choose the right lighting for my dining room table, kitchen island, breakfast nook, or living room space to enhance ambiance, functionality, and visual appeal?',
-    'What are some ways to create a functional workspace in a small apartment, condo, urban living space, or compact home office that optimizes productivity and organization?',
-    'How can I make my outdoor space more enjoyable for year-round outdoor activities, gatherings, relaxation, and entertainment with comfortable seating and versatile layouts?',
-    'What are some tips for organizing a small home office space, desk essentials, digital files, office supplies, and creating an efficient work-from-home setup?',
-    'How do I design a nursery that\'s practical, stylish, and adaptable for a growing child or baby with safe furniture, playful decor, functional storage, and soothing colors?',
-    'What are some space-saving ideas for a small home gym setup, exercise area, fitness corner, or workout space that maximizes use of limited square footage?',
-    'How can I create a relaxing atmosphere in my bedroom space with cozy bedding, ambient lighting, soothing colors, personal touches, and a tranquil environment for rest?',
-    'What are some easy ways to update bathroom decor for each season, holiday, personal preference, or design trend with simple changes, accessories, and decorative accents?',
-    'How do I choose the right bathroom accessories, fixtures, accents, and decor elements for a bathroom remodel, renovation project, or updating the look of existing spaces?',
-    'What are some practical solutions for organizing a small bathroom space, storage challenges, daily essentials, toiletries, and optimizing functionality in a limited area?',
-    'How can I make my home office more comfortable, productive, and inspiring for work, study, or creative projects with ergonomic furniture, efficient layouts, and motivational decor?',
-    'What are some eco-friendly ways to clean tile floors naturally, safely, effectively, and without harsh chemicals to maintain cleanliness and hygiene in living spaces?',
-    'How do I design a home office that maximizes productivity, creativity, and personal style preferences with functional furniture, inspiring decor, and efficient organization systems?',
-    'What are some budget-friendly ways to update kitchen countertops, backsplashes, cabinet hardware, and cooking spaces with affordable materials, stylish designs, and DIY options?',
-    'How can I create a stylish outdoor dining and entertaining area, patio space, or backyard retreat with comfortable seating, ambient lighting, and versatile options for hosting?',
-    'What are some tips for organizing a home office desk, paperwork, digital files, office supplies, and creating an efficient workspace that supports productivity and organization?',
-    'How do I choose the right rugs, carpets, flooring options, and area rugs for my living room, bedroom, home office, or dining area to enhance comfort, style, and functionality?',
-    'What are some essential items for a well-organized laundry room, cleaning supplies, storage solutions, and efficient systems for managing laundry tasks and household chores?',
-    'How can I make my outdoor space feel like a private retreat, oasis, or peaceful sanctuary for relaxation, reflection, and enjoying the natural surroundings with comfortable amenities?',
-    'What are some creative ways to display books, magazines, art, personal collections, and decorative items in my home to showcase interests, enhance decor, and personalize spaces?',
-    'How do I design a stylish and functional living room space that reflects personal taste, accommodates lifestyle needs, and creates a welcoming environment for family and guests?',
-    'What are some eco-friendly ways to clean kitchen countertops, surfaces, appliances, cooking areas, and food preparation spaces using natural cleaning products and sustainable practices?',
-    'How can I create a cozy reading corner or nook in my living room, bedroom, study area, or personal space for relaxation, leisure activities, and enjoying favorite books and magazines?',
-    'What are some practical storage solutions for a small bathroom space, pantry, kitchen, or home organization challenges that optimize storage capacity and improve daily living?',
-    'How do I choose the right window treatments, curtains, blinds, shades, or drapes for my bedroom, living room, home office, or dining area to enhance privacy, light control, and style?',
-    'What are some tips for organizing a home gym on a budget, small space, or compact fitness area at home to maximize workout efficiency, storage options, and exercise versatility?',
-    'How can I make my bedroom feel like a luxurious hotel suite or peaceful sanctuary for relaxation, sleep, and personal retreat with luxurious bedding, serene colors, and elegant decor?',
-    'What are some space-saving ideas for a small laundry room setup, organization system, efficient cleaning area, and functional design to streamline laundry tasks and improve usability?',
-    'How do I design a home office that inspires creativity, productivity, and efficient work habits for remote work, freelance projects, studying, or pursuing personal interests and hobbies?',
-    'What are some budget-friendly ways to update outdoor lighting, decor, patio furniture, and backyard entertainment spaces to create an inviting outdoor environment for gatherings?',
-    'How can I create a stylish and functional outdoor living space, dining area, or entertaining zone for hosting parties, family gatherings, and enjoying outdoor meals with comfort and style?',
-    'What are some easy ways to update living room decor seasonally, with changing trends, or personal style preferences without major renovations or significant investment in furniture?',
-    'How do I choose the right furniture for my small bedroom, living room, dining area, or compact urban living space that maximizes space, enhances comfort, and complements existing decor?',
-    'What are some essential items for a well-organized home office setup, desk organization, productive workspace design, and efficient storage solutions for office supplies and equipment?',
-    'How can I make my outdoor space more inviting for entertaining guests, hosting parties, or relaxing with family and friends with comfortable seating, functional layouts, and versatile designs?',
-    'What are some practical solutions for organizing a small kitchen, pantry storage, cabinet organization, and cooking essentials that improve efficiency, accessibility, and meal preparation?',
-    'How do I design a bathroom that\'s both functional, stylish, and space-efficient, with smart storage solutions, modern fixtures, and durable materials for everyday use and long-term durability?',
-    'What are some eco-friendly ways to clean bathroom tiles, floors, surfaces, and fixtures using natural cleaning products, sustainable practices, and effective cleaning methods at home?',
-    'How can I make my home more energy-efficient with simple changes, eco-friendly upgrades, and sustainable living practices that reduce energy consumption and lower utility costs over time?',
-    'What are some tips for organizing a home workshop on a budget, small garage, or limited space for DIY projects, hobbies, crafts, repairs, and creating a functional workspace at home?',
-    'How do I choose the right lighting for my home gym, exercise space, workout area, or fitness corner to enhance visibility, create an energizing atmosphere, and support effective workout routines?',
-    'What are some space-saving ideas for a small home office, workspace setup, desk organization, and efficient use of limited office space to maximize productivity and maintain organization?',
-    'How can I create a cozy reading nook or corner in my living room, bedroom, study area, or personal space for relaxation, leisure activities, and enjoying favorite books, magazines, or digital content?',
-    'What are some practical storage solutions for a small kitchen pantry, bathroom space, bedroom closet, or home organization challenges that optimize space, improve accessibility, and enhance daily living?',
-    'How do I design a home bar that\'s perfect for small spaces, entertaining guests, and creating a stylish yet functional area for drinks, socializing, and enjoying leisure time with family and friends?',
-    'What are some easy ways to update dining room decor for holidays, special occasions, seasonal changes, or personal style preferences with simple changes, decorative accents, and themed updates?',
-    'How can I make my bedroom feel like a luxurious retreat, hotel suite, or peaceful sanctuary with comfortable bedding, soothing colors, elegant decor, and personal touches that enhance relaxation and comfort?',
-    'What are some budget-friendly ways to update outdoor cushions, furniture, decor, landscaping, and backyard entertainment areas to create an inviting outdoor living space for relaxing, dining, and entertaining?',
-    'How do I choose the right flooring for a bathroom remodel, renovation project, or updating existing floors with durable, waterproof materials, stylish designs, and functional flooring options that meet practical needs?',
-    'What are some creative ways to display artwork, photos, collections, and personal treasures in my home to showcase memories, interests, and decorative style while enhancing the overall aesthetic and visual appeal of living spaces?',
-    'How can I create a relaxing atmosphere in my bedroom or personal sanctuary space with calming colors, soft lighting, comfortable furniture, and tranquil decor that promotes rest, relaxation, and a sense of personal retreat and rejuvenation?',
-    'What are some essential items for a well-organized kitchen pantry, storage system, cooking essentials, and efficient meal preparation in a functional cooking space that maximizes convenience, accessibility, and usability for daily cooking and dining needs?',
-    'How do I design a stylish outdoor living space on a budget, limited outdoor area, or small patio with comfortable furniture, cozy accents, and entertaining options for hosting gatherings, family events, or enjoying meals outdoors with friends and loved ones?',
-    'What are some practical tips for organizing a home office effectively, maximizing productivity, minimizing distractions, and creating a conducive work environment that supports focus, creativity, and efficient workflow for remote work, studying, or personal projects?',
-    'How can I make my home more energy-efficient without major renovations, reducing utility costs, minimizing environmental impact, and adopting sustainable living habits through simple changes, energy-saving practices, and eco-friendly upgrades that promote long-term savings and efficiency?',
-    'What are some eco-friendly ways to clean tile floors, hardwood surfaces, kitchen countertops, bathroom fixtures, and household appliances using natural cleaning solutions, safe practices, and effective cleaning methods that maintain cleanliness, hygiene, and indoor air quality in living spaces?',
-    'How do I choose the right lighting for my dining room table, kitchen island, breakfast nook, or living room space to enhance ambiance, functionality, and visual appeal while creating a welcoming atmosphere for dining, cooking, entertaining, and everyday activities in home living areas?',
-    'What are some ways to create a functional workspace in a small apartment, condo, urban living space, or compact home office that optimizes space, organization, and productivity with ergonomic furniture, efficient layouts, and practical storage solutions for work essentials and equipment?',
-    'How can I make my outdoor space more enjoyable for year-round outdoor activities, gatherings, relaxation, and entertainment with comfortable seating, versatile layouts, and durable outdoor furniture that withstands weather conditions while creating a welcoming environment for outdoor living and socializing with family and friends?',
-    'What are some tips for organizing a small home office space, desk essentials, digital files, office supplies, and creating an efficient work-from-home setup that maximizes productivity, minimizes clutter, and enhances focus for remote work, studying, or managing personal projects and tasks?',
-    'How do I design a nursery that\'s practical, stylish, and adaptable for a growing child or baby with safe furniture, playful decor, functional storage solutions, and soothing colors that create a nurturing environment for sleep, play, learning, and early childhood development at home?',
-    'What are some space-saving ideas for a small home gym setup, exercise area, fitness corner, or workout space that maximizes use of limited square footage while providing adequate space for exercise equipment, storage options, and creating a motivating environment for fitness activities and routines?',
-    'How can I create a relaxing atmosphere in my bedroom space with cozy bedding, ambient lighting, soothing colors, personal touches, and a tranquil environment that promotes rest, relaxation, and a sense of personal retreat for unwinding after a long day or enjoying leisure time at home?',
-    'What are some easy ways to update bathroom decor for each season, holiday, personal preference, or design trend with simple changes, accessories, decorative accents, and functional updates that enhance the aesthetic appeal and functionality of bathroom spaces while reflecting personal style and taste?',
-    'How do I choose the right bathroom accessories, fixtures, accents, and decor elements for a bathroom remodel, renovation project, or updating the look of existing spaces with durable materials, stylish designs, and functional options that improve usability, comfort, and visual appeal in home bathrooms?',
-    'What are some practical solutions for organizing a small bathroom space, storage challenges, daily essentials, toiletries, and optimizing functionality in a limited area with smart storage solutions, space-saving ideas, and efficient organization systems that enhance convenience and usability for daily routines?',
-    'How can I make my home office more comfortable, productive, and inspiring for work, study, or creative projects with ergonomic furniture, efficient layouts, motivational decor, and practical storage solutions that support organization, focus, and efficiency in a dedicated workspace at home?',
-    'What are some eco-friendly ways to clean tile floors naturally, safely, effectively, and without harsh chemicals to maintain cleanliness, hygiene, and indoor air quality in living spaces while reducing environmental impact and promoting sustainable cleaning practices for household surfaces and flooring materials?',
-    'How do I design a home office that maximizes productivity, creativity, and personal style preferences with functional furniture, inspiring decor, efficient organization systems, and ergonomic considerations that create a conducive work environment for remote work, freelance projects, studying, or pursuing personal interests?',
-    'What are some budget-friendly ways to update kitchen countertops, backsplashes, cabinet hardware, and cooking spaces with affordable materials, stylish designs, and DIY options that refresh the look of kitchen areas, enhance functionality, and reflect personal style preferences without major renovations or costly upgrades?',
-    'How can I create a stylish outdoor dining and entertaining area, patio space, or backyard retreat with comfortable seating, ambient lighting, versatile options for hosting gatherings, and functional elements that enhance outdoor living experiences, dining events, and leisure activities with family and friends at home?',
-    'What are some tips for organizing a home office desk, paperwork, digital files, office supplies, and creating an efficient workspace that supports productivity, organization, and effective management of work essentials and equipment in a dedicated office area or remote work setup at home?',
-    'How do I choose the right rugs, carpets, flooring options, and area rugs for my living room, bedroom, home office, or dining area that enhance comfort, style, and functionality with durable materials, attractive designs, and practical considerations for everyday use in home living spaces and high-traffic areas?',
-    'What are some essential items for a well-organized laundry room, cleaning supplies, storage solutions, and efficient systems that streamline laundry tasks, improve organization, and enhance usability for managing household chores and maintaining cleanliness in dedicated laundry areas at home?',
-    'How can I make my outdoor space feel like a private retreat, oasis, or peaceful sanctuary for relaxation, reflection, and enjoying the natural surroundings with comfortable amenities, scenic views, and outdoor furniture that creates a welcoming environment for outdoor living, leisure activities, and socializing with guests?',
-    'What are some creative ways to display books, magazines, art, personal collections, and decorative items in my home to showcase interests, enhance decor, and personalize spaces with stylish arrangements, functional displays, and decorative accents that add visual interest and personality to living areas?',
-    'How do I design a stylish and functional living room space that reflects personal taste, accommodates lifestyle needs, and creates a welcoming environment for family and guests with comfortable seating, versatile layouts, and decorative elements that enhance the overall aesthetic and functionality of home living spaces?',
-    'What are some eco-friendly ways to clean kitchen countertops, surfaces, appliances, cooking areas, and food preparation spaces using natural cleaning products, sustainable practices, and effective cleaning methods that promote cleanliness, hygiene, and environmental responsibility in home kitchens and cooking areas?',
-    'How can I create a cozy reading corner or nook in my living room, bedroom, study area, or personal space for relaxation, leisure activities, and enjoying favorite books, magazines, or digital content with comfortable seating, ambient lighting, and personalized touches that enhance the reading experience at home?',
-    'What are some practical storage solutions for a small bathroom space, pantry, kitchen, or home organization challenges that optimize space, improve accessibility, and enhance daily living with efficient storage systems, innovative designs, and functional solutions tailored to specific organizational needs and living arrangements?',
-    'How do I choose the right window treatments, curtains, blinds, shades, or drapes for my bedroom, living room, home office, or dining area to enhance privacy, control natural light, and complement interior decor with stylish options that offer functional benefits and aesthetic appeal in home living spaces?',
-    'What are some tips for organizing a home gym on a budget, small space, or compact fitness area at home to maximize workout efficiency, optimize storage options, and create a motivating environment for fitness routines, exercise activities, and maintaining an active lifestyle in residential settings?',
-    'How can I make my bedroom feel like a luxurious hotel suite or peaceful sanctuary for relaxation, sleep, and personal retreat with luxurious bedding, soothing colors, elegant decor, and personalized touches that create a serene atmosphere and enhance comfort in a private residential space?',
-    'What are some space-saving ideas for a small laundry room setup, organization system, efficient cleaning area, and functional design that improve usability, streamline laundry tasks, and optimize available space for managing laundry chores and maintaining cleanliness in residential laundry areas?',
-    'How do I design a home office that inspires creativity, productivity, and efficient work habits for remote work, freelance projects, studying, or pursuing personal interests with functional furniture, motivating decor, ergonomic considerations, and effective organization systems that support work-from-home arrangements and activities?',
-    'What are some budget-friendly ways to update outdoor lighting, decor, patio furniture, and backyard entertainment spaces to create an inviting outdoor environment for gatherings, family events, and outdoor living experiences that enhance the enjoyment of outdoor spaces with comfortable amenities and versatile designs?',
-    'How can I create a stylish and functional outdoor living space, dining area, or entertaining zone for hosting parties, family gatherings, and enjoying outdoor meals with comfort, style, and practical elements that enhance outdoor living experiences and socializing opportunities in residential outdoor areas?',
-    'What are some easy ways to update living room decor seasonally, with changing trends, or personal style preferences without major renovations or significant investments in furniture with simple changes, decorative accents, and creative updates that refresh the look and ambiance of home living spaces?',
-    'How do I choose the right furniture for my small bedroom, living room, dining area, or compact urban living space that maximizes space utilization, enhances comfort, and complements existing decor with practical considerations for functional use and aesthetic appeal in residential living environments?',
-    'What are some essential items for a well-organized home office setup, desk organization, productive workspace design, and efficient storage solutions for office supplies, equipment, and personal items that support productivity, organization, and effective management of work essentials in home office settings?',
-    'How can I make my outdoor space more inviting for entertaining guests, hosting parties, or relaxing with family and friends with comfortable seating, functional layouts, and versatile designs that enhance the enjoyment of outdoor living and create a welcoming atmosphere for outdoor activities and social gatherings?',
-    'What are some practical solutions for organizing a small kitchen, pantry storage, cabinet organization, and cooking essentials that optimize space utilization, improve accessibility, and enhance functionality with innovative storage systems, space-saving ideas, and efficient organization solutions tailored to residential kitchen settings?',
-    'How do I design a bathroom that\'s both functional, stylish, and space-efficient with smart storage solutions, modern fixtures, and durable materials for everyday use, while maximizing usability, comfort, and visual appeal in residential bathroom environments with efficient layout and effective design strategies?',
-    'What are some eco-friendly ways to clean bathroom tiles, floors, surfaces, and fixtures using natural cleaning products, sustainable practices, and effective cleaning methods that promote cleanliness, hygiene, and environmental responsibility in home bathrooms without compromising indoor air quality or health and safety standards?',
-    'How can I make my home more energy-efficient with simple changes, eco-friendly upgrades, and sustainable living practices that reduce energy consumption, lower utility costs, and minimize environmental impact over time through energy-saving strategies, efficient appliances, and environmentally conscious habits for residential living?',
-    'What are some tips for organizing a home workshop on a budget, small garage, or limited space for DIY projects, hobbies, crafts, repairs, and creating a functional workspace at home with efficient storage solutions, versatile work areas, and practical tools that enhance productivity and creativity?',
-    'How do I choose the right lighting for my home gym, exercise space, workout area, or fitness corner to enhance visibility, create an energizing atmosphere, and support effective workout routines with suitable lighting options, fixtures, and lighting design strategies for residential fitness environments?',
-    'What are some space-saving ideas for a small home office, workspace setup, desk organization, and efficient use of limited office space that maximize productivity, support organization, and maintain functionality in home office settings with practical furniture, ergonomic considerations, and efficient work systems?',
-    'How can I create a cozy reading nook or corner in my living room, bedroom, study area, or personal space for relaxation, leisure activities, and enjoying favorite books, magazines, or digital content with comfortable seating, ambient lighting, and personalized touches that enhance the reading experience in residential settings?',
-    'What are some practical storage solutions for a small kitchen pantry, bathroom space, bedroom closet, or home organization challenges that optimize space utilization, improve accessibility, and enhance daily living with innovative storage systems, functional designs, and organizational strategies tailored to specific household needs and preferences?',
-    'How do I design a home bar that\'s perfect for small spaces, entertaining guests, and creating a stylish yet functional area for drinks, socializing, and enjoying leisure time with family and friends with creative bar designs, efficient use of space, and practical elements for residential bar setups and entertainment areas?',
-    'What are some easy ways to update dining room decor for holidays, special occasions, seasonal changes, or personal style preferences with simple changes, decorative accents, and themed updates that refresh the look and ambiance of dining spaces while reflecting personal taste and enhancing dining experiences at home?',
-    'How can I make my bedroom feel like a luxurious retreat, hotel suite, or peaceful sanctuary for relaxation, sleep, and personal retreat with luxurious bedding, soothing colors, elegant decor, and personalized touches that create a serene atmosphere and enhance comfort in residential bedroom environments?',
-    'What are some budget-friendly ways to update outdoor cushions, furniture, decor, landscaping, and backyard entertainment areas to create an inviting outdoor living space for relaxing, dining, and entertaining with comfortable amenities, versatile designs, and practical elements that enhance outdoor enjoyment and socializing at home?',
-    'How do I choose the right flooring for a bathroom remodel, renovation project, or updating existing floors with durable, waterproof materials, stylish designs, and functional flooring options that meet practical needs, enhance aesthetic appeal, and ensure long-term durability in residential bathroom environments?',
-    'What are some creative ways to display artwork, photos, collections, and personal treasures in my home to showcase memories, interests, and decorative style while enhancing the overall aesthetic and visual appeal of living spaces with stylish arrangements, functional displays, and decorative accents?',
-    'How can I create a relaxing atmosphere in my bedroom or personal sanctuary space with calming colors, soft lighting, comfortable furniture, and tranquil decor that promotes rest, relaxation'],
-  responses: [
-'To effectively organize your closet space, consider using storage solutions like shelves, bins, and hangers that maximize space. Group similar items together and regularly declutter to keep things tidy.',
-'Easy ways to declutter your living room include using multi-functional furniture with storage, keeping surfaces clear of unnecessary items, and regularly donating or recycling items you no longer need.',
-'Create a cozy reading nook in a small apartment by using a comfortable chair or bean bag, adding good lighting, and incorporating soft textiles like blankets and cushions. Utilize vertical space for book storage.',
-'The best plants for indoor gardening in low-light conditions include snake plants, pothos, and ZZ plants. These plants are hardy and require minimal light to thrive.',
-'Choose the right colors for painting your bedroom walls by considering the mood you want to create. Soft, neutral colors can create a calming atmosphere, while bold colors can add energy to the room.',
-'Budget-friendly ways to decorate a nursery include using DIY decor projects, repurposing furniture, and shopping at second-hand stores. Focus on creating a comfortable and functional space.',
-'To create an inviting outdoor patio on a budget, use affordable furniture, add lighting such as string lights or lanterns, and incorporate plants and textiles for a cozy feel.',
-'Effective methods for removing pet hair from furniture include using a vacuum with a pet hair attachment, lint rollers, and rubber gloves. Regular grooming of your pets can also help reduce shedding.',
-'Maintain hardwood floors by regularly sweeping or vacuuming to remove dirt and debris. Use a damp mop with a wood-friendly cleaner and avoid using excessive water.',
-'Energy-efficient ways to cool down a hot room in summer include using fans, keeping blinds or curtains closed during the hottest part of the day, and using light-colored or reflective window treatments.',
-'Repurpose old furniture into something new and stylish by using paint, new hardware, or upholstery. Get creative with DIY projects to give old pieces a new life.',
-'Essential tools every homeowner should have include a hammer, screwdrivers, pliers, a tape measure, a level, a utility knife, and a cordless drill. These tools can handle most basic repairs and projects.',
-'Make your home office more productive and comfortable by investing in a good chair and desk, ensuring proper lighting, and keeping the space organized. Personalize it with items that motivate you.',
-'Eco-friendly cleaning products for a sustainable home include vinegar, baking soda, and castile soap. These natural products are effective and non-toxic.',
-'Design a kitchen layout that maximizes space and functionality by considering the work triangle (sink, stove, refrigerator), using vertical storage, and ensuring there is ample counter space.',
-'The benefits of using smart home technology include increased convenience, improved energy efficiency, enhanced security, and the ability to control devices remotely.',
-'Improve indoor air quality in your home naturally by using houseplants, ensuring good ventilation, reducing the use of synthetic chemicals, and regularly cleaning to reduce dust and allergens.',
-'Creative ways to display family photos include creating a gallery wall, using photo ledges, incorporating photos into everyday objects like coasters or pillows, and creating photo books.',
-'Create a relaxing spa-like atmosphere in your bathroom by using soft lighting, incorporating natural elements like plants and stones, and using soothing scents like lavender or eucalyptus.',
-'Tips for organizing a garage to maximize storage include using wall-mounted shelving, pegboards for tools, clear bins for smaller items, and overhead storage for less frequently used items.',
-'Best practices for setting up a home gym include choosing a dedicated space, investing in versatile equipment like dumbbells and resistance bands, and ensuring proper flooring for safety.',
-'Choose the right window treatments for your home by considering the level of privacy and light control you need, the style of your home, and your budget. Options include curtains, blinds, and shades.',
-'Advantages of using solar panels at home include reduced energy bills, lower carbon footprint, potential tax incentives, and increased property value.',
-'Make your small apartment feel more spacious by using multi-functional furniture, utilizing vertical space, keeping the color palette light and neutral, and minimizing clutter.',
-'Affordable ways to renovate a kitchen include painting cabinets, updating hardware, adding a backsplash, and using peel-and-stick flooring. Focus on changes that have a big impact without a high cost.',
-'Childproof your home by securing heavy furniture to the wall, using safety gates for stairs, covering electrical outlets, and ensuring that small objects are out of reach.',
-'Latest trends in home decor include incorporating natural materials, using bold colors and patterns, embracing minimalism, and incorporating smart home technology.',
-'Prepare your garden for winter by cleaning up dead plants, mulching to protect roots, and covering delicate plants. Consider planting winter-hardy varieties and using frost protection.',
-'Easy DIY projects to enhance your home include creating custom shelving, making decorative pillows, painting accent walls, and creating a garden or plant corner.',
-'Create a functional and stylish workspace at home by choosing ergonomic furniture, ensuring good lighting, keeping the space organized, and adding personal touches that inspire you.',
-'Benefits of using natural light in home design include improved mood and productivity, reduced energy costs, and a connection to the outdoors. Maximize natural light with large windows and reflective surfaces.',
-'Create a minimalist living space by decluttering, choosing simple and functional furniture, using a neutral color palette, and focusing on quality over quantity.',
-'Low-maintenance houseplants for beginners include snake plants, pothos, spider plants, and succulents. These plants are hardy and require minimal care.',
-'Choose the right flooring for different rooms by considering the level of foot traffic, the room\'s function, and the desired style. Options include hardwood, tile, carpet, and laminate.',
-'Key elements of a cozy bedroom include soft bedding, warm lighting, a comfortable mattress, and personal touches like photos or artwork. Focus on creating a relaxing and inviting atmosphere.',
-'Make your outdoor space more entertaining by adding comfortable seating, creating defined areas for dining and relaxation, using outdoor lighting, and incorporating plants and decor.',
-'Space-saving storage solutions for small apartments include using under-bed storage, wall-mounted shelves, multi-functional furniture, and utilizing vertical space.',
-'Design an energy-efficient home by using insulation, energy-efficient windows and doors, smart thermostats, and renewable energy sources like solar panels.',
-'Best home security systems available include options with features like professional monitoring, smart home integration, and mobile app control. Research systems that fit your specific needs and budget.',
-'Reduce energy consumption in your home by using energy-efficient appliances, unplugging devices when not in use, using smart thermostats, and ensuring your home is well-insulated.',
-'Tips for maintaining a clean and organized home include creating a cleaning schedule, decluttering regularly, using storage solutions, and involving the whole family in household chores.',
-'Create a functional laundry room by using space-saving solutions like stackable washer and dryer, adding storage for laundry supplies, and incorporating a folding station.',
-'Benefits of using modular furniture include flexibility in design, ease of moving and reconfiguring, and the ability to customize pieces to fit your space and needs.',
-'Make your home more eco-friendly by using energy-efficient appliances, reducing water usage, recycling, and using sustainable materials and products.',
-'Enhance curb appeal by maintaining your lawn, adding plants and flowers, updating your front door, and ensuring your home’s exterior is clean and well-maintained.',
-'Choose the right appliances for your kitchen by considering energy efficiency, size, functionality, and style. Research and compare options to find the best fit for your needs.',
-'Advantages of open-plan living include a sense of spaciousness, better natural light, improved social interaction, and flexibility in furniture arrangement.',
-'Incorporate smart lighting into your home by using smart bulbs or switches, creating lighting schedules, and using voice control with compatible devices.',
-'Practical storage solutions for a small bathroom include using over-the-toilet shelves, installing hooks for towels, using baskets or bins, and utilizing under-sink storage.',
-'Make your bedroom feel like a luxury hotel room by using high-quality bedding, incorporating soft lighting, adding plush rugs, and keeping the space clean and uncluttered.',
-'Best plants for improving indoor air quality include spider plants, peace lilies, Boston ferns, and bamboo palms. These plants help remove toxins from the air.',
-'Set up a home entertainment system by choosing the right TV and sound system, arranging seating for optimal viewing, and considering acoustics and lighting for the best experience.',
-'Latest trends in outdoor furniture include eco-friendly materials, modular designs, bold colors, and multifunctional pieces that enhance comfort and style.',
-'Create a relaxing outdoor oasis by using comfortable seating, adding water features like fountains, incorporating plants and greenery, and using soft lighting.',
-'Benefits of using recycled materials in home decor include reducing waste, conserving natural resources, and creating unique and personalized items. Look for reclaimed wood, recycled glass, and upcycled furniture.',
-'Create a pet-friendly home by using durable and easy-to-clean materials, creating designated spaces for your pets, and ensuring that your home is safe and comfortable for them.',
-'Tips for designing a functional mudroom include using hooks and cubbies for storage, incorporating seating for putting on shoes, and using durable flooring that can withstand dirt and moisture.',
-'Make your home more energy-efficient by using energy-efficient lighting, insulating your home, using smart thermostats, and reducing water usage with low-flow fixtures.',
-'Innovative kitchen storage ideas include using pull-out shelves, installing a pegboard for pots and pans, using magnetic strips for knives, and utilizing the inside of cabinet doors for additional storage.',
-'Choose the right color palette for your living room by considering the mood you want to create, the amount of natural light, and your personal style. Use complementary colors and consider using an accent wall.',
-'Create a stylish and functional entryway by using a console table or bench for storage, incorporating hooks or a coat rack, adding a mirror for convenience, and using a rug to define the space.',
-'Best ways to insulate your home for winter include adding insulation to your attic and walls, using weatherstripping around doors and windows, and installing thermal curtains to keep the heat in.',
-'Enhance your homes resale value by making improvements like updating the kitchen and bathrooms, adding a fresh coat of paint, improving curb appeal, and ensuring your home is well-maintained and clean.'
-]
+    const rl = readline.createInterface({
+        input: fs.createReadStream(filePath),
+        crlfDelay: Infinity
+    });
 
+    for await (const line of rl) {
+        currentLine++;
+        processLine(line, currentLine, totalLines);
+    }
+};
 
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about apples.', 'What is an apple?', 'Apple information.', 'Describe an apple.', 'Apple.'],
-  responses: ['An apple is a sweet, edible fruit produced by an apple tree. Apples are rich in fiber, vitamins, and minerals. They come in various colors such as red, green, and yellow.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about bananas.', 'What is a banana?', 'Banana information.', 'Describe a banana.', 'Banana.'],
-  responses: ['A banana is a long, curved fruit with a yellow skin and soft, sweet flesh inside. Bananas are a good source of potassium, vitamin C, and dietary fiber. They are commonly eaten raw or used in cooking.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about mobiles.', 'What is a mobile?', 'Mobile information.', 'Describe a mobile.', 'Mobile.'],
-  responses: ['A mobile phone, also known as a cellphone, is a portable device used for communication. It can make and receive calls, send text messages, and access the internet. Modern smartphones have many features including cameras, GPS, and various apps.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about laptops.', 'What is a laptop?', 'Laptop information.', 'Describe a laptop.', 'Laptop.'],
-  responses: ['A laptop is a portable computer that combines a screen, keyboard, and a battery into a single device. Laptops are used for various tasks such as browsing the internet, working on documents, and running software applications.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about cats.', 'What is a cat?', 'Cat information.', 'Describe a cat.', 'Cat.'],
-  responses: ['A cat is a small, domesticated carnivorous mammal with soft fur, a short snout, and retractable claws. Cats are known for their agility, playfulness, and ability to hunt rodents. They are popular pets and often kept for companionship.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about males.', 'What is a male?', 'Male information.', 'Describe a male.', 'Male.'],
-  responses: ['A male is a person or animal of the sex that typically has the capacity to produce small, mobile gametes (spermatozoa) for fertilizing female gametes (ova). In humans, males are typically characterized by XY chromosomes and the production of testosterone.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about females.', 'What is a female?', 'Female information.', 'Describe a female.', 'Female.'],
-  responses: ['A female is a person or animal of the sex that typically has the capacity to produce large, immobile gametes (ova) and usually carries and nurtures offspring. In humans, females are typically characterized by XX chromosomes and the production of estrogen.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about cups.', 'What is a cup?', 'Cup information.', 'Describe a cup.', 'Cup.'],
-  responses: ['A cup is a small open container used for drinking beverages. It usually has a handle and can be made from various materials such as ceramic, glass, plastic, or metal. Cups are commonly used to drink coffee, tea, or other beverages.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about chargers.', 'What is a charger?', 'Charger information.', 'Describe a charger.', 'Charger.'],
-  responses: ['A charger is a device used to recharge the battery of electronic devices such as mobile phones, laptops, and tablets. It converts electrical energy from an outlet into a form that the battery can use. Chargers come in various types and specifications.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about books.', 'What is a book?', 'Book information.', 'Describe a book.', 'Book.'],
-  responses: ['A book is a written or printed work consisting of pages glued or sewn together along one side and bound in covers. Books can be fiction or non-fiction and cover a wide range of subjects.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about tables.', 'What is a table?', 'Table information.', 'Describe a table.', 'Table.'],
-  responses: ['A table is a piece of furniture with a flat top and one or more legs, providing a level surface for eating, writing, working, or placing items. Tables are commonly used in dining rooms, kitchens, offices, and living rooms.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about chairs.', 'What is a chair?', 'Chair information.', 'Describe a chair.', 'Chair.'],
-  responses: ['A chair is a piece of furniture designed for sitting, typically consisting of a seat, back, and four legs. Chairs can be made from various materials, including wood, metal, and plastic. They are used in homes, offices, and many other settings.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about televisions.', 'What is a television?', 'Television information.', 'Describe a television.', 'Television.'],
-  responses: ['A television, commonly referred to as a TV, is an electronic device used for viewing video content. Televisions receive broadcast signals and display them as audio and visual content. Modern TVs include features like smart functionality, high-definition displays, and various connectivity options.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about refrigerators.', 'What is a refrigerator?', 'Refrigerator information.', 'Describe a refrigerator.', 'Refrigerator.'],
-  responses: ['A refrigerator is an appliance used to keep food and drinks cold. It works by removing heat from the interior to maintain a temperature below the ambient temperature. Refrigerators typically have a freezer compartment for storing frozen food.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about shoes.', 'What are shoes?', 'Shoe information.', 'Describe shoes.', 'Shoes.'],
-  responses: ['Shoes are footwear designed to protect and comfort the human foot while engaging in various activities. They come in many styles, including sneakers, boots, sandals, and dress shoes. Shoes are typically made from materials like leather, fabric, and rubber.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about watches.', 'What is a watch?', 'Watch information.', 'Describe a watch.', 'Watch.'],
-  responses: ['A watch is a small timepiece worn typically on a strap on one\'s wrist. Watches can be analog or digital and may include additional features such as date displays, alarms, and timers. Modern smartwatches offer functionalities like fitness tracking and notifications.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about keys.', 'What are keys?', 'Key information.', 'Describe keys.', 'Keys.'],
-  responses: ['Keys are small metal instruments used to operate locks. Each key is cut to fit a specific lock, allowing access to secured areas or items. Keys come in various types, including house keys, car keys, and padlock keys.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about pens.', 'What is a pen?', 'Pen information.', 'Describe a pen.', 'Pen.'],
-  responses: ['A pen is a writing instrument used to apply ink to a surface, usually paper, for writing or drawing. Pens come in various types, including ballpoint, fountain, and gel pens. They are commonly used in offices, schools, and homes.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about notebooks.', 'What is a notebook?', 'Notebook information.', 'Describe a notebook.', 'Notebook.'],
-  responses: ['A notebook is a book or binder of pages for writing notes. Notebooks are commonly used by students and professionals for taking notes, journaling, and organizing information. They come in various sizes and formats, such as lined, blank, or grid paper.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about backpacks.', 'What is a backpack?', 'Backpack information.', 'Describe a backpack.', 'Backpack.'],
-  responses: ['A backpack is a bag with shoulder straps that allow it to be carried on one\'s back. Backpacks are commonly used for carrying books, laptops, and other personal items. They come in various sizes and designs, suitable for school, travel, and outdoor activities.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about water bottles.', 'What is a water bottle?', 'Water bottle information.', 'Describe a water bottle.', 'Water bottle.'],
-  responses: ['A water bottle is a container used to hold water and other beverages for drinking. Water bottles can be made from plastic, glass, or metal and are commonly used for hydration on the go. Many water bottles are reusable and eco-friendly.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about headphones.', 'What are headphones?', 'Headphone information.', 'Describe headphones.', 'Headphones.'],
-  responses: ['Headphones are a pair of small loudspeaker drivers worn on or around the head over a user\'s ears. They are used to listen to audio without disturbing others. Headphones come in various styles, including over-ear, on-ear, and in-ear, and can be wired or wireless.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about glasses.', 'What are glasses?', 'Glass information.', 'Describe glasses.', 'Glasses.'],
-  responses: ['Glasses, also known as eyeglasses or spectacles, are lenses mounted in a frame that rests on the nose and ears. They are used to correct vision or protect the eyes. Glasses can be prescription for vision correction or non-prescription for fashion or safety.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about umbrellas.', 'What is an umbrella?', 'Umbrella information.', 'Describe an umbrella.', 'Umbrella.'],
-  responses: ['An umbrella is a portable device used to protect a person from rain or sunlight. It consists of a circular canopy of fabric attached to a folding frame of rods that extend from a central pole. Umbrellas come in various sizes and designs, including compact and automatic versions.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about wallets.', 'What is a wallet?', 'Wallet information.', 'Describe a wallet.', 'Wallet.'],
-  responses: ['A wallet is a small, flat case used to carry personal items such as cash, credit cards, identification documents, and photos. Wallets are typically made from leather or fabric and come in various styles, including bifold, trifold, and cardholder designs.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about toothbrushes.', 'What is a toothbrush?', 'Toothbrush information.', 'Describe a toothbrush.', 'Toothbrush.'],
-  responses: ['A toothbrush is a dental instrument used to clean teeth and gums. It consists of a handle and bristles arranged on a head. Toothbrushes come in manual and electric versions and should be used with toothpaste for effective oral hygiene.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about toothpaste.', 'What is toothpaste?', 'Toothpaste information.', 'Describe toothpaste.', 'Toothpaste.'],
-  responses: ['Toothpaste is a gel or paste used with a toothbrush to clean and maintain the health of teeth and gums. It helps remove plaque, prevent cavities, and freshen breath. Toothpaste typically contains fluoride, abrasives, and flavoring agents.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about combs.', 'What is a comb?', 'Comb information.', 'Describe a comb.', 'Comb.'],
-  responses: ['A comb is a flat, toothed device used to arrange, untangle, and style hair. Combs come in various sizes and shapes, made from materials such as plastic, wood, or metal. They are commonly used for grooming hair and maintaining hairstyles.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about soap.', 'What is soap?', 'Soap information.', 'Describe soap.', 'Soap.'],
-  responses: ['Soap is a substance used for cleaning and washing. It is made from natural oils or fats combined with an alkali. Soap helps remove dirt and oil from the skin, and it can come in various forms, including bars, liquids, and powders.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about towels.', 'What is a towel?', 'Towel information.', 'Describe a towel.', 'Towel.'],
-  responses: ['A towel is a piece of absorbent fabric used for drying or wiping. Towels are typically made from cotton and come in various sizes and thicknesses. They are commonly used in bathrooms, kitchens, and for sports and fitness activities.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about blankets.', 'What is a blanket?', 'Blanket information.', 'Describe a blanket.', 'Blanket.'],
-  responses: ['A blanket is a large piece of soft fabric used to keep warm while sleeping or resting. Blankets come in various materials, including wool, cotton, and synthetic fibers. They are used on beds, couches, and for outdoor activities like picnics.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about pillows.', 'What is a pillow?', 'Pillow information.', 'Describe a pillow.', 'Pillow.'],
-  responses: ['A pillow is a soft cushion used to support the head and neck while sleeping or resting. Pillows are typically filled with materials such as feathers, foam, or synthetic fibers and are covered with a fabric case. They come in various shapes and sizes for different sleeping positions.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about beds.', 'What is a bed?', 'Bed information.', 'Describe a bed.', 'Bed.'],
-  responses: ['A bed is a piece of furniture used for sleeping or resting. It typically consists of a frame, a mattress, and bedding such as sheets, blankets, and pillows. Beds come in various sizes, including twin, full, queen, and king.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about desks.', 'What is a desk?', 'Desk information.', 'Describe a desk.', 'Desk.'],
-  responses: ['A desk is a piece of furniture with a flat work surface used for writing, reading, and working on a computer. Desks often have drawers and compartments for storage and are commonly found in offices, homes, and schools.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about lamps.', 'What is a lamp?', 'Lamp information.', 'Describe a lamp.', 'Lamp.'],
-  responses: ['A lamp is a device that produces light, often used for illumination in homes and offices. Lamps can be table lamps, floor lamps, or wall-mounted. They typically use incandescent, fluorescent, or LED bulbs and come in various styles and designs.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about clocks.', 'What is a clock?', 'Clock information.', 'Describe a clock.', 'Clock.'],
-  responses: ['A clock is a device used to measure and display time. Clocks can be analog or digital and come in various forms, such as wall clocks, alarm clocks, and wristwatches. They use mechanical or electronic mechanisms to keep time.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about mirrors.', 'What is a mirror?', 'Mirror information.', 'Describe a mirror.', 'Mirror.'],
-  responses: ['A mirror is a reflective surface, typically made of glass with a metallic coating, used to view oneself. Mirrors come in various shapes and sizes and are used in bathrooms, bedrooms, and for decorative purposes. They can also be used to create the illusion of more space in a room.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about dishes.', 'What are dishes?', 'Dish information.', 'Describe dishes.', 'Dishes.'],
-  responses: ['Dishes are flat, typically round containers used for serving food. They include plates, bowls, and platters, and are made from materials such as ceramic, glass, plastic, or metal. Dishes are commonly used in kitchens and dining areas for serving and eating meals.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about forks.', 'What is a fork?', 'Fork information.', 'Describe a fork.', 'Fork.'],
-  responses: ['A fork is a utensil with a handle and several narrow tines used for eating and serving food. Forks are typically made from metal or plastic and come in various sizes and designs, including dinner forks, salad forks, and dessert forks.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about knives.', 'What is a knife?', 'Knife information.', 'Describe a knife.', 'Knife.'],
-  responses: ['A knife is a tool with a handle and a blade used for cutting food and other materials. Knives come in various types, including kitchen knives, utility knives, and pocket knives. Kitchen knives are used for food preparation, while utility knives are used for various cutting tasks.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about spoons.', 'What is a spoon?', 'Spoon information.', 'Describe a spoon.', 'Spoon.'],
-  responses: ['A spoon is a utensil with a handle and a shallow bowl used for eating, stirring, and serving food. Spoons come in various sizes, including teaspoons, tablespoons, and soup spoons, and are typically made from metal, plastic, or wood.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about pots.', 'What is a pot?', 'Pot information.', 'Describe a pot.', 'Pot.'],
-  responses: ['A pot is a deep, round container used for cooking food. Pots are typically made from metal, such as stainless steel or aluminum, and come with handles and lids. They are used for boiling, simmering, and making soups and stews.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about pans.', 'What is a pan?', 'Pan information.', 'Describe a pan.', 'Pan.'],
-  responses: ['A pan is a shallow, flat-bottomed container used for cooking food. Pans are typically made from metal, such as stainless steel or cast iron, and have a long handle. They are used for frying, sautéing, and browning food.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about ovens.', 'What is an oven?', 'Oven information.', 'Describe an oven.', 'Oven.'],
-  responses: ['An oven is a kitchen appliance used for baking, roasting, and broiling food. Ovens can be powered by gas or electricity and come in various types, including conventional, convection, and microwave ovens. They are commonly used for cooking meals and baking desserts.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about microwaves.', 'What is a microwave?', 'Microwave information.', 'Describe a microwave.', 'Microwave.'],
-  responses: ['A microwave is a kitchen appliance that cooks food using microwave radiation. Microwaves are quick and efficient for heating and defrosting food. They come in various sizes and styles, including countertop and built-in models.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about blenders.', 'What is a blender?', 'Blender information.', 'Describe a blender.', 'Blender.'],
-  responses: ['A blender is a kitchen appliance used to mix, puree, or emulsify food and other substances. Blenders have a motorized base and a container with rotating blades. They are commonly used for making smoothies, soups, and sauces.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about vacuum cleaners.', 'What is a vacuum cleaner?', 'Vacuum cleaner information.', 'Describe a vacuum cleaner.', 'Vacuum cleaner.'],
-  responses: ['A vacuum cleaner is an appliance that uses suction to remove dirt and debris from floors and other surfaces. Vacuum cleaners come in various types, including upright, canister, and robotic models. They are commonly used for cleaning carpets, hardwood floors, and upholstery.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about washing machines.', 'What is a washing machine?', 'Washing machine information.', 'Describe a washing machine.', 'Washing machine.'],
-  responses: ['A washing machine is an appliance used to wash laundry. It uses water, detergent, and mechanical agitation to clean clothes, towels, and other textiles. Washing machines come in various types, including top-loading and front-loading models.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about dryers.', 'What is a dryer?', 'Dryer information.', 'Describe a dryer.', 'Dryer.'],
-  responses: ['A dryer is an appliance used to remove moisture from laundry after washing. Dryers use heat and tumbling action to dry clothes, towels, and other textiles. They come in various types, including vented, condenser, and heat pump models.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about irons.', 'What is an iron?', 'Iron information.', 'Describe an iron.', 'Iron.'],
-  responses: ['An iron is a small appliance used to remove wrinkles from fabric by pressing it with a heated flat surface. Irons come in various types, including steam irons and dry irons. They are commonly used for pressing clothes and linens.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about fans.', 'What is a fan?', 'Fan information.', 'Describe a fan.', 'Fan.'],
-  responses: ['A fan is a device that creates airflow to cool or ventilate a space. Fans come in various types, including ceiling fans, table fans, and floor fans. They are commonly used in homes, offices, and outdoor areas to provide comfort and improve air circulation.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about air conditioners.', 'What is an air conditioner?', 'Air conditioner information.', 'Describe an air conditioner.', 'Air conditioner.'],
-  responses: ['An air conditioner is an appliance used to cool and dehumidify indoor air. Air conditioners come in various types, including window units, split systems, and central air systems. They are commonly used in homes, offices, and commercial buildings to provide comfort in hot weather.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about heaters.', 'What is a heater?', 'Heater information.', 'Describe a heater.', 'Heater.'],
-  responses: ['A heater is a device that produces heat to warm a space. Heaters come in various types, including electric heaters, gas heaters, and central heating systems. They are commonly used in homes, offices, and outdoor areas to provide comfort in cold weather.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about hair dryers.', 'What is a hair dryer?', 'Hair dryer information.', 'Describe a hair dryer.', 'Hair dryer.'],
-  responses: ['A hair dryer is an electric device used to dry and style hair. It blows hot or cold air over wet hair to evaporate moisture. Hair dryers come in various types, including handheld, hooded, and travel models. They are commonly used for personal grooming and styling.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about razors.', 'What is a razor?', 'Razor information.', 'Describe a razor.', 'Razor.'],
-  responses: ['A razor is a tool used for shaving hair from the skin. Razors come in various types, including disposable razors, safety razors, and electric razors. They are commonly used for personal grooming to achieve a smooth and clean appearance.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about shavers.', 'What is a shaver?', 'Shaver information.', 'Describe a shaver.', 'Shaver.'],
-  responses: ['A shaver, also known as an electric razor, is a device used to remove hair from the skin. It uses rotating or oscillating blades to cut hair. Shavers come in various types, including rotary and foil shavers. They are commonly used for personal grooming and achieving a smooth appearance.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about scissors.', 'What are scissors?', 'Scissors information.', 'Describe scissors.', 'Scissors.'],
-  responses: ['Scissors are a cutting instrument consisting of two blades joined in the middle, pivoting to cut material. They come in various types, including household, kitchen, and sewing scissors. Scissors are commonly used for cutting paper, fabric, and other materials.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about staplers.', 'What is a stapler?', 'Stapler information.', 'Describe a stapler.', 'Stapler.'],
-  responses: ['A stapler is a device used to join sheets of paper together by driving a metal staple through the sheets and folding the ends. Staplers come in various types, including manual, electric, and heavy-duty models. They are commonly used in offices, schools, and homes.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about tape.', 'What is tape?', 'Tape information.', 'Describe tape.', 'Tape.'],
-  responses: ['Tape is a flexible strip of material coated with adhesive on one or both sides, used for sticking items together. Tapes come in various types, including masking tape, duct tape, and double-sided tape. They are commonly used for sealing, repairing, and crafting.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about glue.', 'What is glue?', 'Glue information.', 'Describe glue.', 'Glue.'],
-  responses: ['Glue is an adhesive substance used for sticking objects or materials together. Glues come in various types, including white glue, super glue, and epoxy. They are commonly used for crafts, repairs, and construction.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about rulers.', 'What is a ruler?', 'Ruler information.', 'Describe a ruler.', 'Ruler.'],
-  responses: ['A ruler is a measuring tool used to measure length or draw straight lines. Rulers are typically made from wood, plastic, or metal and come in various lengths, such as 12 inches or 30 centimeters. They are commonly used in schools, offices, and workshops.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about erasers.', 'What is an eraser?', 'Eraser information.', 'Describe an eraser.', 'Eraser.'],
-  responses: ['An eraser is a small, rubbery object used to remove pencil or pen marks from paper. Erasers come in various shapes and sizes, including block and pencil-top erasers. They are commonly used in schools, offices, and for artistic purposes.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about pencils.', 'What is a pencil?', 'Pencil information.', 'Describe a pencil.', 'Pencil.'],
-  responses: ['A pencil is a writing instrument with a core of graphite encased in wood or a similar material. Pencils are used for writing, drawing, and sketching. They come in various types, including standard, mechanical, and colored pencils.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about crayons.', 'What is a crayon?', 'Crayon information.', 'Describe a crayon.', 'Crayon.'],
-  responses: ['A crayon is a stick of colored wax used for writing, drawing, and coloring. Crayons come in various colors and are commonly used by children for artistic activities. They are available in sets and are a staple in school and home art supplies.']
-},
-{
-  intent: 'object_information',
-  utterances: ['Tell me about markers.', 'What is a marker?', 'Marker information.', 'Describe a marker.', 'Marker.'],
-  responses: ['A marker is a writing instrument with a felt tip used for marking or drawing. Markers come in various types, including permanent, dry-erase, and highlighters. They are commonly used']
-} 
-  
-  ];
-  
+const trainModel = async () => {
+    // Process the training data file
+    await processFile('finaldata.json'); // Use the filename here
 
-// Add the training data to the manager
-trainingData.forEach(data => {
-  data.utterances.forEach(utterance => {
-    manager.addDocument('en', utterance, data.intent);
-  });
-  data.responses.forEach(response => {
-    manager.addAnswer('en', data.intent, response);
-  });
-});
+    // Train the model
+    await manager.train();
+    manager.save('model2.nlp');
+    console.log('Model trained and saved');
+};
 
-// Train the model
-(async () => {
-  await manager.train();
-  manager.save('model2.nlp');
-  console.log('Model trained and saved');
-})();
+// Start the training process
+trainModel();

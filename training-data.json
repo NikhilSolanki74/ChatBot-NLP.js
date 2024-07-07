@@ -1,0 +1,32 @@
+[
+    {
+      "intent": "greetings.hello.1",
+      "utterances": [
+        "Hello!",
+        "hello",
+        "Hi",
+        "hi",
+        "Hey",
+        "hey",
+        "Greetings",
+        "greetings",
+        "Howdy",
+        "howdy"
+      ],
+      "responses": [
+        "Hello! How can I help you today?"
+      ]
+    },
+    {
+      "intent": "greetings.hello.2",
+      "utterances": [
+        "Good morning!",
+        "good morning",
+        "Good Morning",
+        "good Morning"
+      ],
+      "responses": [
+        "Good morning! How can I assist you?"
+      ]
+    }
+]
